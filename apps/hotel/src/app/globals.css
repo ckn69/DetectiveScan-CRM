@@ -1,0 +1,5 @@
+@import "tailwindcss";
+@import "@detectivescan/ui/styles.css";
+
+/* Les composants du design system utilisent des classes Tailwind : on les scanne aussi. */
+@source "../../../../packages/ui/src";

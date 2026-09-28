@@ -1,0 +1,17 @@
+{
+  "name": "detectivescan",
+  "private": true,
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "dev": "turbo run dev --filter=@detectivescan/hotel",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck"
+  },
+  "devDependencies": {
+    "turbo": "2.11.5",
+    "typescript": "5.9.3"
+  }
+}

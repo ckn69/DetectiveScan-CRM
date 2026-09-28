@@ -1,0 +1,26 @@
+# Dépendances
+node_modules/
+
+# Builds
+.next/
+out/
+dist/
+.turbo/
+*.tsbuildinfo
+next-env.d.ts
+
+# Environnement (seul .env.example est versionné)
+.env
+.env.*
+!.env.example
+
+# Vercel
+.vercel/
+
+# Captures de revue Impeccable
+.impeccable/review/
+
+# Système
+.DS_Store
+npm-debug.log*
+pnpm-debug.log*
