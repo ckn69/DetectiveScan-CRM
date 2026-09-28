@@ -70,7 +70,7 @@ export function RecentGamesCard({ games, className }: { games: RecentGame[]; cla
             <thead className="text-[12px] text-fg-3">
               <tr>
                 <th scope="col" className="pb-2 pr-3 text-left font-medium">
-                  Heure
+                  Date
                 </th>
                 <th scope="col" className="px-3 pb-2 text-left font-medium">
                   Chambre
@@ -92,12 +92,12 @@ export function RecentGamesCard({ games, className }: { games: RecentGame[]; cla
             <tbody>
               {games.map((game) => (
                 <tr key={game.id} className="border-t border-line">
-                  <td className="whitespace-nowrap py-2.5 pr-3 tabular-nums text-fg-2">{game.when}</td>
-                  <th scope="row" className="px-3 py-2.5 text-left font-medium text-fg">
+                  <td className="whitespace-nowrap py-2.5 pr-3 align-baseline tabular-nums text-fg-2">{game.when}</td>
+                  <th scope="row" className="px-3 py-2.5 text-left align-baseline font-medium text-fg">
                     {game.room}
                   </th>
-                  <td className="px-3 py-2.5 font-mono text-[12.5px] text-fg-2">{game.qr}</td>
-                  <td className="whitespace-nowrap px-3 py-2.5">
+                  <td className="px-3 py-2.5 align-baseline font-mono text-[12.5px] text-fg-2">{game.qr}</td>
+                  <td className="whitespace-nowrap px-3 py-2.5 align-baseline">
                     <Player name={game.player} />
                   </td>
                   <td className="px-3 py-2.5">
@@ -124,7 +124,7 @@ export function RecentGamesCard({ games, className }: { games: RecentGame[]; cla
                   </p>
                 </div>
                 <div className="flex shrink-0 items-center gap-3">
-                  <Feedback feedback={game.feedback} />
+                  {game.feedback ? <Feedback feedback={game.feedback} /> : null}
                   <StatusBadge status={game.status} />
                 </div>
               </li>

@@ -17,12 +17,13 @@ export const formatInteger = (value: number): string => INTEGER.format(value);
 export const formatDecimal = (value: number): string => DECIMAL.format(value);
 export const formatPercent = (ratio: number): string => PERCENT.format(ratio);
 
-/** Écart signé : « +18 % », « −2 pts ». */
-export function formatSigned(value: number, unit: "%" | "pts"): string {
+/** Écart signé : « +18 % », « −2 pts », « −6 ». */
+export function formatSigned(value: number, unit?: "%" | "pts"): string {
   const sign = value > 0 ? "+" : value < 0 ? MINUS : "";
   const magnitude = INTEGER.format(Math.abs(value));
   if (unit === "%") return `${sign}${magnitude}${THIN_NBSP}%`;
-  return `${sign}${magnitude}${NBSP}${Math.abs(value) > 1 ? "pts" : "pt"}`;
+  if (unit === "pts") return `${sign}${magnitude}${NBSP}${Math.abs(value) > 1 ? "pts" : "pt"}`;
+  return `${sign}${magnitude}`;
 }
 
 /** « 1 abandon », « 126 abandons » : 0 et 1 restent au singulier en français. */

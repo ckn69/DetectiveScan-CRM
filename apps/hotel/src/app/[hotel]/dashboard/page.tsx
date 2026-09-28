@@ -1,5 +1,6 @@
 import { CircleAlert } from "lucide-react";
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ActivityChart } from "@/components/dashboard/activity-chart";
 import { DashboardTransition } from "@/components/dashboard/dashboard-transition";
 import { Definitions } from "@/components/dashboard/definitions";
@@ -20,6 +21,7 @@ import {
   resolvePeriod,
 } from "@/lib/dashboard/period";
 import { hotelNow, isoFromDay } from "@/lib/dates";
+import { formatDay } from "@/lib/format";
 import { sectionHref } from "@/lib/nav";
 
 export const metadata: Metadata = { title: "Dashboard" };
@@ -73,7 +75,17 @@ export default async function DashboardPage({
             className="flex items-start gap-2.5 rounded-md border border-line-strong bg-surface px-4 py-3 text-[13.5px] leading-snug text-fg-2"
           >
             <CircleAlert className="mt-0.5 size-4 shrink-0 text-warning" strokeWidth={1.75} aria-hidden />
-            Période personnalisée non valide : les chiffres ci-dessous couvrent les 30 derniers jours.
+            <span>
+              Cette période n'est pas valide : choisissez au plus {MAX_CUSTOM_DAYS} jours, entre le{" "}
+              {formatDay(DEMO_DATA_SINCE, true)} et hier. Les chiffres ci-dessous couvrent les 30 derniers jours.{" "}
+              <Link
+                href={periodHref(pathname, "perso", custom)}
+                scroll={false}
+                className="rounded-sm font-medium text-fg underline underline-offset-4 transition-colors duration-150 hover:text-fg-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                Choisir une autre période
+              </Link>
+            </span>
           </p>
         ) : null}
 

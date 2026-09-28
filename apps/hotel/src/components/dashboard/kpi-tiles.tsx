@@ -49,11 +49,19 @@ export function KpiTiles({ tiles }: { tiles: KpiTile[] }) {
             <div className="mt-2.5">
               <Delta delta={tile.delta} />
             </div>
-            <dl className="mt-4 grid gap-2 border-t border-line pt-3.5 sm:gap-1.5">
+            <dl className="mt-4 grid gap-2.5 border-t border-line pt-3.5">
               {tile.details.map((detail) => (
-                <div key={detail.label} className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between sm:gap-x-2">
-                  <dt className="text-[12.5px] text-fg-3">{detail.label}</dt>
-                  <dd className="text-[13.5px] font-medium tabular-nums text-fg">{detail.value}</dd>
+                <div key={detail.label}>
+                  <dt className="text-[12.5px] leading-snug text-fg-3">{detail.label}</dt>
+                  <dd className="mt-0.5 flex flex-wrap items-baseline gap-x-1.5 tabular-nums">
+                    <span className="text-[13.5px] font-medium text-fg">{detail.value}</span>
+                    {detail.previous ? (
+                      <span className="text-[12px] text-fg-3">
+                        <span aria-hidden>vs {detail.previous}</span>
+                        <span className="sr-only">contre {detail.previous} sur la période précédente</span>
+                      </span>
+                    ) : null}
+                  </dd>
                 </div>
               ))}
             </dl>

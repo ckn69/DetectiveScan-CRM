@@ -42,12 +42,12 @@ export function TopRoomsCard({ rooms, qrHref, className }: { rooms: RoomStat[]; 
           <tbody>
             {rooms.map((room) => (
               <tr key={room.qr} className="border-t border-line">
-                <th scope="row" className="py-2.5 pr-3 text-left font-medium text-fg">
+                <th scope="row" className="py-2.5 pr-3 text-left align-baseline font-medium text-fg">
                   {room.room}
                 </th>
-                <td className="px-3 py-2.5 font-mono text-[12.5px] text-fg-2">{room.qr}</td>
-                <td className="px-3 py-2.5 text-right tabular-nums text-fg">{formatInteger(room.scans)}</td>
-                <td className="py-2.5 pl-3 text-right tabular-nums text-fg-2">
+                <td className="px-3 py-2.5 align-baseline font-mono text-[12.5px] text-fg-2">{room.qr}</td>
+                <td className="px-3 py-2.5 text-right align-baseline tabular-nums text-fg">{formatInteger(room.scans)}</td>
+                <td className="py-2.5 pl-3 text-right align-baseline tabular-nums text-fg-2">
                   {room.participation === null ? (
                     <>
                       <span aria-hidden>—</span>
@@ -62,6 +62,12 @@ export function TopRoomsCard({ rooms, qrHref, className }: { rooms: RoomStat[]; 
           </tbody>
         </table>
       )}
+
+      {rooms.some((room) => room.participation === null) ? (
+        <p className="mt-auto pt-4 text-[12px] leading-snug text-fg-3">
+          Participation affichée à partir de 5 scans par chambre.
+        </p>
+      ) : null}
     </Card>
   );
 }

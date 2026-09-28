@@ -4,12 +4,19 @@ import type { DashboardData, Totals } from "./types";
 /** Évolution par rapport à la période précédente. Pour tous ces indicateurs, une hausse est une bonne nouvelle. */
 export type KpiDelta = {
   direction: "up" | "down" | "flat";
-  /** « +18 % », « −2 pts », « Stable ». */
+  /** « +18 % », « −6 », « −2 pts », « Stable ». */
   text: string;
   /** Valeur de la période précédente : « 1 088 », « 55 % ». */
   previous: string;
   /** Phrase complète pour les lecteurs d'écran. */
   spoken: string;
+};
+
+export type KpiDetail = {
+  label: string;
+  value: string;
+  /** Valeur de la période précédente, `null` sans comparaison. */
+  previous: string | null;
 };
 
 export type KpiTile = {
@@ -18,8 +25,11 @@ export type KpiTile = {
   /** Valeur affichée, ou `null` faute de données (division par zéro). */
   value: string | null;
   delta: KpiDelta | null;
-  details: { label: string; value: string }[];
+  details: KpiDetail[];
 };
+
+/** Sous ce nombre, un pourcentage d'évolution exagère : on montre l'écart en valeur. */
+const SMALL_BASE = 20;
 
 const ratio = (part: number, whole: number): number | null => (whole > 0 ? part / whole : null);
 const percentOrDash = (value: number | null): string => (value === null ? "—" : formatPercent(value));
@@ -31,9 +41,21 @@ function spoken(direction: KpiDelta["direction"], amount: string, previous: stri
 
 function countDelta(value: number, previous: number | undefined): KpiDelta | null {
   if (previous === undefined || previous === 0) return null;
+  const previousText = formatInteger(previous);
+
+  if (previous < SMALL_BASE) {
+    const gap = value - previous;
+    const direction = gap > 0 ? "up" : gap < 0 ? "down" : "flat";
+    return {
+      direction,
+      text: direction === "flat" ? "Stable" : formatSigned(gap),
+      previous: previousText,
+      spoken: spoken(direction, formatInteger(Math.abs(gap)), previousText),
+    };
+  }
+
   const change = Math.round(((value - previous) / previous) * 100);
   const direction = change > 0 ? "up" : change < 0 ? "down" : "flat";
-  const previousText = formatInteger(previous);
   return {
     direction,
     text: direction === "flat" ? "Stable" : formatSigned(change, "%"),
@@ -58,11 +80,25 @@ function rateDelta(value: number | null, previous: number | null | undefined): K
 
 const participation = (totals: Totals) => ratio(totals.players, totals.visitors);
 const likedShare = (totals: Totals) => ratio(totals.liked, totals.answers);
+const satisfaction = (totals: Totals) => ratio(totals.satisfied, totals.answers);
+const dislikedShare = (totals: Totals) => ratio(totals.answers - totals.liked, totals.answers);
 
-/** Les quatre chiffres clés et leurs sous-indicateurs : les dix indicateurs du dashboard. */
+/** Les quatre chiffres clés et leurs sous-indicateurs, chacun avec sa valeur précédente : les dix indicateurs. */
 export function kpiTiles({ totals, previous, rooms }: DashboardData): KpiTile[] {
   const participationRate = participation(totals);
   const liked = likedShare(totals);
+
+  const count = (label: string, pick: (t: Totals) => number): KpiDetail => ({
+    label,
+    value: formatInteger(pick(totals)),
+    previous: previous ? formatInteger(pick(previous)) : null,
+  });
+  const rate = (label: string, pick: (t: Totals) => number | null): KpiDetail => ({
+    label,
+    value: percentOrDash(pick(totals)),
+    previous: previous && pick(previous) !== null ? percentOrDash(pick(previous)) : null,
+  });
+  const perRoom = (t: Totals) => (rooms > 0 ? formatDecimal(t.scans / rooms) : "—");
 
   return [
     {
@@ -71,8 +107,8 @@ export function kpiTiles({ totals, previous, rooms }: DashboardData): KpiTile[] 
       value: formatInteger(totals.scans),
       delta: countDelta(totals.scans, previous?.scans),
       details: [
-        { label: "Visiteurs uniques", value: formatInteger(totals.visitors) },
-        { label: "Scans par chambre", value: rooms > 0 ? formatDecimal(totals.scans / rooms) : "—" },
+        count("Visiteurs uniques", (t) => t.visitors),
+        { label: "Scans par chambre", value: perRoom(totals), previous: previous ? perRoom(previous) : null },
       ],
     },
     {
@@ -80,30 +116,21 @@ export function kpiTiles({ totals, previous, rooms }: DashboardData): KpiTile[] 
       label: "Joueurs",
       value: formatInteger(totals.players),
       delta: countDelta(totals.players, previous?.players),
-      details: [
-        { label: "Gagnants", value: formatInteger(totals.won) },
-        { label: "Perdants", value: formatInteger(totals.lost) },
-      ],
+      details: [count("Gagnants", (t) => t.won), count("Perdants", (t) => t.lost)],
     },
     {
       id: "participation",
       label: "Taux de participation",
       value: participationRate === null ? null : formatPercent(participationRate),
       delta: rateDelta(participationRate, previous ? participation(previous) : undefined),
-      details: [
-        { label: "Parties commencées", value: formatInteger(totals.started) },
-        { label: "Parties terminées", value: formatInteger(totals.finished) },
-      ],
+      details: [count("Parties commencées", (t) => t.started), count("Parties terminées", (t) => t.finished)],
     },
     {
       id: "liked",
       label: "Ont aimé l'expérience",
       value: liked === null ? null : formatPercent(liked),
       delta: rateDelta(liked, previous ? likedShare(previous) : undefined),
-      details: [
-        { label: "Taux de satisfaction", value: percentOrDash(ratio(totals.satisfied, totals.answers)) },
-        { label: "N'ont pas aimé", value: percentOrDash(ratio(totals.answers - totals.liked, totals.answers)) },
-      ],
+      details: [rate("Taux de satisfaction", satisfaction), rate("N'ont pas aimé", dislikedShare)],
     },
   ];
 }

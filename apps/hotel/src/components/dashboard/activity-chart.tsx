@@ -2,7 +2,7 @@
 
 import { Button, Card, cn } from "@detectivescan/ui";
 import { ChartLine, Table2 } from "lucide-react";
-import { type KeyboardEvent, type PointerEvent, useId, useState } from "react";
+import { type KeyboardEvent, type PointerEvent, useCallback, useEffect, useId, useRef, useState } from "react";
 import type { ActivityChart as ActivityChartData, ChartPoint } from "@/lib/dashboard/types";
 import { formatHour, formatInteger, plural } from "@/lib/format";
 import { PanelHeader } from "./panel-header";
@@ -46,7 +46,7 @@ function xTicks(count: number, granularity: "hour" | "day"): number[] {
 }
 
 const describe = (point: ChartPoint) =>
-  `${point.label} : ${formatInteger(point.scans)} scans, ${formatInteger(point.games)} parties commencées.`;
+  `${point.label} : ${plural(point.scans, "scan")}, ${plural(point.games, "partie commencée", "parties commencées")}.`;
 
 export function ActivityChart({ chart, className }: { chart: ActivityChartData; className?: string }) {
   const titleId = useId();
@@ -83,7 +83,7 @@ export function ActivityChart({ chart, className }: { chart: ActivityChartData; 
         {chart.summary}
       </p>
 
-      <div className="mt-5 h-[228px] sm:h-[264px]">
+      <div className={cn("mt-5", !showTable && "h-[228px] sm:h-[264px]")}>
         {showTable ? (
           <DataTable points={points} granularity={granularity} titleId={titleId} />
         ) : (
@@ -121,7 +121,6 @@ function Plot({
   const line = (key: SeriesKey) =>
     points.map((point, index) => `${index === 0 ? "M" : "L"}${x(index) * 10},${y(point[key]) * 10}`).join(" ");
   const paths = { scans: line("scans"), games: line("games") };
-  const area = points.length > 1 ? `${paths.scans} L${x(points.length - 1) * 10},1000 L0,1000 Z` : "";
 
   const last = points.length - 1;
   const lastPoint = points[last];
@@ -216,7 +215,6 @@ function Plot({
             preserveAspectRatio="none"
             className="absolute inset-0 size-full overflow-visible"
           >
-            {area ? <path d={area} className="fill-viz-1/10" /> : null}
             {SERIES.map((series) => (
               <path
                 key={series.key}
@@ -328,47 +326,75 @@ function DataTable({
   granularity: "hour" | "day";
   titleId: string;
 }) {
+  const scroller = useRef<HTMLDivElement>(null);
+  const [moreBelow, setMoreBelow] = useState(false);
+  const measure = useCallback(() => {
+    const box = scroller.current;
+    if (box) setMoreBelow(box.scrollTop + box.clientHeight < box.scrollHeight - 1);
+  }, []);
+  useEffect(measure, [measure, points]);
+
+  const count =
+    granularity === "hour"
+      ? `${plural(points.length, "heure complète", "heures complètes")}, de la plus récente à la plus ancienne.`
+      : `${plural(points.length, "jour")}, du plus récent au plus ancien.`;
+
   return (
-    <div
-      role="region"
-      tabIndex={0}
-      aria-labelledby={titleId}
-      className="h-full overflow-auto rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-    >
-      <table className="w-full text-[13px]">
-        <thead className="sticky top-0 bg-surface text-[12px] text-fg-3">
-          <tr>
-            <th scope="col" className="py-2 pr-3 text-left font-medium">
-              {granularity === "hour" ? "Heure" : "Jour"}
-            </th>
-            <th scope="col" className="px-3 py-2 text-right font-medium">
-              Scans
-            </th>
-            <th scope="col" className="py-2 pl-3 text-right font-medium">
-              Parties commencées
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {points.length === 0 ? (
-            <tr className="border-t border-line">
-              <td colSpan={3} className="py-3 text-fg-3">
-                Pas encore de données sur cette période.
-              </td>
-            </tr>
-          ) : (
-            [...points].reverse().map((point) => (
-              <tr key={point.label} className="border-t border-line">
-                <th scope="row" className="py-2 pr-3 text-left font-normal text-fg-2">
-                  {point.label}
+    <div className="grid gap-2">
+      <p className="text-[12.5px] text-fg-3">{count}</p>
+      <div className="relative">
+        <div
+          ref={scroller}
+          onScroll={measure}
+          role="region"
+          tabIndex={0}
+          aria-labelledby={titleId}
+          className="max-h-[26rem] overflow-auto rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          <table className="w-full text-[13px]">
+            <thead className="sticky top-0 bg-surface text-[12px] text-fg-3">
+              <tr>
+                <th scope="col" className="py-2 pr-3 text-left font-medium">
+                  {granularity === "hour" ? "Heure" : "Jour"}
                 </th>
-                <td className="px-3 py-2 text-right tabular-nums text-fg">{formatInteger(point.scans)}</td>
-                <td className="py-2 pl-3 text-right tabular-nums text-fg">{formatInteger(point.games)}</td>
+                <th scope="col" className="px-3 py-2 text-right font-medium">
+                  Scans
+                </th>
+                <th scope="col" className="py-2 pl-3 text-right font-medium">
+                  Parties commencées
+                </th>
               </tr>
-            ))
+            </thead>
+            <tbody>
+              {points.length === 0 ? (
+                <tr className="border-t border-line">
+                  <td colSpan={3} className="py-3 text-fg-3">
+                    Pas encore de données sur cette période.
+                  </td>
+                </tr>
+              ) : (
+                [...points].reverse().map((point) => (
+                  <tr key={point.label} className="border-t border-line">
+                    <th scope="row" className="py-2 pr-3 text-left font-normal text-fg-2">
+                      {point.label}
+                    </th>
+                    <td className="px-3 py-2 text-right tabular-nums text-fg">{formatInteger(point.scans)}</td>
+                    <td className="py-2 pl-3 text-right tabular-nums text-fg">{formatInteger(point.games)}</td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+        {/* Fondu du bas tant qu'il reste des lignes à faire défiler. */}
+        <div
+          aria-hidden
+          className={cn(
+            "pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-linear-to-t from-surface to-transparent transition-opacity duration-150",
+            moreBelow ? "opacity-100" : "opacity-0",
           )}
-        </tbody>
-      </table>
+        />
+      </div>
     </div>
   );
 }
