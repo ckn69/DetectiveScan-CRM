@@ -42,19 +42,7 @@ export function LoginForm() {
           />
         </Field>
 
-        <Field
-          id="password"
-          label="Mot de passe"
-          error={passwordError}
-          action={
-            <Link
-              href="/forgot-password"
-              className="rounded-[4px] text-[13px] text-fg-2 underline-offset-4 transition-colors hover:text-fg hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            >
-              Mot de passe oublié ?
-            </Link>
-          }
-        >
+        <Field id="password" label="Mot de passe" error={passwordError}>
           <PasswordInput
             id="password"
             name="password"
@@ -68,6 +56,13 @@ export function LoginForm() {
         <Button type="submit" size="lg" loading={pending} className="mt-1 w-full">
           {pending ? "Connexion…" : "Se connecter"}
         </Button>
+
+        <Link
+          href="/forgot-password"
+          className="justify-self-center rounded-[4px] text-[13px] text-fg-2 underline-offset-4 transition-colors hover:text-fg hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          Mot de passe oublié ?
+        </Link>
       </form>
 
       <div className="flex items-center gap-3 text-[12px] text-fg-3" aria-hidden>

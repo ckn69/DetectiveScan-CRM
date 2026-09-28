@@ -9,7 +9,7 @@ Le développement avance étape par étape : chaque étape livre une section com
 | Étape | Contenu | Statut |
 | --- | --- | --- |
 | 1 | Fondations, design system, connexion, navigation de l'espace hôtelier | Livrée (mode démo) |
-| 2 | Tableau de bord | À venir |
+| 2 | Dashboard | À venir |
 | 3 | QR codes & chambres : saisie, import CSV, mode installation | À venir |
 | 4 | Campagnes (écran de 3 secondes) | À venir |
 | 5 | Avis clients, Analytics | À venir |

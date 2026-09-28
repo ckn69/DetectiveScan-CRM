@@ -23,7 +23,7 @@ export function UserMenu({ user, hotelSlug, placement }: { user: SessionUser; ho
     { slug: "settings", label: "Profil et paramètres", icon: UserRound },
     { slug: "analytics", label: "Analytics", icon: ChartColumn, mobileOnly: true },
     { slug: "account", label: "Abonnement", icon: CreditCard, mobileOnly: true },
-    { slug: "support", label: "Aide et support", icon: LifeBuoy },
+    { slug: "support", label: "Aide & support", icon: LifeBuoy },
   ];
 
   return (

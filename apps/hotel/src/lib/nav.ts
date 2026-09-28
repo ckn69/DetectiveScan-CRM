@@ -31,8 +31,7 @@ export const SECTION_GROUPS: SectionGroup[] = [
     sections: [
       {
         slug: "dashboard",
-        label: "Tableau de bord",
-        shortLabel: "Accueil",
+        label: "Dashboard",
         icon: LayoutDashboard,
         step: 2,
         summary: "Vos scans, joueurs, taux de participation et satisfaction, comparés à la période précédente.",

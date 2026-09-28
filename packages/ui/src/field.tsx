@@ -13,21 +13,20 @@ export interface FieldProps {
   label: string;
   hint?: string;
   error?: string;
-  /** Élément aligné à droite du libellé (ex. lien « Mot de passe oublié ? »). */
-  action?: ReactNode;
   children: ReactNode;
 }
 
-/** Libellé + champ + aide ou erreur. L'erreur remplace l'aide quand elle existe. */
-export function Field({ id, label, hint, error, action, children }: FieldProps) {
+/**
+ * Libellé + champ + aide ou erreur. L'erreur remplace l'aide quand elle existe.
+ * Les liens associés (ex. « Mot de passe oublié ? ») se placent après le champ,
+ * jamais avant, pour garder un ordre de tabulation naturel.
+ */
+export function Field({ id, label, hint, error, children }: FieldProps) {
   return (
     <div className="grid gap-2">
-      <div className="flex items-baseline justify-between gap-3">
-        <label htmlFor={id} className="text-[13px] font-medium text-fg-2">
-          {label}
-        </label>
-        {action}
-      </div>
+      <label htmlFor={id} className="text-[13px] font-medium text-fg-2">
+        {label}
+      </label>
       {children}
       {error ? (
         <p id={`${id}-error`} className="flex items-start gap-1.5 text-[13px] leading-snug text-red-text">

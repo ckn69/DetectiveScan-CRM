@@ -1,21 +1,19 @@
 "use client";
 
 import { cn } from "@detectivescan/ui";
-import { LifeBuoy, type LucideIcon, Megaphone, Plus, ScanLine } from "lucide-react";
+import { Plus } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { findSection, MOBILE_TABS, sectionHref } from "@/lib/nav";
+import { QuickActionsList } from "./quick-actions-list";
+import { usePopoverOpen } from "./use-popover-open";
 
-const QUICK_ACTIONS: Array<{ slug: string; title: string; detail: string; icon: LucideIcon }> = [
-  { slug: "campaigns", title: "Nouvelle campagne", detail: "Restaurant, spa, événement…", icon: Megaphone },
-  { slug: "qr-codes", title: "Scanner un QR code", detail: "L'associer à une chambre", icon: ScanLine },
-  { slug: "support", title: "Signaler un problème", detail: "QR abîmé, jeu bloqué…", icon: LifeBuoy },
-];
+const POPOVER_ID = "quick-actions-mobile";
 
 /** Barre de navigation du bas (< 768 px) : 4 onglets et un bouton d'actions rapides au centre. */
 export function MobileNav({ hotelSlug }: { hotelSlug: string }) {
   const pathname = usePathname();
-  const closeQuickActions = () => document.getElementById("quick-actions")?.hidePopover();
+  const open = usePopoverOpen(POPOVER_ID);
 
   const tabs = MOBILE_TABS.map((slug) => findSection(slug)).filter((s) => s !== undefined);
   const left = tabs.slice(0, 2);
@@ -52,41 +50,30 @@ export function MobileNav({ hotelSlug }: { hotelSlug: string }) {
         <li className="flex justify-center">
           <button
             type="button"
-            popoverTarget="quick-actions"
-            aria-label="Actions rapides"
-            className="-mt-7 flex size-13 items-center justify-center rounded-[16px] bg-red text-white shadow-[0_10px_24px_-6px_rgb(229_9_20/0.55)] transition-[background-color,translate] duration-150 hover:bg-red-hover active:translate-y-px active:bg-red-press focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            popoverTarget={POPOVER_ID}
+            aria-label={open ? "Fermer les actions rapides" : "Actions rapides"}
+            className={cn(
+              "-mt-7 flex size-13 items-center justify-center rounded-lg text-white shadow-pop transition-[background-color,translate] duration-150 active:translate-y-px",
+              "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white",
+              open ? "bg-red-press" : "bg-red hover:bg-red-hover active:bg-red-press",
+            )}
           >
-            <Plus className="size-6" strokeWidth={2} aria-hidden />
+            <Plus
+              className={cn("size-6 transition-transform duration-200 ease-out", open && "rotate-45")}
+              strokeWidth={2}
+              aria-hidden
+            />
           </button>
         </li>
         {right.map(renderTab)}
       </ul>
 
       <div
-        id="quick-actions"
+        id={POPOVER_ID}
         popover="auto"
         className="ds-popover fixed inset-auto bottom-[calc(84px+env(safe-area-inset-bottom))] left-3 right-3 z-50 w-auto rounded-lg border border-line-strong bg-raised p-2 shadow-pop"
       >
-        <p className="px-3 pb-2 pt-1.5 text-[12px] font-semibold text-fg-3">Actions rapides</p>
-        <ul className="grid gap-0.5">
-          {QUICK_ACTIONS.map(({ slug, title, detail, icon: Icon }) => (
-            <li key={title}>
-              <Link
-                href={sectionHref(hotelSlug, slug)}
-                onClick={closeQuickActions}
-                className="flex items-center gap-3 rounded-md p-2.5 transition-colors duration-150 hover:bg-white/8 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white"
-              >
-                <span className="flex size-10 shrink-0 items-center justify-center rounded-[10px] bg-white/8 text-fg">
-                  <Icon className="size-5" strokeWidth={1.75} aria-hidden />
-                </span>
-                <span className="grid">
-                  <span className="text-[14px] font-semibold text-fg">{title}</span>
-                  <span className="text-[12.5px] text-fg-3">{detail}</span>
-                </span>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <QuickActionsList hotelSlug={hotelSlug} popoverId={POPOVER_ID} />
       </div>
     </nav>
   );

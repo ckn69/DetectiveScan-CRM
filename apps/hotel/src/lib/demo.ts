@@ -14,7 +14,7 @@ export const DEMO_USER = {
   name: "Claire Martin",
   shortName: "Claire M.",
   initials: "CM",
-  role: "Hotel Admin",
+  role: "Admin de l'hôtel",
   email: "claire.martin@example.com",
 } as const;
 
