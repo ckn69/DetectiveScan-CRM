@@ -594,6 +594,7 @@ pre .c{color:#7F89A6} pre .k{color:#E2BD74} pre .s{color:#8FD3B6} pre .f{color:#
 .admin-side a.on{background:var(--sunken);color:var(--text);box-shadow:inset 0 0 0 1px var(--line)}
 .admin-side a .ic{width:17px;height:17px}
 .admin-side nav{display:grid;gap:1px}
+.admin-side a .cnt{margin-left:auto;font:500 10.5px/1 var(--f-mono);background:var(--brass-soft);color:var(--brass-text);padding:3px 6px;border-radius:10px}
 .cmdk{background:var(--raised);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow-3);overflow:hidden;font-size:13px}
 .cmdk .q{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);color:var(--text)}
 .cmdk .q .ic{color:var(--muted)}
@@ -618,6 +619,33 @@ pre .c{color:#7F89A6} pre .k{color:#E2BD74} pre .s{color:#8FD3B6} pre .f{color:#
 .wf-box p{font-size:12px;color:var(--text-2);line-height:1.45}
 .wf-box .big{font-size:24px;font-weight:650;letter-spacing:-.01em}
 .wf-box .tag{justify-self:start}
+
+/* onboarding (mock back-office) */
+.onb-in{display:grid;grid-template-columns:minmax(0,1fr) 300px;min-height:540px}
+.kb{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;padding:16px;align-items:start}
+.kb-col{background:var(--sunken);border:1px solid var(--line);border-radius:12px;padding:10px;display:grid;gap:8px;align-content:start}
+.kb-col header{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;padding:2px 2px 4px}
+.kb-col header span{font:500 11px/1 var(--f-mono);background:var(--surface);border:1px solid var(--line);padding:3px 6px;border-radius:10px;color:var(--text-2)}
+.kb-card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px;display:grid;gap:6px;font-size:12px;box-shadow:var(--shadow-1)}
+.kb-card b{font-size:12.5px;line-height:1.3}
+.kb-card small{color:var(--muted);font-size:11.5px}
+.kb-card .meta{font-size:11px;color:var(--text-2)}
+.kb-card.on{border-color:var(--brass);box-shadow:0 0 0 3px var(--brass-soft)}
+.kb-card.ghost{color:var(--muted);text-align:center;box-shadow:none;background:transparent;border-style:dashed}
+.prog{height:4px;border-radius:2px;background:var(--sunken);overflow:hidden}
+.prog i{display:block;height:100%;background:var(--brass)}
+.onb-detail{border-left:1px solid var(--line);background:var(--surface);padding:18px;display:grid;gap:14px;align-content:start}
+.onb-detail header{display:grid;gap:3px}
+.onb-detail header b{font-family:var(--f-display);font-weight:500;font-size:22px;line-height:1.15}
+.onb-detail header small{color:var(--muted);font-size:12px}
+.chk{list-style:none;display:grid;gap:0;font-size:13px}
+.chk li{display:grid;grid-template-columns:22px 1fr;gap:8px;align-items:center;padding:6px 0;color:var(--text-2);border-bottom:1px solid var(--line)}
+.chk li:last-child{border-bottom:0}
+.chk li::before{content:"";width:16px;height:16px;border-radius:50%;border:1.5px solid var(--line-2);box-sizing:border-box}
+.chk li.ok{color:var(--text)}
+.chk li.ok::before{border-color:var(--success);background:var(--success) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 12 4.5 4.5L19 7'/%3E%3C/svg%3E") center/10px no-repeat}
+.chk li.now{color:var(--text);font-weight:650}
+.chk li.now::before{border-color:var(--brass);background:radial-gradient(circle,var(--brass) 0 3.5px,transparent 4px)}
 
 /* phases */
 .phase-table td{min-width:230px}
@@ -767,6 +795,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
     <symbol id="i-kanban" viewBox="0 0 24 24"><rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="4" width="5" height="10" rx="1"/><rect x="17" y="4" width="4" height="13" rx="1"/></symbol>
     <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5H9l2 2.5h8.5A1.5 1.5 0 0 1 21 9v9.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/></symbol>
     <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m10 8.5 5 3.5-5 3.5z"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4"/><path d="M5 4h11l-2 4 2 4H5"/></symbol>
     <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9S14.5 18.5 12 21c-2.5-2.5-3.5-5.5-3.5-9S9.5 5.5 12 3z"/></symbol>
   </defs>
 </svg>
@@ -778,7 +807,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
         <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="14" cy="14" r="10" fill="none" stroke="#D6AE62" stroke-width="2"/><rect x="9.5" y="9.5" width="4" height="4" rx=".8" fill="#D6AE62"/><rect x="14.6" y="9.6" width="3.8" height="3.8" rx=".8" fill="none" stroke="#D6AE62" stroke-width="1.3"/><rect x="9.6" y="14.6" width="3.8" height="3.8" rx=".8" fill="none" stroke="#D6AE62" stroke-width="1.3"/><path d="M21.6 21.6 28 28" stroke="#D6AE62" stroke-width="2.6" stroke-linecap="round"/></svg>
         DetectiveScan
       </div>
-      <div class="cover-ref">Dossier de cadrage · DS-CAD-001 · v1.1 · 28 sept. 2026</div>
+      <div class="cover-ref">Dossier de cadrage · DS-CAD-001 · v1.2 · 28 sept. 2026</div>
     </div>
 
     <div class="cover-main">
@@ -788,7 +817,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
         <dl class="cover-meta">
           <div><dt>Préparé pour</dt><dd>Fondateurs DetectiveScan</dd></div>
           <div><dt>Périmètre</dt><dd>3 applications web, 1 base</dd></div>
-          <div><dt>Statut</dt><dd>v1.1 · tes réponses intégrées</dd></div>
+          <div><dt>Statut</dt><dd>v1.2 · tes réponses intégrées</dd></div>
         </dl>
       </div>
       <figure class="cover-art" aria-hidden="true">
@@ -879,12 +908,12 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
 
       <div class="note warn" style="margin-top:24px">
         <svg class="ic"><use href="#i-alert"/></svg>
-        <p><strong>Direction artistique provisoire.</strong> Je n'ai pas pu lire detectivescan.com : le domaine est bloqué par la politique réseau de mon environnement de travail. Les couleurs et typographies de ce dossier sont une proposition construite sur ton brief (premium, hôtelier, mystérieux, élégant). Elles sont centralisées en variables. Pour que je récupère ta DA : ajoute <strong>detectivescan.com</strong> aux domaines autorisés de l'environnement (menu de l'environnement dans la barre de titre de la session → Edit → Network access), puis dis-le-moi : je réaligne tout en une passe.</p>
+        <p><strong>Direction artistique provisoire.</strong> Je n'ai pas pu lire detectivescan.com : le domaine est bloqué par la politique réseau de mon environnement de travail. Les couleurs et typographies de ce dossier sont une proposition construite sur ton brief (premium, hôtelier, mystérieux, élégant). Elles sont centralisées en variables. Le plus simple pour récupérer ta DA : donne-moi accès au dépôt GitHub du site du jeu, j'y lis directement couleurs, polices et logo, puis je réaligne tout en une passe.</p>
       </div>
 
       <div class="note info" style="margin-top:12px">
         <svg class="ic"><use href="#i-check"/></svg>
-        <p><strong>v1.1 : tes réponses sont intégrées.</strong> Essai gratuit d'un mois puis abonnement, espace réservé aux hôtels membres (D10). Le site du jeu existant est conservé et branché (D9). Les URL des QR déjà posés sont conservées (D4).</p>
+        <p><strong>v1.2 : tes réponses sont intégrées.</strong> Site du jeu en HTML sur Vercel, branché par un script (D9). QR enregistrés à la main ou par CSV (D4). Essai d'un mois puis 50 € par hôtel via Stripe, Qonto ensuite ; QR coupés si l'essai n'est pas converti (D10). Nouveau module Onboarding clients (D11).</p>
       </div>
 
       <h3>L'essentiel en cinq points</h3>
@@ -893,14 +922,14 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
         <li><span><strong>Le MVP prouve la valeur pour l'hôtel.</strong> Association QR ↔ chambre, suivi des scans et des parties, avis, campagnes de 3 secondes, un back-office pour créer les hôtels, les QR et les abonnements, et la facturation Stripe (essai d'un mois, puis abonnement).</span></li>
         <li><span><strong>CRM, agenda, signature et coffre-fort passent en V2.</strong> Ils se branchent par adaptateurs, ce qui permet d'intégrer ton code open source sans l'emmêler au cœur du produit.</span></li>
         <li><span><strong>Les joueurs restent pseudonymes par défaut.</strong> Nom et téléphone seulement avec consentement, masqués pour le staff, purgés automatiquement.</span></li>
-        <li><span><strong>Trois infos manquent encore avant de coder</strong> : l'accès à detectivescan.com (DA), un exemple d'URL d'un QR déjà posé, et la techno du site du jeu, pour y brancher le suivi des parties.</span></li>
+        <li><span><strong>Deux infos manquent encore avant de coder</strong> : l'accès au dépôt GitHub du site du jeu (pour la DA et le script), et la confirmation que chaque QR ouvre sa propre URL.</span></li>
       </ol>
 
-      <h3>Dix décisions structurantes à valider</h3>
+      <h3>Onze décisions structurantes à valider</h3>
       <div class="decisions">
         <div class="dec">
           <span class="id">D1</span>
-          <div><h4>Trois applications séparées dans un seul dépôt</h4><p><code>app.detectivescan.com</code> pour les hôtels, <code>admin.</code> pour ton équipe, <code>go.</code> pour les joueurs. Trois apps Next.js qui partagent le design system, la base et la logique métier (monorepo).</p></div>
+          <div><h4>Trois applications séparées dans un seul dépôt</h4><p><code>app.detectivescan.com</code> pour les hôtels, <code>admin.</code> pour ton équipe, <code>go.</code> pour l'API joueur et le script du jeu. Trois apps Next.js qui partagent le design system, la base et la logique métier (monorepo).</p></div>
           <div class="why"><span><b>Pourquoi</b><br>Tu veux deux environnements totalement distincts. Chaque app se déploie seule, le code admin ne part jamais chez les hôtels, et l'app joueur reste ultra-légère.</span><span><b>Sinon</b><br>Une seule app découpée en sections : plus rapide la première semaine, plus risquée ensuite.</span></div>
         </div>
         <div class="dec">
@@ -915,8 +944,8 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
         </div>
         <div class="dec">
           <span class="id">D4</span>
-          <div><h4>Le QR code ne contient jamais le numéro de chambre</h4><p>Nouveaux QR : URL courte avec identifiant aléatoire (<code>go.detectivescan.com/q/7Kp3xQ</code>), code lisible imprimé dessous (<span class="qrid">01-254-00</span>), association QR ↔ chambre historisée. <strong>QR déjà posés : leur URL actuelle est conservée</strong> et redirigée vers la plateforme.</p></div>
-          <div class="why"><span><b>Pourquoi</b><br>Déplacer un QR sans le réimprimer, garder des stats justes dans le temps, empêcher qu'on devine les URL pour gonfler les scans.</span><span><b>Sinon</b><br>URL lisible (<code>/q/01-254-00</code>) : plus simple, mais énumérable.</span></div>
+          <div><h4>Le QR code ne contient jamais le numéro de chambre</h4><p>Chaque QR porte son identifiant (<span class="qrid">01-254-00</span>) dans une URL unique vers ton site de jeu. La chambre est associée dans la plateforme, <strong>à la main ou par import CSV</strong>, avec historique. Les QR déjà posés restent valables.</p></div>
+          <div class="why"><span><b>Pourquoi</b><br>Déplacer un QR sans le réimprimer et garder des stats justes dans le temps.</span><span><b>Sinon</b><br>Numéro de chambre dans l'URL : chaque déplacement de QR oblige à réimprimer.</span></div>
         </div>
         <div class="dec">
           <span class="id">D5</span>
@@ -940,13 +969,18 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
         </div>
         <div class="dec">
           <span class="id">D9</span>
-          <div><h4>Le site du jeu reste tel quel, branché par événements <span class="tag ok">Confirmé</span></h4><p>Après les 3 secondes, <code>go.</code> redirige vers ton site de jeu avec un jeton signé. Un petit script ajouté au site envoie <code>partie.commencée</code> et <code>partie.terminée</code> (gagné ou perdu), puis renvoie le joueur vers l'écran d'avis.</p></div>
-          <div class="why"><span><b>Pourquoi</b><br>Fonctionne que le jeu soit reconstruit dans <code>go.</code> ou conservé là où il tourne aujourd'hui.</span><span><b>Reste à savoir</b><br>La techno du site du jeu (question 5).</span></div>
+          <div><h4>Ton site de jeu reçoit un script DetectiveScan <span class="tag ok">Confirmé</span></h4><p>Le site reste en HTML sur Vercel. Une balise <code>&lt;script&gt;</code> ajoutée au HTML lit l'identifiant du QR, enregistre le scan, affiche la campagne de 3 s, signale <code>partie.commencée</code> et <code>partie.terminée</code>, puis recueille l'avis.</p></div>
+          <div class="why"><span><b>Pourquoi</b><br>Aucune redirection, aucun jeu à reconstruire, les QR déjà posés restent valables.</span><span><b>Il me faut</b><br>L'accès au dépôt GitHub du site (question 18).</span></div>
         </div>
         <div class="dec">
           <span class="id">D10</span>
-          <div><h4>Essai gratuit d'un mois, puis abonnement <span class="tag ok">Confirmé</span></h4><p>L'espace hôtelier est réservé aux hôtels membres. L'essai démarre à l'activation de l'hôtel ; avant la fin, l'hôtel s'abonne via Stripe pour garder l'accès. Stripe Billing entre donc au MVP.</p></div>
-          <div class="why"><span><b>Proposition</b><br>Essai sans carte bancaire (vente accompagnée), relances J-7, J-3, J-1. Sans abonnement : espace verrouillé, données conservées 90 jours.</span><span><b>À préciser</b><br>Formules et prix, et ce que voient les clients de l'hôtel si l'essai n'est pas converti (questions 1 et 17).</span></div>
+          <div><h4>Essai gratuit d'un mois, puis abonnement <span class="tag ok">Confirmé</span></h4><p>Espace réservé aux hôtels membres. Essai à l'activation, puis abonnement Stripe à <strong>50 € par hôtel</strong> aujourd'hui, prix ajustable hôtel par hôtel. Qonto s'ajoutera par le même adaptateur de paiement.</p></div>
+          <div class="why"><span><b>Fin d'essai</b><br>Relances J-7, J-3, J-1. Sans paiement, ton équipe coupe les QR depuis l'onboarding ; le paiement les réactive.</span><span><b>À préciser</b><br>50 € HT ou TTC, par mois, avec ou sans engagement (question 1).</span></div>
+        </div>
+        <div class="dec">
+          <span class="id">D11</span>
+          <div><h4>Un module Onboarding clients dans le back-office <span class="tag ok">Demandé</span></h4><p>Chaque nouvel hôtel avance par étapes : contrat, chambres et QR (saisie ou CSV), installation et test, accès et essai, puis abonnement ou QR coupés. Vue en colonnes par étape, checklist et compte à rebours d'essai pour chaque hôtel.</p></div>
+          <div class="why"><span><b>Pourquoi</b><br>Un essai d'un mois ne se convertit pas tout seul : c'est l'outil quotidien du customer success.</span><span><b>Où</b><br>Maquette en section 08.</span></div>
         </div>
       </div>
     </section>
@@ -959,7 +993,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
       <h3>Trois surfaces, trois publics</h3>
       <div class="trio">
         <div class="night">
-          <span class="dom">go.detectivescan.com</span>
+          <span class="dom">ton site de jeu + go.</span>
           <h4>Expérience joueur</h4>
           <dl>
             <div><dt>Pour qui</dt><dd>Le client de l'hôtel. Sans compte, souvent sur le Wi-Fi de l'hôtel ou une 4G faible.</dd></div>
@@ -1009,15 +1043,16 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
           <thead><tr><th>Module</th><th>Contenu</th><th>Phase</th></tr></thead>
           <tbody>
             <tr><td>Comptes &amp; accès</td><td>Connexion, invitation, mot de passe oublié, vérification e-mail, sessions, 2FA</td><td><span class="tag mvp">MVP</span> <span class="tag v2">2FA hôtels V2</span></td></tr>
-            <tr><td>Hôtels &amp; organisations</td><td>Fiche hôtel, groupe, statut (onboarding, actif, suspendu, résilié)</td><td><span class="tag mvp">MVP</span></td></tr>
+            <tr><td>Hôtels &amp; organisations</td><td>Fiche hôtel, groupe, statut (onboarding, essai, membre, QR coupés, résilié)</td><td><span class="tag mvp">MVP</span></td></tr>
+            <tr><td>Onboarding clients</td><td>Étapes du contrat à l'abonnement, checklist par hôtel, fin d'essai, coupure et réactivation des QR</td><td><span class="tag mvp">MVP</span></td></tr>
             <tr><td>Rôles &amp; permissions</td><td>6 rôles, permissions par clé, rôles personnalisés</td><td><span class="tag mvp">MVP</span> <span class="tag v3">perso V3</span></td></tr>
-            <tr><td>QR codes &amp; chambres</td><td>Lots, impression, association historisée, import CSV, mode installation mobile</td><td><span class="tag mvp">MVP</span></td></tr>
+            <tr><td>QR codes &amp; chambres</td><td>Saisie manuelle, import CSV, association historisée, mode installation mobile</td><td><span class="tag mvp">MVP</span></td></tr>
             <tr><td>Suivi des scans</td><td>Enregistrement, dédoublonnage, filtrage des robots, scans de test</td><td><span class="tag mvp">MVP</span></td></tr>
-            <tr><td>Expérience joueur</td><td>Écran de 3 s, jeu, résultat, avis, FR/EN</td><td><span class="tag mvp">MVP</span></td></tr>
+            <tr><td>Expérience joueur</td><td>Script sur ton site de jeu : écran de 3 s, suivi des parties, avis, FR/EN</td><td><span class="tag mvp">MVP</span></td></tr>
             <tr><td>Analytics</td><td>KPIs, évolution, entonnoir, performance par chambre, export CSV</td><td><span class="tag mvp">MVP</span></td></tr>
             <tr><td>Avis clients</td><td>Liste, filtres, tendance, thèmes récurrents</td><td><span class="tag mvp">MVP</span> <span class="tag v2">thèmes auto V2</span></td></tr>
             <tr><td>Campagnes</td><td>Builder, aperçu, planning, stats ; A/B, ciblage chambres/horaires</td><td><span class="tag mvp">MVP</span> <span class="tag v2">A/B &amp; ciblage V2</span></td></tr>
-            <tr><td>Abonnement &amp; facturation</td><td>Essai d'un mois, abonnement Stripe, factures, moyen de paiement, accès réservé aux membres</td><td><span class="tag mvp">MVP</span></td></tr>
+            <tr><td>Abonnement &amp; facturation</td><td>Essai d'un mois, abonnement Stripe à 50 € par hôtel (ajustable), Qonto ensuite, factures, accès réservé aux membres</td><td><span class="tag mvp">MVP</span></td></tr>
             <tr><td>Boutique matériel</td><td>Catalogue, panier, commande, suivi</td><td><span class="tag v2">V2</span> <span class="tag neutral">MVP : demande via support</span></td></tr>
             <tr><td>Support &amp; notifications</td><td>Tickets (question, suggestion, problème), cloche, e-mails</td><td><span class="tag mvp">MVP</span></td></tr>
             <tr><td>CRM &amp; rendez-vous</td><td>Prospects, pipeline, notes, rappels, prise de rendez-vous</td><td><span class="tag v2">V2</span></td></tr>
@@ -1043,13 +1078,13 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
 
       <h3>Ce que le brief ne dit pas encore</h3>
       <ul class="list">
-        <li><strong>Les prix</strong> : le modèle est tranché (essai d'un mois puis abonnement), pas encore les formules ni les tarifs.</li>
-        <li><strong>La techno du site du jeu</strong> : il tourne déjà ; il faut savoir où ajouter le script de suivi des parties (D9).</li>
+        <li><strong>Le détail du tarif</strong> : 50 € par hôtel aujourd'hui ; HT ou TTC, par mois, avec ou sans engagement ?</li>
+        <li><strong>L'accès au dépôt GitHub du site du jeu</strong> : pour y ajouter le script et récupérer ta DA.</li>
         <li><strong>La définition exacte de chaque indicateur</strong> : je propose un dictionnaire en section 08.</li>
         <li><strong>Le statut RGPD des données joueurs</strong> : l'hôtel est-il responsable de traitement et DetectiveScan sous-traitant ?</li>
         <li><strong>L'existence de lots ou récompenses</strong> : elle conditionne la collecte du téléphone et la preuve de ROI.</li>
         <li><strong>Les langues des joueurs</strong> : une clientèle d'hôtel est souvent internationale.</li>
-        <li><strong>Le réseau en chambre</strong> : Wi-Fi à portail captif ou 4G faible. L'app joueur doit rester sous 150 Ko de JavaScript.</li>
+        <li><strong>Le réseau en chambre</strong> : Wi-Fi à portail captif ou 4G faible. Le script ajouté au jeu doit rester très léger (environ 15 Ko).</li>
       </ul>
     </section>
 
@@ -1064,9 +1099,9 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
           <thead><tr><th>Rôle</th><th>Espace</th><th>Qui</th><th>Ce qu'il fait</th><th>Appareil principal</th></tr></thead>
           <tbody>
             <tr><td><strong>Super Admin</strong></td><td><code>admin.</code></td><td>Fondateurs</td><td>Tout, y compris plans, prix, rôles et suppression de données</td><td>Ordinateur</td></tr>
-            <tr><td><strong>Admin</strong></td><td><code>admin.</code></td><td>Ops, associé</td><td>Hôtels, QR codes, campagnes, abonnements ; pas les rôles ni les prix</td><td>Ordinateur</td></tr>
+            <tr><td><strong>Admin</strong></td><td><code>admin.</code></td><td>Ops, associé</td><td>Hôtels, onboarding, QR codes, campagnes, abonnements ; pas les rôles ni les prix</td><td>Ordinateur</td></tr>
             <tr><td><strong>Support</strong></td><td><code>admin.</code></td><td>Support client</td><td>Tickets, fiches hôtels en lecture, données joueurs masquées</td><td>Ordinateur</td></tr>
-            <tr><td><strong>Sales</strong></td><td><code>admin.</code></td><td>Commerciaux</td><td>CRM, rendez-vous, propositions, signatures ; hôtels en lecture</td><td>Téléphone et ordinateur</td></tr>
+            <tr><td><strong>Sales</strong></td><td><code>admin.</code></td><td>Commerciaux</td><td>Onboarding (contrat), CRM, rendez-vous, signatures ; hôtels en lecture</td><td>Téléphone et ordinateur</td></tr>
             <tr><td><strong>Hotel Admin</strong></td><td><code>app.</code></td><td>Directeur, marketing</td><td>Tout son hôtel : campagnes, QR, équipe, abonnement</td><td>Ordinateur et téléphone</td></tr>
             <tr><td><strong>Hotel Staff</strong></td><td><code>app.</code></td><td>Réception, conciergerie</td><td>Dashboard, chambres, avis ; ni facturation ni équipe</td><td>Téléphone, poste de réception</td></tr>
             <tr><td><strong>Joueur</strong></td><td><code>go.</code></td><td>Client de l'hôtel</td><td>Joue, laisse un avis ; aucun compte</td><td>Téléphone</td></tr>
@@ -1087,6 +1122,8 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
             <tr><td>Équipe de l'hôtel</td><td><span class="pm full">Total</span></td><td><span class="pm full">Total</span></td><td><span class="pm read">Lecture</span></td><td><span class="pm none">—</span></td><td><span class="pm own">Son hôtel</span></td><td><span class="pm none">—</span></td></tr>
             <tr><td>Abonnement &amp; factures de l'hôtel</td><td><span class="pm full">Total</span></td><td><span class="pm read">Lecture</span></td><td><span class="pm read">Lecture</span></td><td><span class="pm read">Lecture</span></td><td><span class="pm own">Son hôtel</span></td><td><span class="pm none">—</span></td></tr>
             <tr><td>Tous les hôtels (créer, suspendre)</td><td><span class="pm full">Total</span></td><td><span class="pm full">Total</span></td><td><span class="pm read">Lecture</span></td><td><span class="pm read">Lecture</span></td><td><span class="pm none">—</span></td><td><span class="pm none">—</span></td></tr>
+            <tr><td>Onboarding clients</td><td><span class="pm full">Total</span></td><td><span class="pm full">Total</span></td><td><span class="pm read">Lecture</span></td><td><span class="pm full">Total</span></td><td><span class="pm none">—</span></td><td><span class="pm none">—</span></td></tr>
+            <tr><td>Couper ou réactiver les QR d'un hôtel</td><td><span class="pm full">Total</span></td><td><span class="pm full">Total</span></td><td><span class="pm none">—</span></td><td><span class="pm none">—</span></td><td><span class="pm none">—</span></td><td><span class="pm none">—</span></td></tr>
             <tr><td>Plans, prix, remboursements</td><td><span class="pm full">Total</span></td><td><span class="pm none">—</span></td><td><span class="pm none">—</span></td><td><span class="pm none">—</span></td><td><span class="pm none">—</span></td><td><span class="pm none">—</span></td></tr>
             <tr><td>CRM, contacts, rendez-vous</td><td><span class="pm full">Total</span></td><td><span class="pm full">Total</span></td><td><span class="pm read">Lecture</span></td><td><span class="pm full">Total</span></td><td><span class="pm none">—</span></td><td><span class="pm none">—</span></td></tr>
             <tr><td>Documents &amp; signatures</td><td><span class="pm full">Total</span></td><td><span class="pm full">Total</span></td><td><span class="pm read">Lecture</span></td><td><span class="pm full">Total</span></td><td><span class="pm read">Partagés</span></td><td><span class="pm none">—</span></td></tr>
@@ -1160,7 +1197,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
                   <ul>
                     <li><span class="r">[code]</span> <span class="l">détail QR</span> <span class="tag mvp">MVP</span></li>
                     <li><span class="r">rooms/[numéro]</span> <span class="l">détail chambre</span> <span class="tag mvp">MVP</span></li>
-                    <li><span class="r">import</span> <span class="l">import CSV</span> <span class="tag mvp">MVP</span></li>
+                    <li><span class="r">import</span> <span class="l">import CSV (QR + chambres)</span> <span class="tag mvp">MVP</span></li>
                     <li><span class="r">install</span> <span class="l">mode installation</span> <span class="tag mvp">MVP</span></li>
                   </ul>
                 </li>
@@ -1206,10 +1243,11 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
             </li>
             <li><span class="grp">Clients</span>
               <ul>
+                <li><span class="r">onboarding</span> <span class="l">du contrat à l'abonnement</span> <span class="tag mvp">MVP</span></li>
                 <li><span class="r">hotels</span> <span class="tag mvp">MVP</span>
                   <ul>
                     <li><span class="r">new</span> <span class="tag mvp">MVP</span></li>
-                    <li><span class="r">[id]</span> <span class="l">12 onglets, voir section 07</span> <span class="tag mvp">MVP</span></li>
+                    <li><span class="r">[id]</span> <span class="l">13 onglets, voir section 07</span> <span class="tag mvp">MVP</span></li>
                   </ul>
                 </li>
                 <li><span class="r">users</span> <span class="tag mvp">MVP</span></li>
@@ -1252,22 +1290,28 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
         </div>
 
         <div class="smap">
-          <header><b>Expérience joueur</b><span>go.detectivescan.com</span></header>
+          <header><b>Expérience joueur</b><span>ton site de jeu + go.detectivescan.com</span></header>
           <ul class="tree">
-            <li><span class="r">/q/[slug]</span> <span class="l">scan : enregistre, redirige</span> <span class="tag mvp">MVP</span></li>
-            <li><span class="r">/l/[code]</span> <span class="l">QR déjà posés : URL conservée</span> <span class="tag mvp">MVP</span></li>
-            <li><span class="r">/s/[scan]</span> <span class="l">communication 3 s</span> <span class="tag mvp">MVP</span></li>
-            <li><span class="r">/play</span> <span class="l">vers le site du jeu existant</span> <span class="tag mvp">MVP</span></li>
-            <li><span class="r">/result</span> <span class="tag mvp">MVP</span></li>
-            <li><span class="r">/feedback</span> <span class="l">avis</span> <span class="tag mvp">MVP</span></li>
-            <li><span class="r">/thanks</span> <span class="l">merci + rappel de l'offre</span> <span class="tag mvp">MVP</span></li>
-            <li><span class="r">/unavailable</span> <span class="l">QR désactivé, hôtel suspendu</span> <span class="tag mvp">MVP</span></li>
-            <li><span class="r">/privacy · /legal</span> <span class="l">FR / EN</span> <span class="tag mvp">MVP</span></li>
+            <li><span class="grp">Sur ton site de jeu (HTML, Vercel)</span>
+              <ul>
+                <li><span class="r">&lt;script sdk.js&gt;</span> <span class="l">une ligne dans le HTML du jeu</span> <span class="tag mvp">MVP</span></li>
+                <li><span class="l">Campagne 3 s, suivi des parties, avis, page « QR coupé » : affichés par le script</span></li>
+              </ul>
+            </li>
+            <li><span class="grp">go.detectivescan.com</span>
+              <ul>
+                <li><span class="r">/sdk.js</span> <span class="l">le script, environ 15 Ko</span> <span class="tag mvp">MVP</span></li>
+                <li><span class="r">/api/v1/scan</span> <span class="l">enregistre le scan, renvoie la campagne</span> <span class="tag mvp">MVP</span></li>
+                <li><span class="r">/api/v1/events</span> <span class="l">partie commencée, terminée</span> <span class="tag mvp">MVP</span></li>
+                <li><span class="r">/api/v1/reviews</span> <span class="l">avis</span> <span class="tag mvp">MVP</span></li>
+                <li><span class="r">/privacy · /legal</span> <span class="l">FR / EN</span> <span class="tag mvp">MVP</span></li>
+              </ul>
+            </li>
             <li><span class="grp">Page publique prospects</span>
               <ul><li><span class="r">rdv.detectivescan.com/[commercial]</span> <span class="l">prise de rendez-vous</span> <span class="tag v2">V2</span></li></ul>
             </li>
           </ul>
-          <p class="small muted" style="margin-top:16px">Cette app ne contient aucun écran de gestion. Pas de compte, pas de cookie publicitaire, JavaScript minimal.</p>
+          <p class="small muted" style="margin-top:16px">Le jeu reste sur ton site actuel : les QR déjà posés restent valables, sans redirection. Pas de compte joueur, pas de cookie publicitaire.</p>
         </div>
       </div>
     </section>
@@ -1372,6 +1416,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
             <a class="on" href="#s04"><svg class="ic"><use href="#i-home"/></svg>Dashboard</a>
             <a href="#s04"><svg class="ic"><use href="#i-chart"/></svg>Analytics</a>
             <span class="grp">Clients</span>
+            <a href="#s04"><svg class="ic"><use href="#i-flag"/></svg>Onboarding<span class="cnt">10</span></a>
             <a href="#s04"><svg class="ic"><use href="#i-building"/></svg>Hôtels</a>
             <a href="#s04"><svg class="ic"><use href="#i-users"/></svg>Utilisateurs</a>
             <a href="#s04"><svg class="ic"><use href="#i-card"/></svg>Abonnements</a>
@@ -1409,7 +1454,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
               <li><strong>Sidebar claire et pastille « Admin »</strong> : l'œil distingue le back-office de l'espace hôtelier (sidebar nuit) en une fraction de seconde.</li>
               <li><strong>⌘K partout</strong> : hôtel, QR, contact, document, et actions (« créer un hôtel »).</li>
               <li>En préproduction, un bandeau orange « Staging » s'affiche en haut des trois apps.</li>
-              <li><strong>Mobile</strong> : barre du bas <em>Aujourd'hui · Hôtels · + · CRM · Plus</em>. « Aujourd'hui » réunit les rendez-vous du jour et les hôtels à risque.</li>
+              <li><strong>Mobile</strong> : barre du bas <em>Aujourd'hui · Hôtels · + · Onboarding · Plus</em>. « Aujourd'hui » réunit les installations du jour, les fins d'essai et les hôtels à risque.</li>
             </ul>
           </div>
         </div>
@@ -1451,22 +1496,22 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
         <header><h4>Flow 2 · Hôtel → ajout QR → association chambre → scan client</h4><span>MVP</span></header>
         <ol class="steps">
           <li><b>Chambres</b>Import CSV ou plage (« 101 à 142 »), étages, suites nommées.<span class="ev">rooms.imported</span></li>
-          <li><b>QR codes</b>Lot généré par DetectiveScan et rattaché à l'hôtel, en stock.<span class="ev">qr.batch_assigned</span></li>
+          <li><b>QR codes</b>Saisie manuelle ou import CSV (code, URL, chambre), erreurs affichées avant validation.<span class="ev">qr.imported</span></li>
           <li><b>Association</b>Sur place avec le mode installation (scan puis choix de la chambre), ou depuis le tableau.<span class="ev">qr.assigned</span></li>
           <li><b>Test</b>Scan de test marqué comme tel, exclu des statistiques.<span class="ev">scan.test</span></li>
           <li><b>Actif</b>Le QR passe « Actif » ; le premier scan client arrive dans le dashboard.<span class="ev">scan.created</span></li>
         </ol>
-        <div class="watch"><svg class="ic"><use href="#i-alert"/></svg><span>Réassigner un QR <strong>clôt</strong> l'ancienne association au lieu de l'écraser : les stats passées restent sur la bonne chambre. Un QR désactivé mène à une page neutre, jamais à une erreur. Les QR déjà posés sont importés avec leur URL actuelle.</span></div>
+        <div class="watch"><svg class="ic"><use href="#i-alert"/></svg><span>Réassigner un QR <strong>clôt</strong> l'ancienne association au lieu de l'écraser : les stats passées restent sur la bonne chambre. Un QR désactivé mène à une page neutre, jamais à une erreur. Chaque QR doit ouvrir une URL unique (ex. <code>?qr=01-254-00</code>) : c'est elle qui dit quelle chambre joue.</span></div>
       </article>
 
       <article class="flow-block">
         <header><h4>Flow 3 · Joueur → scan → communication → enquête → résultat → avis</h4><span>MVP · le parcours le plus important</span></header>
         <ol class="steps">
-          <li><b>Scan</b>Enregistré avec le QR, la chambre, l'heure et la langue. Les QR déjà posés passent par une redirection.<span class="ev">scan.created</span></li>
-          <li><b>Communication 3 s</b>Campagne éligible choisie. Le jeu se précharge pendant ces 3 secondes.<span class="ev">campaign.impression</span></li>
-          <li><b>Enquête</b>Sur ton site de jeu actuel, ouvert avec un jeton signé qui relie la partie au scan.<span class="ev">game.started</span></li>
+          <li><b>Scan</b>Le QR ouvre ton site de jeu ; le script lit l'identifiant du QR et enregistre le scan.<span class="ev">scan.created</span></li>
+          <li><b>Communication 3 s</b>Le script affiche la campagne de l'hôtel par-dessus le jeu, qui se charge derrière.<span class="ev">campaign.impression</span></li>
+          <li><b>Enquête</b>Le jeu démarre ; le script signale la partie, reliée au scan par un jeton signé.<span class="ev">game.started</span></li>
           <li><b>Résultat</b>Gagné ou perdu, durée, indices utilisés, rappel de l'offre de l'hôtel.<span class="ev">game.finished</span></li>
-          <li><b>Avis</b>« Avez-vous aimé ? » en un geste, puis note et commentaire facultatifs.<span class="ev">review.submitted</span></li>
+          <li><b>Avis</b>Le script pose « Avez-vous aimé ? », puis note et commentaire facultatifs.<span class="ev">review.submitted</span></li>
           <li><b>Contact</b>Facultatif : nom et téléphone seulement pour recevoir un lot, consentement séparé.<span class="ev">player.identified</span></li>
         </ol>
         <div class="phones" style="margin-top:22px" aria-label="Écrans illustratifs du parcours joueur">
@@ -1538,8 +1583,8 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
             <p class="ph-cap">5 · Avis en un geste</p>
           </div>
         </div>
-        <p class="small muted">Écrans 1, 4 et 5 : hébergés par la plateforme. Écrans 2 et 3 : ton site de jeu actuel, illustré ici. L'hôtel apporte son logo et son offre.</p>
-        <div class="watch"><svg class="ic"><use href="#i-alert"/></svg><span>Pas de campagne active : on passe directement au jeu. Un clic sur l'offre ouvre un volet par-dessus l'enquête, sans la quitter. Le même téléphone qui rescanne dans les 30 minutes compte pour une seule visite.</span></div>
+        <p class="small muted">Tous ces écrans s'affichent sur ton site de jeu. Les écrans 1, 4 et 5 sont dessinés par le script DetectiveScan ; les écrans 2 et 3 sont ton jeu actuel, illustré ici.</p>
+        <div class="watch"><svg class="ic"><use href="#i-alert"/></svg><span>Pas de campagne active : on passe directement au jeu. Un clic sur l'offre ouvre un volet par-dessus l'enquête, sans la quitter. Le même téléphone qui rescanne dans les 30 minutes compte pour une seule visite. QR coupé : le script affiche une page neutre au lieu du jeu.</span></div>
       </article>
 
       <article class="flow-block">
@@ -1556,16 +1601,16 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
       </article>
 
       <article class="flow-block">
-        <header><h4>Flow 5 · Admin → création hôtel → abonnement → activation → accès hôtel</h4><span>MVP</span></header>
+        <header><h4>Flow 5 · Admin → création hôtel → abonnement → activation → accès hôtel</h4><span>MVP · piloté depuis l'onboarding</span></header>
         <ol class="steps">
-          <li><b>Création</b>Organisation et hôtel : nom, adresse, nombre de chambres, contact.<span class="ev">hotel.created</span></li>
-          <li><b>Offre</b>Formule choisie ; l'essai d'un mois démarrera à l'activation.<span class="ev">subscription.created</span></li>
-          <li><b>QR codes</b>Lot généré, planche PDF à imprimer, rattachement à l'hôtel.<span class="ev">qr.batch_created</span></li>
-          <li><b>Installation</b>Pose et association chambre par chambre.<span class="ev">hotel.installed</span></li>
-          <li><b>Activation</b>Statut « Actif », essai lancé, invitation envoyée à l'admin de l'hôtel.<span class="ev">hotel.activated</span></li>
-          <li><b>Accès</b>L'hôtelier se connecte (Flow 1).<span class="ev">user.joined</span></li>
+          <li><b>Création</b>Organisation et hôtel : nom, adresse, chambres, contact, tarif (50 € par défaut).<span class="ev">hotel.created</span></li>
+          <li><b>Contrat</b>CGV et contrat signés ; l'hôtel entre dans l'onboarding.<span class="ev">onboarding.started</span></li>
+          <li><b>Chambres &amp; QR</b>Saisie manuelle ou import CSV, association QR ↔ chambre.<span class="ev">qr.imported</span></li>
+          <li><b>Installation</b>Pose, scan de test sur chaque QR, checklist cochée.<span class="ev">hotel.installed</span></li>
+          <li><b>Accès &amp; essai</b>Invitation envoyée à l'hôtelier, essai d'un mois lancé.<span class="ev">subscription.trialing</span></li>
+          <li><b>Fin d'essai</b>Paiement Stripe : membre. Sans paiement : ton équipe coupe les QR.<span class="ev">subscription.active · qr.cut</span></li>
         </ol>
-        <div class="watch"><svg class="ic"><use href="#i-alert"/></svg><span>Cycle de vie d'un hôtel : onboarding → essai (1 mois) → membre → suspendu (impayé) → résilié. Suspendu, il garde ses données ; ce que voient ses clients au scan reste à décider (question 17).</span></div>
+        <div class="watch"><svg class="ic"><use href="#i-alert"/></svg><span>Cycle de vie d'un hôtel : onboarding → essai (1 mois) → membre → QR coupés (impayé) → résilié. QR coupés : les clients voient une page neutre ; le paiement réactive tout, données conservées.</span></div>
       </article>
 
       <article class="flow-block">
@@ -1822,7 +1867,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
             <tr><td class="num">7</td><td>Création campagne</td><td><code>/[hôtel]/campaigns/new</code></td><td><span class="tag mvp">MVP</span></td><td>Builder : contenu, ciblage, planning, aperçu</td></tr>
             <tr><td class="num">8</td><td>Preview campagne</td><td>Étape du builder</td><td><span class="tag mvp">MVP</span></td><td>+ lien de prévisualisation à envoyer à un collègue</td></tr>
             <tr><td class="num">9</td><td>A/B testing</td><td><code>/[hôtel]/campaigns/[id]/ab</code></td><td><span class="tag v2">V2</span></td><td>Données prêtes dès le MVP (D6)</td></tr>
-            <tr><td class="num">10 · 11</td><td>QR codes · Chambres</td><td><code>/[hôtel]/qr-codes</code></td><td><span class="tag mvp">MVP</span></td><td>Fusionnés : deux onglets d'une même page</td></tr>
+            <tr><td class="num">10 · 11</td><td>QR codes · Chambres</td><td><code>/[hôtel]/qr-codes</code></td><td><span class="tag mvp">MVP</span></td><td>Fusionnés : deux onglets ; ajout manuel ou import CSV</td></tr>
             <tr><td class="num">12</td><td>Détail QR code</td><td><code>/[hôtel]/qr-codes/[code]</code></td><td><span class="tag mvp">MVP</span></td><td>Association, historique, scans, performance</td></tr>
             <tr><td class="num">13</td><td>Avis</td><td><code>/[hôtel]/reviews</code></td><td><span class="tag mvp">MVP</span></td><td></td></tr>
             <tr><td class="num">14</td><td>Détail avis</td><td>Panneau latéral</td><td><span class="tag mvp">MVP</span></td><td>Page dédiée sur mobile uniquement</td></tr>
@@ -1836,7 +1881,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
             <tr><td class="num">22</td><td>Profil</td><td><code>/[hôtel]/settings/profile</code></td><td><span class="tag mvp">MVP</span></td><td></td></tr>
             <tr><td class="num">+</td><td>Invitation, vérification e-mail</td><td><code>/invite/[jeton]</code> · <code>/verify-email</code></td><td><span class="tag mvp">MVP</span></td><td>Porte d'entrée du Flow 1</td></tr>
             <tr><td class="num">+</td><td>Mode installation</td><td><code>/[hôtel]/qr-codes/install</code></td><td><span class="tag mvp">MVP</span></td><td>Caméra du téléphone, chambre par chambre</td></tr>
-            <tr><td class="num">+</td><td>Import CSV · Détail chambre</td><td><code>…/import</code> · <code>…/rooms/[n°]</code></td><td><span class="tag mvp">MVP</span></td><td></td></tr>
+            <tr><td class="num">+</td><td>Import CSV · Détail chambre</td><td><code>…/import</code> · <code>…/rooms/[n°]</code></td><td><span class="tag mvp">MVP</span></td><td>Import CSV des QR et des chambres, erreurs ligne par ligne</td></tr>
             <tr><td class="num">+</td><td>Fiche joueur</td><td><code>/[hôtel]/analytics/players/[id]</code></td><td><span class="tag mvp">MVP</span></td><td>Parties, avis ; identité masquée selon le rôle</td></tr>
             <tr><td class="num">+</td><td>Données &amp; RGPD</td><td><code>/[hôtel]/settings/data</code></td><td><span class="tag mvp">MVP</span></td><td>Durée de conservation, export, suppression</td></tr>
             <tr><td class="num">+</td><td>Accès verrouillé</td><td><code>/[hôtel]/locked</code></td><td><span class="tag mvp">MVP</span></td><td>Fin d'essai ou impayé : « Devenir membre »</td></tr>
@@ -1844,7 +1889,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
         </table>
       </div>
 
-      <h3>Back-office <span class="tag neutral">25 demandés → 21 pages + 3 ajoutées</span></h3>
+      <h3>Back-office <span class="tag neutral">25 demandés → 21 pages + 4 ajoutées</span></h3>
       <div class="tbl-wrap">
         <table>
           <thead><tr><th class="num">#</th><th>Écran demandé</th><th>Route</th><th>Phase</th><th>Remarque</th></tr></thead>
@@ -1852,7 +1897,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
             <tr><td class="num">1</td><td>Login admin</td><td><code>/login</code></td><td><span class="tag mvp">MVP</span></td><td>Google Workspace + 2FA obligatoire</td></tr>
             <tr><td class="num">2</td><td>Dashboard global</td><td><code>/dashboard</code></td><td><span class="tag mvp">MVP</span></td><td>Détail en section 08</td></tr>
             <tr><td class="num">3</td><td>Hôtels</td><td><code>/hotels</code></td><td><span class="tag mvp">MVP</span></td><td>Nom, ville, contact, offre, statut, QR, scans, joueurs, inscription, dernière activité</td></tr>
-            <tr><td class="num">4</td><td>Détail hôtel</td><td><code>/hotels/[id]</code></td><td><span class="tag mvp">MVP</span></td><td>Onglets : aperçu, utilisateurs, abonnement, QR &amp; chambres, campagnes, stats, joueurs, avis, facturation, commandes, documents, historique</td></tr>
+            <tr><td class="num">4</td><td>Détail hôtel</td><td><code>/hotels/[id]</code></td><td><span class="tag mvp">MVP</span></td><td>Onglets : aperçu, onboarding, utilisateurs, abonnement, QR &amp; chambres, campagnes, stats, joueurs, avis, facturation, commandes, documents, historique</td></tr>
             <tr><td class="num">5</td><td>Utilisateurs</td><td><code>/users</code></td><td><span class="tag mvp">MVP</span></td><td>Désactiver, réinitialiser la 2FA</td></tr>
             <tr><td class="num">6</td><td>Abonnements</td><td><code>/subscriptions</code></td><td><span class="tag mvp">MVP</span></td><td>Synchronisés avec Stripe</td></tr>
             <tr><td class="num">7</td><td>QR codes</td><td><code>/qr-codes</code></td><td><span class="tag mvp">MVP</span></td><td>Stock, lots, planches d'impression</td></tr>
@@ -1871,12 +1916,13 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
             <tr><td class="num">24</td><td>Permissions</td><td><code>/settings/permissions</code></td><td><span class="tag mvp">MVP</span></td><td>Rôles fixes au MVP, personnalisables en V3</td></tr>
             <tr><td class="num">25</td><td>Audit logs</td><td><code>/audit-logs</code></td><td><span class="tag mvp">MVP</span></td><td>Filtres par hôtel, personne, action</td></tr>
             <tr><td class="num">+</td><td>Création d'hôtel · Lot de QR · Plans</td><td><code>/hotels/new</code> · <code>/qr-codes/batches/new</code> · <code>/subscriptions/plans</code></td><td><span class="tag mvp">MVP</span></td><td>Nécessaires au Flow 5</td></tr>
+            <tr><td class="num">+</td><td>Onboarding clients</td><td><code>/onboarding</code></td><td><span class="tag mvp">MVP</span></td><td>Colonnes par étape, checklist par hôtel, fin d'essai, coupure des QR</td></tr>
           </tbody>
         </table>
       </div>
 
-      <h3>Expérience joueur <span class="tag neutral">8 écrans</span></h3>
-      <p class="prose">Scan, communication de 3 secondes, enquête, résultat, avis, merci, page « QR indisponible », mentions légales. Tous en MVP, en français et en anglais.</p>
+      <h3>Expérience joueur <span class="tag neutral">script + API</span></h3>
+      <p class="prose">Sur ton site de jeu, le script affiche : la communication de 3 secondes, le rappel de l'offre, l'avis, et une page neutre si le QR est coupé. Côté <code>go.</code> : l'API, le script et les mentions légales. Tout en MVP, en français et en anglais.</p>
     </section>
 
     <!-- ================= 08 DASHBOARDS ================= -->
@@ -2154,7 +2200,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
               </div>
               <div class="wf-row" style="grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr)">
                 <div class="wf-box"><b>Classement des hôtels</b><p>Participation, satisfaction, scans par chambre, dernière activité. Tri et filtre par ville, offre, statut.</p></div>
-                <div class="wf-box"><b>Agenda du jour</b><span class="tag v2">V2</span><p>Démos, installations, rendez-vous de suivi.</p></div>
+                <div class="wf-box"><b>Onboarding en cours</b><span class="tag mvp">MVP</span><p>10 hôtels : 3 en installation, 6 en essai, 1 à couper. Détail ci-dessous.</p></div>
                 <div class="wf-box"><b>Pipeline &amp; tickets</b><span class="tag v2">V2 pour le pipeline</span><p>Prospects par étape ; tickets ouverts par priorité.</p></div>
               </div>
             </div>
@@ -2162,6 +2208,52 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
         </div>
       </div>
       <p class="small muted" style="margin-top:12px;max-width:80ch">« Hôtels à surveiller » est la liste de travail du customer success : un hôtel qui ne scanne plus ou qui ne paie plus s'y affiche avant de résilier. Chiffres fictifs.</p>
+
+      <h3>Onboarding clients · back-office <span class="tag mvp">MVP</span></h3>
+      <p class="prose" style="margin-bottom:16px">Chaque nouvel hôtel avance de colonne en colonne, du contrat à l'abonnement. La fiche à droite montre sa checklist : ce qui est fait, l'étape en cours, et l'action suivante.</p>
+      <div class="scroll-x fit">
+        <div class="wf" role="img" aria-label="Maquette de l'onboarding clients : hôtels classés par étape et checklist d'un hôtel en fin d'essai. Données fictives.">
+          <div class="onb-in">
+            <div class="kb">
+              <div class="kb-col"><header><b>À installer</b><span>2</span></header>
+                <div class="kb-card"><b>Hôtel Démo Annecy</b><small>28 chambres · contrat signé</small><div class="prog"><i style="width:25%"></i></div><span class="meta">2 / 8 · QR à enregistrer</span></div>
+                <div class="kb-card"><b>Hôtel Démo Grenoble</b><small>54 chambres · contrat signé</small><div class="prog"><i style="width:13%"></i></div><span class="meta">1 / 8 · chambres à importer</span></div>
+              </div>
+              <div class="kb-col"><header><b>Installation</b><span>1</span></header>
+                <div class="kb-card"><b>Hôtel Démo Lille</b><small>40 chambres · pose le 2 oct.</small><div class="prog"><i style="width:50%"></i></div><span class="meta">4 / 8 · scans de test</span></div>
+              </div>
+              <div class="kb-col"><header><b>Essai en cours</b><span>6</span></header>
+                <div class="kb-card on"><b>Hôtel Démo Bordeaux</b><small>36 chambres · jour 27 / 30</small><div class="prog"><i style="width:88%"></i></div><span class="meta"><span class="badge b-warn">Fin dans 3 j</span></span></div>
+                <div class="kb-card"><b>Hôtel Démo Nantes</b><small>62 chambres · jour 12 / 30</small><div class="prog"><i style="width:75%"></i></div><span class="meta">418 scans · 57 % de participation</span></div>
+                <div class="kb-card ghost">+ 4 autres hôtels</div>
+              </div>
+              <div class="kb-col"><header><b>À couper</b><span>1</span></header>
+                <div class="kb-card"><b>Hôtel Démo Marseille</b><small>Essai terminé depuis 2 j</small><span class="meta"><span class="badge b-off"><span class="dot"></span>Sans paiement</span></span></div>
+              </div>
+              <div class="kb-col"><header><b>Membres</b><span>38</span></header>
+                <div class="kb-card"><b>Hôtel Démo Lyon</b><small>50 € / mois · Stripe</small><span class="meta"><span class="badge b-active"><span class="dot"></span>Actif</span></span></div>
+                <div class="kb-card ghost">+ 37 autres hôtels</div>
+              </div>
+            </div>
+            <aside class="onb-detail">
+              <header><b>Hôtel Démo Bordeaux</b><small>36 chambres · essai jour 27 / 30 · suivi : Nassim</small></header>
+              <ol class="chk">
+                <li class="ok">Contrat et CGV signés</li>
+                <li class="ok">Hôtel et accès créés</li>
+                <li class="ok">Chambres importées (CSV)</li>
+                <li class="ok">QR enregistrés : 36 / 36</li>
+                <li class="ok">Installation et scans de test</li>
+                <li class="ok">Invitation envoyée à l'hôtelier</li>
+                <li class="now"><span>Essai : fin le 1<sup>er</sup> octobre</span></li>
+                <li>Abonnement Stripe · 50 € / mois</li>
+              </ol>
+              <div class="row"><button class="btn btn-accent btn-sm" type="button">Envoyer le lien de paiement</button><button class="btn btn-secondary btn-sm" type="button">Prolonger l'essai</button></div>
+              <button class="btn btn-danger btn-sm" type="button" style="justify-self:start">Couper les QR de l'hôtel</button>
+            </aside>
+          </div>
+        </div>
+      </div>
+      <p class="small muted" style="margin-top:12px;max-width:80ch">« Couper les QR » affiche une page neutre aux clients de l'hôtel ; le paiement Stripe les réactive automatiquement. Chaque coupure et réactivation est tracée dans le journal d'audit. Données fictives.</p>
 
       <h3>Dictionnaire des indicateurs</h3>
       <div class="tbl-wrap">
@@ -2195,13 +2287,13 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
           <thead><tr><th>Module</th><th><span class="tag mvp">MVP · lancement</span></th><th><span class="tag v2">V2</span></th><th><span class="tag v3">V3</span></th></tr></thead>
           <tbody>
             <tr><td>Accès &amp; sécurité</td><td class="m"><ul><li>Connexion, invitation, mot de passe oublié</li><li>Sessions sécurisées</li><li>2FA obligatoire côté admin</li></ul></td><td class="v2"><ul><li>2FA pour les hôtels</li><li>Connexion Google</li></ul></td><td><ul><li>SSO pour les groupes</li></ul></td></tr>
-            <tr><td>QR codes &amp; chambres</td><td class="m"><ul><li>Lots, planches PDF</li><li>Association historisée, import CSV</li><li>Mode installation, stats par QR</li></ul></td><td class="v2"><ul><li>Alertes QR inactifs</li><li>Réimpression en un clic</li></ul></td><td><ul><li>QR par zone (spa, bar, hall)</li></ul></td></tr>
-            <tr><td>Expérience joueur</td><td class="m"><ul><li>Communication 3 s</li><li>Intégration du jeu, résultat, avis</li><li>Français et anglais</li></ul></td><td class="v2"><ul><li>Rappel de l'offre au résultat</li><li>Invitation à un avis Google, sans filtrage</li></ul></td><td><ul><li>Plusieurs scénarios</li><li>Autres langues</li></ul></td></tr>
+            <tr><td>QR codes &amp; chambres</td><td class="m"><ul><li>Saisie manuelle, import CSV</li><li>Association historisée, mode installation</li><li>Stats par QR, coupure en fin d'essai</li></ul></td><td class="v2"><ul><li>Alertes QR inactifs</li><li>Réimpression en un clic</li></ul></td><td><ul><li>QR par zone (spa, bar, hall)</li></ul></td></tr>
+            <tr><td>Expérience joueur</td><td class="m"><ul><li>Script sur le site du jeu</li><li>Communication 3 s, parties, avis</li><li>Français et anglais</li></ul></td><td class="v2"><ul><li>Rappel de l'offre au résultat</li><li>Invitation à un avis Google, sans filtrage</li></ul></td><td><ul><li>Plusieurs scénarios</li><li>Autres langues</li></ul></td></tr>
             <tr><td>Dashboard &amp; analytics</td><td class="m"><ul><li>KPIs, évolution, entonnoir</li><li>Satisfaction, chambres, activité</li><li>Export CSV</li></ul></td><td class="v2"><ul><li>Rapport hebdo par e-mail</li><li>Périodes personnalisées comparées</li></ul></td><td><ul><li>Benchmark anonyme entre hôtels</li><li>Données PMS</li></ul></td></tr>
             <tr><td>Avis</td><td class="m"><ul><li>Liste, filtres, recherche, tendance</li></ul></td><td class="v2"><ul><li>Thèmes détectés automatiquement</li><li>Réponse de l'hôtel</li></ul></td><td><ul><li>Analyse IA des verbatims</li></ul></td></tr>
             <tr><td>Campagnes</td><td class="m"><ul><li>Builder, image, aperçu</li><li>Planning, statuts automatiques</li><li>Affichages et clics</li></ul></td><td class="v2"><ul><li>A/B testing</li><li>Ciblage chambres, QR, horaires</li><li>Coupons validés par le staff</li></ul></td><td><ul><li>Campagnes multi-hôtels</li><li>Recommandations</li></ul></td></tr>
-            <tr><td>Compte &amp; facturation</td><td class="m"><ul><li>Essai d'un mois, puis abonnement Stripe</li><li>Factures, moyen de paiement</li><li>Accès réservé aux membres</li></ul></td><td class="v2"><ul><li>Changement d'offre en libre-service</li><li>Boutique matériel</li></ul></td><td><ul><li>Facturation de groupe</li></ul></td></tr>
-            <tr><td>Back-office</td><td class="m"><ul><li>Dashboard, hôtels, fiche hôtel</li><li>Utilisateurs, abonnements, QR</li><li>Activité, tickets, audit</li></ul></td><td class="v2"><ul><li>« Voir comme l'hôtel » (tracé)</li><li>Score de santé des hôtels</li></ul></td><td><ul><li>Rôles personnalisés</li></ul></td></tr>
+            <tr><td>Compte &amp; facturation</td><td class="m"><ul><li>Essai d'un mois, puis abonnement Stripe</li><li>50 € par hôtel, prix ajustable</li><li>Accès réservé aux membres</li></ul></td><td class="v2"><ul><li>Paiement Qonto</li><li>Boutique matériel</li></ul></td><td><ul><li>Facturation de groupe</li></ul></td></tr>
+            <tr><td>Back-office</td><td class="m"><ul><li>Dashboard, hôtels, fiche hôtel</li><li>Onboarding clients, coupure des QR</li><li>Utilisateurs, abonnements, QR</li><li>Activité, tickets, audit</li></ul></td><td class="v2"><ul><li>« Voir comme l'hôtel » (tracé)</li><li>Score de santé des hôtels</li></ul></td><td><ul><li>Rôles personnalisés</li></ul></td></tr>
             <tr><td>CRM &amp; agenda</td><td><span class="muted small">Un outil existant en attendant</span></td><td class="v2"><ul><li>Contacts, pipeline, notes, rappels</li><li>Prise de rendez-vous</li></ul></td><td><ul><li>Séquences d'e-mails</li><li>Prévisions</li></ul></td></tr>
             <tr><td>Documents &amp; signature</td><td><span class="muted small">Drive + outil de signature en attendant</span></td><td class="v2"><ul><li>Coffre-fort, dossiers, versions</li><li>Signature électronique</li></ul></td><td><ul><li>Contrats générés automatiquement</li></ul></td></tr>
             <tr><td>RGPD</td><td class="m"><ul><li>Consentement, masquage</li><li>Purge automatique</li><li>Export et suppression</li></ul></td><td class="v2"><ul><li>Chiffrement des champs sensibles</li></ul></td><td><ul><li>Portail self-service</li></ul></td></tr>
@@ -2212,7 +2304,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
       <h3>Plan de développement</h3>
       <div class="timeline">
         <div><span class="when">Phase 0 · sem. 1–2</span><b>Fondations</b><ul><li>Monorepo, CI, 3 environnements</li><li>Supabase UE, auth, rôles, RLS</li><li>Design system en code</li><li>Données de démo</li></ul><span class="gate">Fini quand : un hôtel de démo s'affiche dans les deux apps.</span></div>
-        <div><span class="when">Phase 1 · sem. 3–5</span><b>Le scan</b><ul><li>Admin : hôtels, lots de QR, import des QR posés</li><li>App joueur : scan, 3 s, redirection vers le jeu, avis</li><li>Script de suivi sur le site du jeu</li></ul><span class="gate">Fini quand : un vrai scan en chambre remonte en base.</span></div>
+        <div><span class="when">Phase 1 · sem. 3–5</span><b>Le scan</b><ul><li>Admin : hôtels, onboarding, QR (saisie + CSV)</li><li>API joueur + script sur le site du jeu</li><li>Scan, 3 s, parties, avis</li></ul><span class="gate">Fini quand : un vrai scan en chambre remonte en base.</span></div>
         <div><span class="when">Phase 2 · sem. 6–9</span><b>L'espace hôtel</b><ul><li>Dashboard, analytics, QR &amp; chambres</li><li>Campagnes, avis, équipe</li><li>Essai et abonnement Stripe</li></ul><span class="gate">Fini quand : un hôtel pilote l'utilise seul pendant une semaine.</span></div>
         <div><span class="when">Phase 3 · sem. 10–12</span><b>Pilote</b><ul><li>2 à 3 hôtels pilotes</li><li>Monitoring, documents RGPD</li><li>Correctifs, ouverture</li></ul><span class="gate">Fini quand : les hôtels existants sont migrés.</span></div>
       </div>
@@ -2237,11 +2329,12 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
             <tr><td>ORM, migrations</td><td><strong>Drizzle ORM + drizzle-kit</strong></td><td>Proche du SQL, léger en serverless, politiques RLS déclarées dans le code, migrations versionnées.</td><td>Prisma (plus lourd, RLS moins direct)</td></tr>
             <tr><td>Authentification</td><td><strong>Supabase Auth</strong></td><td>E-mail, lien magique, Google, 2FA TOTP, sessions en cookies httpOnly.</td><td>Clerk (coût à l'échelle), Auth.js (2FA à construire)</td></tr>
             <tr><td>Fichiers</td><td><strong>Supabase Storage</strong></td><td>Espaces privés, liens signés valables 60 s, droits par RLS : la base du coffre-fort.</td><td>S3 en direct (plus de code d'accès)</td></tr>
-            <tr><td>Paiements</td><td><strong>Stripe Billing, Checkout, portail client, Stripe Tax</strong></td><td>Abonnements, TVA, factures et moyen de paiement sans interface à coder.</td><td>Paddle (moins souple en B2B)</td></tr>
+            <tr><td>Paiements</td><td><strong>Stripe Billing aujourd'hui, Qonto ensuite</strong></td><td>Abonnement à prix par hôtel (50 € par défaut), factures et moyen de paiement sans interface à coder. Un adaptateur de paiement unique pour brancher Qonto sans toucher au reste.</td><td>Paddle (moins souple en B2B)</td></tr>
             <tr><td>E-mails</td><td><strong>Resend + React Email</strong></td><td>Modèles versionnés dans le dépôt, envoi depuis l'UE.</td><td>Brevo (à garder si SMS en V3)</td></tr>
             <tr><td>Anti-abus</td><td><strong>Upstash Redis (UE)</strong></td><td>Limitation de débit sur le scan, la connexion et l'API joueur.</td><td>Aucune protection : stats gonflables</td></tr>
             <tr><td>Tâches planifiées</td><td><strong>Vercel Cron → Inngest en V2</strong></td><td>Purge RGPD, agrégats nocturnes, rapports ; Inngest pour les tâches longues avec reprise.</td><td>Serveur dédié à maintenir</td></tr>
-            <tr><td>QR codes</td><td><strong>qrcode (SVG, PDF) + nanoid</strong></td><td>Planches d'impression vectorielles, identifiants impossibles à deviner.</td><td>Générateur QR tiers (coût, dépendance)</td></tr>
+            <tr><td>QR codes</td><td><strong>Import CSV (Papa Parse) + qrcode</strong></td><td>Enregistrement des QR existants par fichier, génération des nouveaux QR en SVG ou PDF.</td><td>Générateur QR tiers (coût, dépendance)</td></tr>
+            <tr><td>Script du jeu</td><td><strong>JavaScript sans dépendance (environ 15 Ko)</strong></td><td>Une ligne à ajouter au HTML du jeu ; il ne parle qu'à l'API joueur.</td><td>Iframe ou redirection (plus lent, casse les QR posés)</td></tr>
             <tr><td>Erreurs, performance</td><td><strong>Sentry (région UE) + Vercel Observability</strong></td><td>Erreurs avec contexte, traces, alertes.</td><td>Logs seuls</td></tr>
             <tr><td>Analytics</td><td><strong>Événements en base ; PostHog UE en V2</strong></td><td>Les stats des hôtels sont le produit : elles restent dans notre base.</td><td>Google Analytics (cookies, hors sujet)</td></tr>
             <tr><td>Tests</td><td><strong>Vitest, Playwright, tests RLS</strong></td><td>Logique métier, parcours critiques, et isolation entre hôtels vérifiée à chaque PR.</td><td>Tests manuels</td></tr>
@@ -2255,7 +2348,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
     <!-- ================= 11 BASE DE DONNÉES ================= -->
     <section class="sec" id="s11">
       <h2><span class="n">11</span>Base de données</h2>
-      <p class="intro">Une base Postgres, huit domaines, une règle : toute ligne qui appartient à un hôtel porte son <code>hotel_id</code>. Les 21 tables de ta liste sont toutes là ; les autres servent à garder la chaîne juste dans le temps.</p>
+      <p class="intro">Une base Postgres, neuf domaines, une règle : toute ligne qui appartient à un hôtel porte son <code>hotel_id</code>. Les 21 tables de ta liste sont toutes là ; les autres servent à garder la chaîne juste dans le temps.</p>
 
       <h3>La chaîne de données</h3>
       <figure class="dia">
@@ -2328,11 +2421,17 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
         </div>
 
         <div class="dom">
+          <header><b>Onboarding clients</b><span class="tag mvp">MVP</span></header>
+          <div class="t"><span class="tn">hotels.stage</span><span class="cols">to_install · installing · trial · to_cut · member · churned</span><span class="why">L'étape affichée en colonnes dans le back-office.</span></div>
+          <div class="t"><span class="tn">onboarding_tasks</span><span class="cols"><span class="pk">id</span> · <span class="fk">hotel_id→</span> · step (contract | rooms | qr | install | test | access | trial | payment) · status · <span class="fk">owner_id→</span> · due_at · done_at · note</span><span class="why">La checklist de chaque hôtel ; coupures et réactivations des QR tracées dans audit_logs.</span></div>
+        </div>
+
+        <div class="dom">
           <header><b>QR codes &amp; chambres</b><span class="tag mvp">MVP</span></header>
           <div class="t"><span class="tn">rooms</span><span class="cols"><span class="pk">id</span> · <span class="fk">hotel_id→</span> · number · floor · name · type · status (active | out_of_service)</span></div>
-          <div class="t"><span class="tn">qr_codes</span><span class="cols"><span class="pk">id</span> · code (01-254-00) · slug (URL aléatoire) · legacy_url (QR déjà posés) · <span class="fk">hotel_id→</span> (vide = stock) · <span class="fk">room_id→</span> · location_label · status · <span class="fk">batch_id→</span></span></div>
+          <div class="t"><span class="tn">qr_codes</span><span class="cols"><span class="pk">id</span> · code (01-254-00) · url (imprimée, unique) · <span class="fk">hotel_id→</span> · <span class="fk">room_id→</span> · location_label · status (active | disabled | cut) · source (manual | csv) · <span class="fk">import_id→</span></span></div>
           <div class="t"><span class="tn">qr_assignments</span><span class="cols"><span class="pk">id</span> · <span class="fk">qr_code_id→</span> · <span class="fk">room_id→</span> · <span class="fk">hotel_id→</span> · assigned_at · unassigned_at · <span class="fk">assigned_by→</span></span><span class="why">L'historique : quel QR était dans quelle chambre, et quand.</span></div>
-          <div class="t"><span class="tn">qr_batches</span><span class="cols"><span class="pk">id</span> · label · quantity · printed_at</span></div>
+          <div class="t"><span class="tn">qr_imports</span><span class="cols"><span class="pk">id</span> · <span class="fk">hotel_id→</span> · file_path · rows_total · rows_ok · errors · <span class="fk">imported_by→</span></span><span class="why">Historique des imports CSV, avec les erreurs ligne par ligne.</span></div>
         </div>
 
         <div class="dom">
@@ -2356,7 +2455,7 @@ footer.foot{border-top:1px solid var(--line);padding-block:24px 40px;font-size:1
         <div class="dom">
           <header><b>Abonnements &amp; commandes</b><span class="tag mvp">MVP</span></header>
           <div class="t"><span class="tn">plans</span><span class="cols"><span class="pk">id</span> · key · name · price_month_cents · price_year_cents · features · limits · stripe_price_ids</span><span class="why">Les fonctionnalités par offre vivent ici : aucun « if Pro » en dur dans le code.</span></div>
-          <div class="t"><span class="tn">subscriptions</span><span class="cols"><span class="pk">id</span> · <span class="fk">hotel_id→</span> · <span class="fk">organization_id→</span> · <span class="fk">plan_id→</span> · status (trialing | active | past_due | canceled) · trial_ends_at · current_period_end · cancel_at · stripe_subscription_id</span></div>
+          <div class="t"><span class="tn">subscriptions</span><span class="cols"><span class="pk">id</span> · <span class="fk">hotel_id→</span> · <span class="fk">organization_id→</span> · <span class="fk">plan_id→</span> · status (trialing | active | past_due | canceled) · trial_ends_at · current_period_end · price_cents (5000 par défaut) · provider (stripe | qonto | manual) · provider_ref</span></div>
           <div class="t"><span class="tn">invoices</span><span class="cols"><span class="pk">id</span> · <span class="fk">organization_id→</span> · stripe_invoice_id · number · amount_cents · status · pdf_url · issued_at</span></div>
           <div class="t"><span class="tn">products · orders · order_items <span class="tag v2">V2</span></span><span class="cols">sku · name · price_cents · <span class="fk">hotel_id→</span> · number · status · total_cents · shipping · <span class="fk">order_id→</span> · <span class="fk">product_id→</span> · qty</span></div>
         </div>
@@ -2446,7 +2545,7 @@ $$;</pre>
             <path class="dg-line" d="M190 345H248" marker-end="url(#ah2)"/><text class="dg-lbl" x="219" y="338" text-anchor="middle">HTTPS</text>
 
             <rect class="dg-night" x="250" y="50" width="230" height="70" rx="10"/>
-            <text class="dg-w" x="365" y="74" text-anchor="middle">App joueur</text><text class="dg-w2" x="365" y="92" text-anchor="middle" style="font-family:var(--f-mono)">go.detectivescan.com</text><text class="dg-w2" x="365" y="108" text-anchor="middle">scan · 3 s · jeu · avis</text>
+            <text class="dg-w" x="365" y="74" text-anchor="middle">Site du jeu + API joueur</text><text class="dg-w2" x="365" y="92" text-anchor="middle" style="font-family:var(--f-mono)">detectivescan.com · go.</text><text class="dg-w2" x="365" y="108" text-anchor="middle">script : scan, 3 s, parties, avis</text>
             <rect class="dg-box" x="250" y="180" width="230" height="70" rx="10"/>
             <text class="dg-t" x="365" y="204" text-anchor="middle">Espace hôtelier</text><text class="dg-m" x="365" y="222" text-anchor="middle">app.detectivescan.com</text><text class="dg-t2" x="365" y="238" text-anchor="middle">pages serveur + actions</text>
             <rect class="dg-box" x="250" y="310" width="230" height="70" rx="10"/>
@@ -2477,7 +2576,7 @@ $$;</pre>
 
             <rect class="dg-box" x="810" y="240" width="270" height="140" rx="12"/>
             <text class="dg-t" x="826" y="264">Services</text>
-            <text class="dg-t2" x="826" y="290"><tspan class="dg-m">Stripe</tspan> · paiements, factures</text>
+            <text class="dg-t2" x="826" y="290"><tspan class="dg-m">Stripe</tspan> · abonnements (Qonto ensuite)</text>
             <text class="dg-t2" x="826" y="312"><tspan class="dg-m">Resend</tspan> · e-mails</text>
             <text class="dg-t2" x="826" y="334"><tspan class="dg-m">Upstash</tspan> · anti-abus</text>
             <text class="dg-t2" x="826" y="356"><tspan class="dg-m">Sentry</tspan> · erreurs, traces</text>
@@ -2491,7 +2590,7 @@ $$;</pre>
             <path class="dg-line dash" d="M750 370L808 412" marker-end="url(#ah2)"/>
           </svg>
         </div>
-        <figcaption>Les trois apps sont des projets Vercel séparés, déployés depuis le même dépôt. Elles ne partagent que le cœur : l'app joueur n'embarque aucun code d'administration, et seule l'admin détient la clé serveur de la base.</figcaption>
+        <figcaption>Les trois apps sont des projets Vercel séparés, déployés depuis le même dépôt. Ton site de jeu reste un projet à part : il charge seulement le script servi par <code>go.</code>. Seule l'admin détient la clé serveur de la base.</figcaption>
       </figure>
 
       <h3>Organisation du dépôt</h3>
@@ -2504,8 +2603,9 @@ $$;</pre>
 │  │     ├─ features/         <span class="c">campaigns/, qr/, reviews/ : composants, actions, requêtes</span>
 │  │     └─ proxy.ts          <span class="c">garde : session + hôtel de l'URL</span>
 │  ├─ <span class="d">admin/</span>             <span class="c">→ admin.detectivescan.com</span>
-│  └─ <span class="d">play/</span>              <span class="c">→ go.detectivescan.com (léger, rapide)</span>
+│  └─ <span class="d">play/</span>              <span class="c">→ go.detectivescan.com : API joueur, sert le script</span>
 ├─ <span class="d">packages/</span>
+│  ├─ sdk/               <span class="c">script pour le site du jeu (environ 15 Ko, sans dépendance)</span>
 │  ├─ core/              <span class="c">logique métier : qr, scans, campaigns, reviews, billing…</span>
 │  ├─ db/                <span class="c">schéma Drizzle, migrations, politiques RLS, seed</span>
 │  ├─ auth/              <span class="c">sessions, permissions, authorize()</span>
@@ -2557,7 +2657,7 @@ $$;</pre>
         <ul class="list">
           <li><strong>Contrats</strong> : CGV et accord de sous-traitance (DPA) signés par chaque hôtel ; registre des traitements tenu à jour.</li>
           <li><strong>Hébergement UE</strong> : Vercel Paris, Supabase Paris ou Francfort, Sentry et Resend en région UE.</li>
-          <li><strong>API joueur</strong> : chaque entrée validée, débit limité, jetons signés. Impossible de forger une partie gagnée.</li>
+          <li><strong>API joueur</strong> : n'accepte que le domaine du site du jeu, valide chaque entrée, limite le débit, signe les jetons de partie.</li>
           <li><strong>Secrets</strong> côté serveur uniquement ; la clé serveur de la base n'existe que dans l'admin et les tâches planifiées.</li>
         </ul>
       </div>
@@ -2571,11 +2671,13 @@ $$;</pre>
             <tr><td><code>SUPABASE_SECRET_KEY</code></td><td>admin, tâches</td><td>Accès serveur complet, jamais envoyé au navigateur</td></tr>
             <tr><td><code>DATABASE_URL</code></td><td>serveur</td><td>Migrations et requêtes Drizzle</td></tr>
             <tr><td><code>SCAN_TOKEN_SECRET</code></td><td>play</td><td>Signature des jetons de partie</td></tr>
+            <tr><td><code>GAME_SITE_ORIGIN</code></td><td>play</td><td>Domaine du site du jeu autorisé à appeler l'API</td></tr>
             <tr><td><code>STRIPE_SECRET_KEY</code> · <code>STRIPE_WEBHOOK_SECRET</code></td><td>hotel, admin</td><td>Paiements et webhooks signés</td></tr>
             <tr><td><code>RESEND_API_KEY</code></td><td>serveur</td><td>E-mails</td></tr>
             <tr><td><code>UPSTASH_REDIS_REST_URL</code> · <code>UPSTASH_REDIS_REST_TOKEN</code></td><td>play, hotel</td><td>Limitation de débit</td></tr>
             <tr><td><code>SENTRY_DSN</code></td><td>3 apps</td><td>Remontée d'erreurs</td></tr>
             <tr><td><code>PII_ENCRYPTION_KEY</code> <span class="tag v2">V2</span></td><td>serveur</td><td>Chiffrement des champs sensibles</td></tr>
+            <tr><td><code>QONTO_API_KEY</code> <span class="tag v2">V2</span></td><td>admin</td><td>Paiements et factures Qonto</td></tr>
           </tbody>
         </table>
       </div>
@@ -2589,17 +2691,18 @@ $$;</pre>
         <table>
           <thead><tr><th>Risque</th><th>Niveau</th><th>Parade</th></tr></thead>
           <tbody>
-            <tr><td><strong>Conversion en fin d'essai</strong></td><td><span class="tag bad">Élevé</span></td><td>Checklist d'activation dès le premier jour, rapport hebdo à l'hôtelier, relances J-7, J-3, J-1, alerte « essai à risque » dans le back-office (aucun scan depuis 5 jours).</td></tr>
+            <tr><td><strong>Conversion en fin d'essai</strong></td><td><span class="tag bad">Élevé</span></td><td>Module Onboarding : checklist dès le premier jour, relances J-7, J-3, J-1, alerte « essai à risque » (aucun scan depuis 5 jours), rapport hebdo à l'hôtelier.</td></tr>
             <tr><td><strong>Données personnelles des clients d'hôtel</strong></td><td><span class="tag bad">Élevé</span></td><td>Pseudonymat par défaut, consentement, DPA, purge, audit. Faire relire la politique de confidentialité par un juriste avant le lancement.</td></tr>
             <tr><td><strong>Périmètre trop large</strong> : CRM, agenda, signature et coffre-fort sont quatre produits</td><td><span class="tag bad">Élevé</span></td><td>V2, avec des outils existants en attendant. C'est aussi le meilleur rempart contre la dispersion.</td></tr>
-            <tr><td><strong>QR déjà posés</strong> sur l'URL actuelle (confirmé)</td><td><span class="tag bad">Élevé</span></td><td>Règle de redirection sur le site actuel vers <code>go.detectivescan.com/l/[code]</code>, table de correspondance, test de chaque QR posé avant la bascule.</td></tr>
-            <tr><td><strong>Jeu hébergé sur un site séparé</strong></td><td><span class="tag warn">Moyen</span></td><td>Les stats de parties dépendent du script ajouté au site du jeu : contrat d'événements versionné, et alerte si des scans arrivent sans aucune partie.</td></tr>
+            <tr><td><strong>QR sans identifiant unique</strong></td><td><span class="tag bad">Élevé</span></td><td>Si plusieurs QR ouvrent la même URL, impossible de savoir quelle chambre joue. Chaque QR enregistré doit avoir sa propre URL (ex. <code>?qr=01-254-00</code>) ; l'import CSV refuse les doublons.</td></tr>
+            <tr><td><strong>Script sur le site du jeu</strong></td><td><span class="tag warn">Moyen</span></td><td>Si une mise à jour du site casse ou retire le script, les stats s'arrêtent. Script versionné, test automatique après chaque déploiement du site, alerte si des scans arrivent sans aucune partie.</td></tr>
             <tr><td><strong>Licences open source</strong></td><td><span class="tag warn">Moyen</span></td><td>Cal.com et Documenso sont sous AGPL : les héberger comme services séparés, ne pas copier leur code dans le cœur, vérifier chaque licence avant intégration.</td></tr>
             <tr><td><strong>L'écran de 3 s fait fuir des joueurs</strong></td><td><span class="tag warn">Moyen</span></td><td>Jeu préchargé pendant l'écran, bouton « Passer », taux d'abandon mesuré avec et sans campagne.</td></tr>
-            <tr><td><strong>Faux scans, stats gonflées</strong></td><td><span class="tag warn">Moyen</span></td><td>Identifiants aléatoires, limitation de débit, filtrage des robots, dédoublonnage des visites.</td></tr>
+            <tr><td><strong>Faux scans, stats gonflées</strong></td><td><span class="tag warn">Moyen</span></td><td>Le script tourne dans le navigateur : domaine autorisé, limitation de débit, filtrage des robots, dédoublonnage des visites.</td></tr>
             <tr><td><strong>A/B tests non concluants</strong> (petits volumes)</td><td><span class="tag warn">Moyen</span></td><td>Afficher une probabilité plutôt qu'un gagnant, durée minimale ; tests à l'échelle d'un groupe en V3.</td></tr>
-            <tr><td><strong>Réseau faible en chambre</strong></td><td><span class="tag warn">Moyen</span></td><td>App joueur sous 150 Ko de JavaScript, images optimisées, reprise de partie après coupure.</td></tr>
-            <tr><td><strong>Facture électronique</strong></td><td><span class="tag warn">Moyen</span></td><td>Réforme française : réception obligatoire depuis le 1<sup>er</sup> septembre 2026, émission obligatoire pour les PME et TPE au 1<sup>er</sup> septembre 2027, via une plateforme agréée. Stripe seul ne suffira pas pour tes clients français : à caler avec ton cabinet.</td></tr>
+            <tr><td><strong>Réseau faible en chambre</strong></td><td><span class="tag warn">Moyen</span></td><td>Script de 15 Ko chargé sans bloquer le jeu, images de campagne optimisées, événements renvoyés après une coupure.</td></tr>
+            <tr><td><strong>Facture électronique</strong></td><td><span class="tag warn">Moyen</span></td><td>Réforme française : réception obligatoire depuis le 1<sup>er</sup> septembre 2026, émission obligatoire pour les PME et TPE au 1<sup>er</sup> septembre 2027, via une plateforme agréée. Stripe seul ne suffira pas pour tes clients français ; vérifie avec ton cabinet si Qonto peut couvrir l'émission.</td></tr>
+            <tr><td><strong>Deux moyens de paiement</strong> (Stripe, puis Qonto)</td><td><span class="tag warn">Moyen</span></td><td>Un seul statut d'abonnement dans l'admin, quelle que soit la source ; rapprochement des virements Qonto d'abord manuel, automatisé ensuite.</td></tr>
             <tr><td><strong>Un seul développeur</strong></td><td><span class="tag warn">Moyen</span></td><td>Tests automatiques sur l'isolation et les parcours critiques, décisions écrites (ADR), ce dossier tenu à jour.</td></tr>
             <tr><td><strong>Avis Google filtrés</strong></td><td><span class="tag neutral">Faible</span></td><td>Inviter tous les joueurs de la même façon : ne solliciter que les avis positifs est interdit par Google.</td></tr>
           </tbody>
@@ -2615,18 +2718,19 @@ $$;</pre>
         <div class="qg">
           <h4>Business</h4>
           <ol>
-            <li class="done"><span>01</span><div><strong>Modèle économique</strong> : essai gratuit d'un mois, puis abonnement ; espace réservé aux membres. Reste à fixer : formules et prix (par hôtel ? par chambre ?), et carte bancaire demandée ou non dès l'essai.</div></li>
+            <li class="done"><span>01</span><div><strong>Modèle économique</strong> : essai d'un mois, puis abonnement Stripe (Qonto ensuite), 50 € par hôtel, prix ajustable. À confirmer : HT ou TTC, par mois, engagement, carte bancaire à l'essai ?</div></li>
             <li><span>02</span><div><strong>Parc actuel</strong> : combien d'hôtels clients, de chambres et de QR posés ?</div></li>
             <li><span>03</span><div><strong>Groupes hôteliers</strong> parmi tes clients ou prospects ?</div></li>
             <li><span>04</span><div><strong>Lots pour les gagnants</strong> ? Lesquels, et qui les remet ?</div></li>
-            <li class="block"><span>17</span><div><strong>Essai non converti</strong> : le jeu continue-t-il pour les clients de l'hôtel, ou s'arrête-t-il avec l'accès à l'espace ?</div></li>
+            <li class="done"><span>17</span><div><strong>Essai non converti</strong> : ton équipe coupe les QR depuis l'onboarding ; le paiement les réactive.</div></li>
           </ol>
         </div>
         <div class="qg">
           <h4>Jeu &amp; données</h4>
           <ol>
-            <li class="block"><span>05</span><div><strong>Le site du jeu tourne déjà</strong> : sur quelle techno et quel hébergeur ? Son code est-il sur GitHub, et peut-on y ajouter un script ?</div></li>
-            <li class="block"><span>06</span><div><strong>URL conservées</strong> : envoie un exemple d'URL d'un QR déjà posé, et la signification du format <span class="qrid">01-254-00</span>.</div></li>
+            <li class="done"><span>05</span><div><strong>Site du jeu</strong> : HTML sur Vercel, domaine personnalisé, code sur GitHub.</div></li>
+            <li class="done"><span>06</span><div><strong>QR</strong> : enregistrés sur la plateforme à la main ou par import CSV.</div></li>
+            <li class="block"><span>19</span><div><strong>Une URL par QR</strong> : chaque QR posé ouvre-t-il une URL différente (ex. <code>?qr=01-254-00</code>) ? Sinon, impossible de savoir quelle chambre joue.</div></li>
             <li><span>07</span><div><strong>Données joueurs</strong> : collectes-tu déjà nom, téléphone ou e-mail ? Pour quel usage ?</div></li>
             <li><span>08</span><div><strong>Langues</strong> à prévoir pour les joueurs au lancement ?</div></li>
           </ol>
@@ -2634,6 +2738,7 @@ $$;</pre>
         <div class="qg">
           <h4>Technique &amp; comptes</h4>
           <ol>
+            <li class="block"><span>18</span><div><strong>Dépôt GitHub du site du jeu</strong> : son lien. Il n'apparaît pas parmi les dépôts accessibles depuis ici ; s'il est sur un autre compte GitHub, il faudra y installer l'app Claude.</div></li>
             <li><span>09</span><div><strong>Comptes existants</strong> : Vercel, GitHub (organisation), Supabase, Stripe, accès DNS de detectivescan.com ?</div></li>
             <li><span>10</span><div><strong>Ce dépôt</strong> (DetectiveScan-CRM) devient-il le monorepo de toute la plateforme ?</div></li>
             <li><span>11</span><div><strong>Code open source</strong> à intégrer (CRM, agenda, signature) : liens des dépôts ?</div></li>
@@ -2643,7 +2748,7 @@ $$;</pre>
         <div class="qg">
           <h4>Design &amp; légal</h4>
           <ol>
-            <li class="block"><span>13</span><div><strong>DA officielle</strong> : autorise detectivescan.com dans les réglages réseau de l'environnement (Edit → Network access) pour que je la récupère, ou envoie logo SVG et couleurs.</div></li>
+            <li><span>13</span><div><strong>DA officielle</strong> : je la lis dans le dépôt du site du jeu dès que j'y ai accès (question 18).</div></li>
             <li><span>14</span><div><strong>Personnalisation</strong> : l'hôtel met-il son logo et sa couleur dans l'expérience joueur ?</div></li>
             <li><span>15</span><div><strong>Documents légaux</strong> : CGV, politique de confidentialité, contrat de sous-traitance existants ?</div></li>
             <li><span>16</span><div><strong>Calendrier</strong> : date de lancement visée, hôtels pilotes disponibles ?</div></li>
@@ -2654,18 +2759,18 @@ $$;</pre>
       <div class="closing">
         <div>
           <h3>Ta réponse débloque la suite.</h3>
-          <p>Valide ou corrige les décisions D1 à D10, et débloque les questions 5, 6, 13 et 17. Ensuite, dans cet ordre :</p>
+          <p>Valide ou corrige les décisions D1 à D11, et débloque les questions 18 et 19. Ensuite, dans cet ordre :</p>
         </div>
         <ol>
           <li><span>Maquettes détaillées<small>Les écrans MVP, desktop et mobile, dans la DA validée.</small></span></li>
-          <li><span>Alignement de la DA<small>Sur detectivescan.com, dès réception du logo et des couleurs.</small></span></li>
+          <li><span>Alignement de la DA<small>Lue dans le dépôt du site du jeu dès que j'y ai accès.</small></span></li>
           <li><span>Phase 0 du code<small>Monorepo, auth, rôles, RLS, design system, données de démo.</small></span></li>
         </ol>
       </div>
     </section>
 
     <footer class="foot">
-      <span>DetectiveScan · Dossier de cadrage v1.1 · 28 septembre 2026</span>
+      <span>DetectiveScan · Dossier de cadrage v1.2 · 28 septembre 2026</span>
       <span>Maquettes et chiffres fictifs · DA provisoire en attente de detectivescan.com</span>
     </footer>
   </main>
