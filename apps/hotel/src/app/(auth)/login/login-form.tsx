@@ -22,7 +22,7 @@ export function LoginForm() {
             role="alert"
             className="flex gap-3 rounded-md border border-red-text/30 bg-red-soft p-3.5 text-[13.5px] leading-relaxed text-fg"
           >
-            <CircleAlert className="mt-0.5 size-4 shrink-0 text-red-text" aria-hidden />
+            <CircleAlert className="mt-0.5 size-4 shrink-0 text-red-text" strokeWidth={1.75} aria-hidden />
             <p>{state.message}</p>
           </div>
         ) : null}
@@ -59,7 +59,7 @@ export function LoginForm() {
 
         <Link
           href="/forgot-password"
-          className="justify-self-center rounded-[4px] text-[13px] text-fg-2 underline-offset-4 transition-colors hover:text-fg hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          className="justify-self-center rounded-sm text-[13px] text-fg-2 underline-offset-4 transition-colors hover:text-fg hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
           Mot de passe oublié ?
         </Link>

@@ -30,7 +30,7 @@ export function Field({ id, label, hint, error, children }: FieldProps) {
       {children}
       {error ? (
         <p id={`${id}-error`} className="flex items-start gap-1.5 text-[13px] leading-snug text-red-text">
-          <CircleAlert className="mt-px size-3.5 shrink-0" aria-hidden />
+          <CircleAlert className="mt-px size-3.5 shrink-0" strokeWidth={1.75} aria-hidden />
           {error}
         </p>
       ) : hint ? (

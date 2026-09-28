@@ -9,7 +9,7 @@ import { requestPasswordReset, type ResetState } from "@/lib/auth-actions";
 const initialState: ResetState = { status: "idle" };
 
 const backLinkClasses =
-  "inline-flex items-center gap-2 justify-self-start rounded-[4px] text-[13px] text-fg-2 transition-colors hover:text-fg " +
+  "inline-flex items-center gap-2 justify-self-start rounded-sm text-[13px] text-fg-2 transition-colors hover:text-fg " +
   "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
 
 export function ForgotPasswordForm() {
@@ -38,7 +38,7 @@ export function ForgotPasswordForm() {
   return (
     <div className="grid gap-8">
       <Link href="/login" className={backLinkClasses}>
-        <ArrowLeft className="size-4" aria-hidden />
+        <ArrowLeft className="size-4" strokeWidth={1.75} aria-hidden />
         Connexion
       </Link>
       <div className="grid gap-2">

@@ -32,6 +32,16 @@
   --color-warning: #f5a524;
   --color-info: #6ea8ff;
 
+  /*
+   * Données : un seul bleu en quatre nuances ordonnées, du scan à la victoire
+   * (validées sur `surface` : écarts de clarté ≥ 0,09, nuance la plus sombre à 3,4:1).
+   * Réservé aux graphiques : jamais pour une action, un lien ou un état.
+   */
+  --color-viz-1: #256abf; /* scans */
+  --color-viz-2: #6da7ec; /* parties commencées */
+  --color-viz-3: #9ec5f4; /* parties terminées */
+  --color-viz-4: #cde2fb; /* parties gagnées */
+
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
@@ -88,6 +98,17 @@
   input,
   textarea {
     caret-color: var(--color-red);
+  }
+
+  /* Sélecteur de date natif : icône discrète, pleine au survol. */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 150ms ease-out;
+  }
+
+  input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1;
   }
 
   [popover] {

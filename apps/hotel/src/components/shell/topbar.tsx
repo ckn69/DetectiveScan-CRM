@@ -52,10 +52,11 @@ export function Topbar({ hotel, user }: { hotel: Hotel; user: SessionUser }) {
           popoverTarget={QUICK_ACTIONS_ID}
           className={buttonClasses({ size: "md", className: "pl-3 pr-2.5 max-md:hidden" })}
         >
-          <Plus aria-hidden />
+          <Plus strokeWidth={1.75} aria-hidden />
           Actions rapides
           <ChevronDown
             className={cn("transition-transform duration-200 ease-out", quickActionsOpen && "rotate-180")}
+            strokeWidth={1.75}
             aria-hidden
           />
         </button>

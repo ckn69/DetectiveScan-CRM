@@ -44,7 +44,7 @@ export function UserMenu({ user, hotelSlug, placement }: { user: SessionUser; ho
               <span className="truncate text-[13px] font-semibold text-fg">{user.shortName}</span>
               <span className="truncate text-[12px] text-fg-3">{user.role}</span>
             </span>
-            <ChevronsUpDown className="hidden size-4 shrink-0 text-fg-3 xl:block" aria-hidden />
+            <ChevronsUpDown className="hidden size-4 shrink-0 text-fg-3 xl:block" strokeWidth={1.75} aria-hidden />
           </>
         ) : null}
       </button>

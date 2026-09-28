@@ -19,7 +19,7 @@ export function QuickActionsList({ hotelSlug, popoverId }: { hotelSlug: string; 
               onClick={close}
               className="flex items-center gap-3 rounded-md p-2.5 transition-colors duration-150 hover:bg-white/8 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white"
             >
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-[10px] bg-white/8 text-fg">
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-white/8 text-fg">
                 <Icon className="size-5" strokeWidth={1.75} aria-hidden />
               </span>
               <span className="grid">
