@@ -1,0 +1,563 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-28T12:58:03.871Z",
+  "title": "Design System: DetectiveScan",
+  "extensions": {
+    "colorMeta": {
+      "red": {
+        "role": "primary",
+        "displayName": "Rouge DetectiveScan",
+        "canonical": "#e50914",
+        "tonalRamp": [
+          "#1f0000",
+          "#4d0002",
+          "#810005",
+          "#b9000b",
+          "#ef2020",
+          "#ff7365",
+          "#ffb3a8",
+          "#ffe9e5"
+        ]
+      },
+      "red-hover": {
+        "role": "primary",
+        "displayName": "Rouge survol",
+        "canonical": "#c8070f",
+        "tonalRamp": [
+          "#1f0000",
+          "#4d0001",
+          "#810004",
+          "#b9000a",
+          "#e6372f",
+          "#ff7365",
+          "#ffb3a8",
+          "#ffe9e5"
+        ]
+      },
+      "red-press": {
+        "role": "primary",
+        "displayName": "Rouge pressé",
+        "canonical": "#a8060d",
+        "tonalRamp": [
+          "#1f0000",
+          "#4d0002",
+          "#810005",
+          "#b31b19",
+          "#db483e",
+          "#ff7365",
+          "#ffb3a8",
+          "#ffe9e5"
+        ]
+      },
+      "red-text": {
+        "role": "primary",
+        "displayName": "Rouge lisible",
+        "canonical": "#ff4d55",
+        "tonalRamp": [
+          "#1f0002",
+          "#4d0009",
+          "#800017",
+          "#b80025",
+          "#e63341",
+          "#ff7271",
+          "#ffb2ae",
+          "#ffe8e7"
+        ]
+      },
+      "red-soft": {
+        "role": "primary",
+        "displayName": "Voile rouge",
+        "canonical": "rgb(229 9 20 / 0.14)",
+        "tonalRamp": [
+          "#1c0203",
+          "#3b1a1a",
+          "#5b3736",
+          "#7c5654",
+          "#9f7675",
+          "#c49997",
+          "#e9bcba",
+          "#ffe8e7"
+        ]
+      },
+      "chrome": {
+        "role": "neutral",
+        "displayName": "Noir absolu",
+        "canonical": "#000000",
+        "tonalRamp": [
+          "#000000",
+          "#0a0a0a",
+          "#141414",
+          "#1c1c1c",
+          "#333333",
+          "#8c8c8c",
+          "#b3b3b3",
+          "#ffffff"
+        ]
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Noir de page",
+        "canonical": "#0a0a0a",
+        "tonalRamp": [
+          "#000000",
+          "#0a0a0a",
+          "#141414",
+          "#1c1c1c",
+          "#333333",
+          "#8c8c8c",
+          "#b3b3b3",
+          "#ffffff"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Charbon",
+        "canonical": "#141414",
+        "tonalRamp": [
+          "#000000",
+          "#0a0a0a",
+          "#141414",
+          "#1c1c1c",
+          "#333333",
+          "#8c8c8c",
+          "#b3b3b3",
+          "#ffffff"
+        ]
+      },
+      "raised": {
+        "role": "neutral",
+        "displayName": "Graphite",
+        "canonical": "#1c1c1c",
+        "tonalRamp": [
+          "#000000",
+          "#0a0a0a",
+          "#141414",
+          "#1c1c1c",
+          "#333333",
+          "#8c8c8c",
+          "#b3b3b3",
+          "#ffffff"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Filet",
+        "canonical": "rgb(255 255 255 / 0.08)",
+        "tonalRamp": [
+          "#000000",
+          "#0a0a0a",
+          "#141414",
+          "#1c1c1c",
+          "#333333",
+          "#8c8c8c",
+          "#b3b3b3",
+          "#ffffff"
+        ]
+      },
+      "line-strong": {
+        "role": "neutral",
+        "displayName": "Filet appuyé",
+        "canonical": "rgb(255 255 255 / 0.14)",
+        "tonalRamp": [
+          "#000000",
+          "#0a0a0a",
+          "#141414",
+          "#1c1c1c",
+          "#333333",
+          "#8c8c8c",
+          "#b3b3b3",
+          "#ffffff"
+        ]
+      },
+      "fg": {
+        "role": "neutral",
+        "displayName": "Blanc",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#000000",
+          "#0a0a0a",
+          "#141414",
+          "#1c1c1c",
+          "#333333",
+          "#8c8c8c",
+          "#b3b3b3",
+          "#ffffff"
+        ]
+      },
+      "fg-2": {
+        "role": "neutral",
+        "displayName": "Gris argent",
+        "canonical": "#b3b3b3",
+        "tonalRamp": [
+          "#000000",
+          "#0a0a0a",
+          "#141414",
+          "#1c1c1c",
+          "#333333",
+          "#8c8c8c",
+          "#b3b3b3",
+          "#ffffff"
+        ]
+      },
+      "fg-3": {
+        "role": "neutral",
+        "displayName": "Gris fumée",
+        "canonical": "#8c8c8c",
+        "tonalRamp": [
+          "#000000",
+          "#0a0a0a",
+          "#141414",
+          "#1c1c1c",
+          "#333333",
+          "#8c8c8c",
+          "#b3b3b3",
+          "#ffffff"
+        ]
+      },
+      "success": {
+        "role": "status",
+        "displayName": "Vert validé",
+        "canonical": "#46d369",
+        "tonalRamp": [
+          "#001002",
+          "#002e0d",
+          "#00511c",
+          "#00762d",
+          "#009d3e",
+          "#31c45a",
+          "#60ea7e",
+          "#c8ffcf"
+        ]
+      },
+      "warning": {
+        "role": "status",
+        "displayName": "Ambre",
+        "canonical": "#f5a524",
+        "tonalRamp": [
+          "#140800",
+          "#362000",
+          "#5c3a00",
+          "#855600",
+          "#b17300",
+          "#df9300",
+          "#ffba5c",
+          "#ffebd3"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Titre des écrans d'accès et d'erreur (Connexion, Mot de passe oublié, Page introuvable)."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Titre de contenu d'une section, limité à 34ch."
+      },
+      "page-title": {
+        "displayName": "Page title",
+        "purpose": "Titre de page dans la barre haute : 20px dès 768px, 17px en dessous, une ligne tronquée."
+      },
+      "body-lg": {
+        "displayName": "Body large",
+        "purpose": "Introduction des écrans d'accès et texte saisi dans les champs."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Corps de base (14px) et listes de contenu."
+      },
+      "button": {
+        "displayName": "Button",
+        "purpose": "Libellés de bouton en 600 : 14px en md, 13px en sm, 15px en lg."
+      },
+      "nav": {
+        "displayName": "Nav",
+        "purpose": "Éléments de la sidebar et du menu du compte."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Libellés de champ ; en 400 pour les aides, erreurs, liens secondaires et notes."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Métadonnées, pied de page ; 12px/500 pour les badges, 12px/600 pour le titre d'un popover."
+      },
+      "group-label": {
+        "displayName": "Group label",
+        "purpose": "Libellés de groupe de la sidebar, en capitales : seul usage des capitales."
+      }
+    },
+    "shadows": [
+      {
+        "name": "shadow-pop",
+        "value": "0 18px 44px -12px rgb(0 0 0 / 0.85), 0 2px 10px rgb(0 0 0 / 0.55)",
+        "purpose": "Seule ombre du système : popover d'actions rapides, menu du compte, info-bulles du rail, bouton central mobile."
+      },
+      {
+        "name": "ring-field-focus",
+        "value": "0 0 0 3px rgb(229 9 20 / 0.35)",
+        "purpose": "Halo de focus des champs, avec la bordure red."
+      },
+      {
+        "name": "ring-field-invalid-focus",
+        "value": "0 0 0 3px rgb(255 77 85 / 0.30)",
+        "purpose": "Halo de focus d'un champ en erreur (aria-invalid)."
+      },
+      {
+        "name": "ring-danger",
+        "value": "inset 0 0 0 1px rgb(255 77 85 / 0.40)",
+        "purpose": "Anneau de la variante de bouton danger."
+      },
+      {
+        "name": "ring-avatar",
+        "value": "inset 0 0 0 1px rgb(255 255 255 / 0.14)",
+        "purpose": "Anneau des avatars (line-strong) ; les tuiles d'icône de section prennent line (8%)."
+      }
+    ],
+    "focus": [
+      {
+        "name": "focus-default",
+        "value": "outline: 2px solid #ffffff; outline-offset: 2px",
+        "purpose": "Focus clavier global (:focus-visible) : boutons, liens, déclencheurs."
+      },
+      {
+        "name": "focus-inset",
+        "value": "outline: 2px solid #ffffff; outline-offset: -2px",
+        "purpose": "Éléments de liste pleine largeur : navigation, menus, actions rapides, bouton d'affichage du mot de passe (-4px pour les onglets mobiles)."
+      },
+      {
+        "name": "focus-field",
+        "value": "border-color: #e50914; box-shadow: 0 0 0 3px rgb(229 9 20 / 0.35); outline: none",
+        "purpose": "Champs de saisie : le seul focus rouge."
+      },
+      {
+        "name": "focus-skip-link",
+        "value": "outline: 2px solid #e50914; outline-offset: 2px",
+        "purpose": "Lien d'évitement blanc « Aller au contenu »."
+      }
+    ],
+    "motion": [
+      {
+        "name": "duration-state",
+        "value": "150ms",
+        "purpose": "Changements d'état : fond, couleur, bordure, halo, opacité des info-bulles, entrée des popovers."
+      },
+      {
+        "name": "duration-rotate",
+        "value": "200ms",
+        "purpose": "Rotation du chevron d'« Actions rapides » (180°) et du « + » central (45°)."
+      },
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0, 0, 0.2, 1)",
+        "purpose": "Boutons, champs et rotations d'icône."
+      },
+      {
+        "name": "ease-default",
+        "value": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "purpose": "Courbe par défaut de Tailwind v4 pour les simples changements de couleur (navigation, menus, cloche)."
+      },
+      {
+        "name": "ease-out-quint",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Entrée des popovers (classe ds-popover)."
+      },
+      {
+        "name": "popover-enter",
+        "value": "opacity 0 → 1, translate 0 4px → 0, 150ms ease-out-quint, @starting-style + allow-discrete",
+        "purpose": "Ouverture des popovers natifs."
+      },
+      {
+        "name": "press",
+        "value": "translate: 0 1px on :active",
+        "purpose": "Retour tactile des boutons et du bouton central."
+      },
+      {
+        "name": "pulse",
+        "value": "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "purpose": "Squelette de chargement ; coupé sous prefers-reduced-motion."
+      },
+      {
+        "name": "spin",
+        "value": "spin 1s linear infinite",
+        "purpose": "Spinner des boutons en chargement."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animation-duration and transition-duration 0.01ms, 1 iteration, scroll-behavior auto",
+        "purpose": "Réglage global sous prefers-reduced-motion: reduce."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px",
+        "purpose": "Écrans d'accès : marge haute de 14vh."
+      },
+      {
+        "name": "md",
+        "value": "768px",
+        "purpose": "Rail de 72px, barre haute de 64px, bouton « Actions rapides » ; la barre du bas disparaît."
+      },
+      {
+        "name": "xl",
+        "value": "1280px",
+        "purpose": "Sidebar de 248px avec libellés ; les info-bulles du rail disparaissent."
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Bouton principal",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Aplat rouge de l'action principale : un seul par vue (Se connecter, Envoyer le lien, Actions rapides).",
+      "html": "<div class=\"ds-btn-primary-stage\"><button type=\"button\" class=\"ds-btn-primary\">Se connecter</button></div>",
+      "css": ".ds-btn-primary-stage { padding: 24px; background: var(--color-canvas, #0a0a0a); } .ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 40px; padding: 0 16px; border: 0; border-radius: var(--radius-sm, 6px); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); font-size: 14px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: background-color 150ms cubic-bezier(0, 0, 0.2, 1), color 150ms cubic-bezier(0, 0, 0.2, 1), translate 150ms cubic-bezier(0, 0, 0.2, 1); } .ds-btn-primary:active { translate: 0 1px; } .ds-btn-primary:focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; } .ds-btn-primary:disabled { opacity: 0.45; pointer-events: none; } .ds-btn-primary { background: var(--color-red, #e50914); color: #ffffff; } .ds-btn-primary:hover { background: var(--color-red-hover, #c8070f); } .ds-btn-primary:active { background: var(--color-red-press, #a8060d); }"
+    },
+    {
+      "name": "Bouton secondaire",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Voile blanc de 10% pour la deuxième action d'une vue (Explorer la démo, Retour à la connexion).",
+      "html": "<div class=\"ds-btn-secondary-stage\"><button type=\"button\" class=\"ds-btn-secondary\">Explorer la démo</button></div>",
+      "css": ".ds-btn-secondary-stage { padding: 24px; background: var(--color-canvas, #0a0a0a); } .ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 40px; padding: 0 16px; border: 0; border-radius: var(--radius-sm, 6px); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); font-size: 14px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: background-color 150ms cubic-bezier(0, 0, 0.2, 1), color 150ms cubic-bezier(0, 0, 0.2, 1), translate 150ms cubic-bezier(0, 0, 0.2, 1); } .ds-btn-secondary:active { translate: 0 1px; } .ds-btn-secondary:focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; } .ds-btn-secondary:disabled { opacity: 0.45; pointer-events: none; } .ds-btn-secondary { background: rgb(255 255 255 / 0.10); color: var(--color-fg, #ffffff); } .ds-btn-secondary:hover { background: rgb(255 255 255 / 0.16); } .ds-btn-secondary:active { background: rgb(255 255 255 / 0.22); }"
+    },
+    {
+      "name": "Champ de saisie",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Libellé, champ de 44px sur surface, focus en bordure rouge et halo ; l'erreur passe en red-text avec icône et message.",
+      "html": "<div class=\"ds-field-stage\"><div class=\"ds-field\"><label class=\"ds-field-label\" for=\"ds-field-email\">Adresse e-mail</label><input class=\"ds-input\" id=\"ds-field-email\" type=\"email\" placeholder=\"vous@votre-hotel.fr\"></div><div class=\"ds-field\"><label class=\"ds-field-label\" for=\"ds-field-password\">Mot de passe</label><input class=\"ds-input\" id=\"ds-field-password\" type=\"password\" aria-invalid=\"true\" aria-describedby=\"ds-field-password-error\"><p class=\"ds-field-error\" id=\"ds-field-password-error\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><line x1=\"12\" x2=\"12\" y1=\"8\" y2=\"12\"/><line x1=\"12\" x2=\"12.01\" y1=\"16\" y2=\"16\"/></svg>Saisissez votre mot de passe.</p></div></div>",
+      "css": ".ds-field-stage { display: grid; gap: 20px; max-width: 400px; padding: 24px; background: var(--color-chrome, #000000); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-field { display: grid; gap: 8px; } .ds-field-label { font-size: 13px; font-weight: 500; color: var(--color-fg-2, #b3b3b3); } .ds-input { box-sizing: border-box; width: 100%; height: 44px; padding: 0 14px; border: 1px solid var(--color-line-strong, rgb(255 255 255 / 0.14)); border-radius: var(--radius-sm, 6px); background: var(--color-surface, #141414); color: var(--color-fg, #ffffff); font-family: inherit; font-size: 15px; caret-color: var(--color-red, #e50914); transition: border-color 150ms cubic-bezier(0, 0, 0.2, 1), box-shadow 150ms cubic-bezier(0, 0, 0.2, 1); } .ds-input::placeholder { color: var(--color-fg-3, #8c8c8c); } .ds-input:hover { border-color: rgb(255 255 255 / 0.25); } .ds-input:focus { outline: none; border-color: var(--color-red, #e50914); box-shadow: 0 0 0 3px rgb(229 9 20 / 0.35); } .ds-input[aria-invalid=\"true\"] { border-color: var(--color-red-text, #ff4d55); } .ds-input[aria-invalid=\"true\"]:focus { box-shadow: 0 0 0 3px rgb(255 77 85 / 0.30); } .ds-field-error { display: flex; align-items: flex-start; gap: 6px; margin: 0; font-size: 13px; line-height: 1.375; color: var(--color-red-text, #ff4d55); } .ds-field-error svg { flex-shrink: 0; width: 14px; height: 14px; margin-top: 1px; }"
+    },
+    {
+      "name": "Badge",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Étiquette statique en pilule de 24px ; tons neutre (en usage : Prévu à l'étape N), rouge, succès, alerte.",
+      "html": "<div class=\"ds-badge-stage\"><span class=\"ds-badge\">Prévu à l'étape 2</span><span class=\"ds-badge ds-badge--red\">Rouge</span><span class=\"ds-badge ds-badge--success\">Succès</span><span class=\"ds-badge ds-badge--warning\">Alerte</span></div>",
+      "css": ".ds-badge-stage { display: flex; flex-wrap: wrap; gap: 12px; padding: 24px; background: var(--color-canvas, #0a0a0a); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 9999px; background: rgb(255 255 255 / 0.08); color: var(--color-fg-2, #b3b3b3); font-size: 12px; font-weight: 500; white-space: nowrap; } .ds-badge--red { background: var(--color-red-soft, rgb(229 9 20 / 0.14)); color: var(--color-red-text, #ff4d55); } .ds-badge--success { background: rgb(70 211 105 / 0.12); color: var(--color-success, #46d369); } .ds-badge--warning { background: rgb(245 165 36 / 0.12); color: var(--color-warning, #f5a524); }"
+    },
+    {
+      "name": "Sidebar",
+      "kind": "nav",
+      "refersTo": "nav-item",
+      "description": "Navigation de 248px sur chrome (≥ 1280px) : groupes en capitales, éléments de 40px, actif en voile de 9% avec icône red-text.",
+      "html": "<nav class=\"ds-sidenav\" aria-label=\"Navigation principale\"><p class=\"ds-sidenav-group\">Pilotage</p><ul class=\"ds-sidenav-list\"><li><a class=\"ds-sidenav-item\" href=\"#\" aria-current=\"page\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect width=\"7\" height=\"9\" x=\"3\" y=\"3\" rx=\"1\"/><rect width=\"7\" height=\"5\" x=\"14\" y=\"3\" rx=\"1\"/><rect width=\"7\" height=\"9\" x=\"14\" y=\"12\" rx=\"1\"/><rect width=\"7\" height=\"5\" x=\"3\" y=\"16\" rx=\"1\"/></svg>Dashboard</a></li><li><a class=\"ds-sidenav-item\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 3v16a2 2 0 0 0 2 2h16\"/><path d=\"M18 17V9\"/><path d=\"M13 17V5\"/><path d=\"M8 17v-3\"/></svg>Analytics</a></li></ul><p class=\"ds-sidenav-group\">Expérience</p><ul class=\"ds-sidenav-list\"><li><a class=\"ds-sidenav-item\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z\"/><path d=\"M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14\"/><path d=\"M8 6v8\"/></svg>Campagnes</a></li><li><a class=\"ds-sidenav-item\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect width=\"5\" height=\"5\" x=\"3\" y=\"3\" rx=\"1\"/><rect width=\"5\" height=\"5\" x=\"16\" y=\"3\" rx=\"1\"/><rect width=\"5\" height=\"5\" x=\"3\" y=\"16\" rx=\"1\"/><path d=\"M21 16h-3a2 2 0 0 0-2 2v3\"/><path d=\"M21 21v.01\"/><path d=\"M12 7v3a2 2 0 0 1-2 2H7\"/><path d=\"M3 12h.01\"/><path d=\"M12 3h.01\"/><path d=\"M12 16v.01\"/><path d=\"M16 12h1\"/><path d=\"M21 12v.01\"/><path d=\"M12 21v-1\"/></svg>QR codes &amp; chambres</a></li><li><a class=\"ds-sidenav-item\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z\"/></svg>Avis clients</a></li></ul></nav>",
+      "css": ".ds-sidenav { display: flow-root; box-sizing: border-box; width: 248px; padding: 0 12px 16px; background: var(--color-chrome, #000000); border-right: 1px solid var(--color-line, rgb(255 255 255 / 0.08)); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-sidenav-group { margin: 20px 0 6px; padding: 0 12px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-fg-3, #8c8c8c); } .ds-sidenav-group:first-child { margin-top: 12px; } .ds-sidenav-list { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; } .ds-sidenav-item { display: flex; align-items: center; gap: 12px; height: 40px; padding: 0 12px; border-radius: var(--radius-sm, 6px); color: var(--color-fg-2, #b3b3b3); font-size: 13.5px; font-weight: 500; text-decoration: none; transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), color 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-sidenav-item svg { flex-shrink: 0; width: 18px; height: 18px; color: var(--color-fg-3, #8c8c8c); transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-sidenav-item:hover { background: rgb(255 255 255 / 0.05); color: var(--color-fg, #ffffff); } .ds-sidenav-item:hover svg { color: var(--color-fg-2, #b3b3b3); } .ds-sidenav-item[aria-current=\"page\"] { background: rgb(255 255 255 / 0.09); color: var(--color-fg, #ffffff); } .ds-sidenav-item[aria-current=\"page\"] svg { color: var(--color-red-text, #ff4d55); } .ds-sidenav-item:focus-visible { outline: 2px solid #ffffff; outline-offset: -2px; }"
+    },
+    {
+      "name": "Rail et info-bulle",
+      "kind": "nav",
+      "refersTo": "tooltip",
+      "description": "Rail d'icônes de 72px (768–1279px) : le libellé reste en sr-only et réapparaît en info-bulle au survol et au focus clavier.",
+      "html": "<div class=\"ds-rail-stage\"><nav class=\"ds-rail\" aria-label=\"Navigation principale\"><a class=\"ds-rail-item\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z\"/><path d=\"M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14\"/><path d=\"M8 6v8\"/></svg><span class=\"ds-rail-label\">Campagnes</span><span class=\"ds-rail-tip\" aria-hidden=\"true\">Campagnes</span></a><a class=\"ds-rail-item\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect width=\"5\" height=\"5\" x=\"3\" y=\"3\" rx=\"1\"/><rect width=\"5\" height=\"5\" x=\"16\" y=\"3\" rx=\"1\"/><rect width=\"5\" height=\"5\" x=\"3\" y=\"16\" rx=\"1\"/><path d=\"M21 16h-3a2 2 0 0 0-2 2v3\"/><path d=\"M21 21v.01\"/><path d=\"M12 7v3a2 2 0 0 1-2 2H7\"/><path d=\"M3 12h.01\"/><path d=\"M12 3h.01\"/><path d=\"M12 16v.01\"/><path d=\"M16 12h1\"/><path d=\"M21 12v.01\"/><path d=\"M12 21v-1\"/></svg><span class=\"ds-rail-label\">QR codes &amp; chambres</span><span class=\"ds-rail-tip\" aria-hidden=\"true\">QR codes &amp; chambres</span></a><a class=\"ds-rail-item\" href=\"#\" aria-current=\"page\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z\"/></svg><span class=\"ds-rail-label\">Avis clients</span><span class=\"ds-rail-tip\" aria-hidden=\"true\">Avis clients</span></a></nav></div>",
+      "css": ".ds-rail-stage { display: flex; width: 300px; min-height: 172px; background: var(--color-canvas, #0a0a0a); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-rail { box-sizing: border-box; display: grid; align-content: start; gap: 2px; width: 72px; padding: 12px; background: var(--color-chrome, #000000); border-right: 1px solid var(--color-line, rgb(255 255 255 / 0.08)); } .ds-rail-item { position: relative; display: flex; align-items: center; justify-content: center; height: 40px; border-radius: var(--radius-sm, 6px); color: var(--color-fg-3, #8c8c8c); transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), color 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-rail-item svg { width: 18px; height: 18px; } .ds-rail-item:hover { background: rgb(255 255 255 / 0.05); color: var(--color-fg-2, #b3b3b3); } .ds-rail-item[aria-current=\"page\"] { background: rgb(255 255 255 / 0.09); color: var(--color-red-text, #ff4d55); } .ds-rail-item:focus-visible { outline: 2px solid #ffffff; outline-offset: -2px; } .ds-rail-label { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; } .ds-rail-tip { position: absolute; left: 100%; top: 50%; z-index: 50; margin-left: 12px; padding: 6px 10px; transform: translateY(-50%); border: 1px solid var(--color-line-strong, rgb(255 255 255 / 0.14)); border-radius: var(--radius-sm, 6px); background: var(--color-raised, #1c1c1c); color: var(--color-fg, #ffffff); font-size: 12.5px; font-weight: 500; white-space: nowrap; box-shadow: var(--shadow-pop, 0 18px 44px -12px rgb(0 0 0 / 0.85), 0 2px 10px rgb(0 0 0 / 0.55)); opacity: 0; pointer-events: none; transition: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-rail-item:hover .ds-rail-tip, .ds-rail-item:focus-visible .ds-rail-tip { opacity: 1; }"
+    },
+    {
+      "name": "Actions rapides",
+      "kind": "custom",
+      "refersTo": "popover-actions",
+      "description": "Popover signature (raised, 14px, shadow-pop) ouvert par le bouton rouge de la barre haute ou le bouton central mobile.",
+      "html": "<div class=\"ds-qa-stage\"><div class=\"ds-qa-panel\"><p class=\"ds-qa-title\">Actions rapides</p><ul class=\"ds-qa-list\"><li><a class=\"ds-qa-item\" href=\"#\"><span class=\"ds-qa-tile\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z\"/><path d=\"M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14\"/><path d=\"M8 6v8\"/></svg></span><span class=\"ds-qa-text\"><span class=\"ds-qa-name\">Nouvelle campagne</span><span class=\"ds-qa-detail\">Restaurant, spa, événement…</span></span></a></li><li><a class=\"ds-qa-item\" href=\"#\"><span class=\"ds-qa-tile\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 7V5a2 2 0 0 1 2-2h2\"/><path d=\"M17 3h2a2 2 0 0 1 2 2v2\"/><path d=\"M21 17v2a2 2 0 0 1-2 2h-2\"/><path d=\"M7 21H5a2 2 0 0 1-2-2v-2\"/><path d=\"M7 12h10\"/></svg></span><span class=\"ds-qa-text\"><span class=\"ds-qa-name\">Scanner un QR code</span><span class=\"ds-qa-detail\">L'associer à une chambre</span></span></a></li><li><a class=\"ds-qa-item\" href=\"#\"><span class=\"ds-qa-tile\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"m4.93 4.93 4.24 4.24\"/><path d=\"m14.83 9.17 4.24-4.24\"/><path d=\"m14.83 14.83 4.24 4.24\"/><path d=\"m9.17 14.83-4.24 4.24\"/><circle cx=\"12\" cy=\"12\" r=\"4\"/></svg></span><span class=\"ds-qa-text\"><span class=\"ds-qa-name\">Signaler un problème</span><span class=\"ds-qa-detail\">QR abîmé, jeu bloqué…</span></span></a></li></ul></div></div>",
+      "css": ".ds-qa-stage { padding: 24px; background: var(--color-canvas, #0a0a0a); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-qa-panel { box-sizing: border-box; width: 320px; padding: 8px; border: 1px solid var(--color-line-strong, rgb(255 255 255 / 0.14)); border-radius: var(--radius-lg, 14px); background: var(--color-raised, #1c1c1c); box-shadow: var(--shadow-pop, 0 18px 44px -12px rgb(0 0 0 / 0.85), 0 2px 10px rgb(0 0 0 / 0.55)); animation: ds-qa-enter 150ms var(--ease-out-quint, cubic-bezier(0.22, 1, 0.36, 1)); } @keyframes ds-qa-enter { from { opacity: 0; translate: 0 4px; } } @media (prefers-reduced-motion: reduce) { .ds-qa-panel { animation: none; } } .ds-qa-title { margin: 0; padding: 6px 12px 8px; color: var(--color-fg-3, #8c8c8c); font-size: 12px; font-weight: 600; } .ds-qa-list { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; } .ds-qa-item { display: flex; align-items: center; gap: 12px; padding: 10px; border-radius: var(--radius-md, 10px); text-decoration: none; transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-qa-item:hover { background: rgb(255 255 255 / 0.08); } .ds-qa-item:focus-visible { outline: 2px solid #ffffff; outline-offset: -2px; } .ds-qa-tile { display: flex; flex-shrink: 0; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 10px; background: rgb(255 255 255 / 0.08); color: var(--color-fg, #ffffff); } .ds-qa-tile svg { width: 20px; height: 20px; } .ds-qa-text { display: grid; } .ds-qa-name { color: var(--color-fg, #ffffff); font-size: 14px; font-weight: 600; } .ds-qa-detail { color: var(--color-fg-3, #8c8c8c); font-size: 12.5px; }"
+    },
+    {
+      "name": "Barre du bas mobile",
+      "kind": "nav",
+      "refersTo": "mobile-nav-action",
+      "description": "Barre fixe de 64px sur chrome (< 768px) : quatre onglets et, au centre, le bouton rouge de 52px relevé de 28px.",
+      "html": "<div class=\"ds-mnav-stage\"><nav class=\"ds-mnav\" aria-label=\"Navigation mobile\"><ul class=\"ds-mnav-list\"><li><a class=\"ds-mnav-tab\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect width=\"7\" height=\"9\" x=\"3\" y=\"3\" rx=\"1\"/><rect width=\"7\" height=\"5\" x=\"14\" y=\"3\" rx=\"1\"/><rect width=\"7\" height=\"9\" x=\"14\" y=\"12\" rx=\"1\"/><rect width=\"7\" height=\"5\" x=\"3\" y=\"16\" rx=\"1\"/></svg>Dashboard</a></li><li><a class=\"ds-mnav-tab\" href=\"#\" aria-current=\"page\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z\"/><path d=\"M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14\"/><path d=\"M8 6v8\"/></svg>Campagnes</a></li><li class=\"ds-mnav-center\"><button type=\"button\" class=\"ds-mnav-action\" aria-label=\"Actions rapides\" aria-expanded=\"false\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14\"/><path d=\"M12 5v14\"/></svg></button></li><li><a class=\"ds-mnav-tab\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><rect width=\"5\" height=\"5\" x=\"3\" y=\"3\" rx=\"1\"/><rect width=\"5\" height=\"5\" x=\"16\" y=\"3\" rx=\"1\"/><rect width=\"5\" height=\"5\" x=\"3\" y=\"16\" rx=\"1\"/><path d=\"M21 16h-3a2 2 0 0 0-2 2v3\"/><path d=\"M21 21v.01\"/><path d=\"M12 7v3a2 2 0 0 1-2 2H7\"/><path d=\"M3 12h.01\"/><path d=\"M12 3h.01\"/><path d=\"M12 16v.01\"/><path d=\"M16 12h1\"/><path d=\"M21 12v.01\"/><path d=\"M12 21v-1\"/></svg>QR</a></li><li><a class=\"ds-mnav-tab\" href=\"#\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z\"/></svg>Avis</a></li></ul></nav></div>",
+      "css": ".ds-mnav-stage { width: 390px; max-width: 100%; padding-top: 40px; background: var(--color-canvas, #0a0a0a); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-mnav { background: var(--color-chrome, #000000); border-top: 1px solid var(--color-line, rgb(255 255 255 / 0.08)); } .ds-mnav-list { display: grid; grid-template-columns: repeat(5, 1fr); align-items: center; height: 64px; margin: 0; padding: 0; list-style: none; } .ds-mnav-tab { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; height: 64px; color: var(--color-fg-3, #8c8c8c); font-size: 11px; font-weight: 500; text-decoration: none; transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-mnav-tab svg { width: 22px; height: 22px; } .ds-mnav-tab:hover { color: var(--color-fg-2, #b3b3b3); } .ds-mnav-tab[aria-current=\"page\"] { color: var(--color-fg, #ffffff); } .ds-mnav-tab[aria-current=\"page\"] svg { color: var(--color-red-text, #ff4d55); } .ds-mnav-tab:focus-visible { outline: 2px solid #ffffff; outline-offset: -4px; } .ds-mnav-center { display: flex; justify-content: center; } .ds-mnav-action { display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; margin-top: -28px; border: 0; border-radius: var(--radius-lg, 14px); background: var(--color-red, #e50914); color: #ffffff; box-shadow: var(--shadow-pop, 0 18px 44px -12px rgb(0 0 0 / 0.85), 0 2px 10px rgb(0 0 0 / 0.55)); cursor: pointer; transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), translate 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-mnav-action svg { width: 24px; height: 24px; transition: rotate 200ms cubic-bezier(0, 0, 0.2, 1); } .ds-mnav-action:hover { background: var(--color-red-hover, #c8070f); } .ds-mnav-action:active { background: var(--color-red-press, #a8060d); translate: 0 1px; } .ds-mnav-action:focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; } .ds-mnav-action[aria-expanded=\"true\"] { background: var(--color-red-press, #a8060d); } .ds-mnav-action[aria-expanded=\"true\"] svg { rotate: 45deg; }"
+    },
+    {
+      "name": "Bandeau démo",
+      "kind": "custom",
+      "refersTo": "demo-banner",
+      "description": "Bande pleine largeur sous la barre haute qui rappelle en permanence que les données sont fictives.",
+      "html": "<div class=\"ds-demo-stage\"><div class=\"ds-demo-banner\"><p class=\"ds-demo-text\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 16v-4\"/><path d=\"M12 8h.01\"/></svg><span><strong>Mode démo</strong> · données fictives de l'Hôtel Démo. Les comptes s'activeront au branchement de la base de données.</span></p></div></div>",
+      "css": ".ds-demo-stage { padding-bottom: 24px; background: var(--color-canvas, #0a0a0a); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-demo-banner { padding: 10px 32px; background: rgb(20 20 20 / 0.70); border-bottom: 1px solid var(--color-line, rgb(255 255 255 / 0.08)); } .ds-demo-text { display: flex; align-items: flex-start; gap: 8px; margin: 0; color: var(--color-fg-2, #b3b3b3); font-size: 12.5px; line-height: 1.375; } .ds-demo-text svg { flex-shrink: 0; width: 16px; height: 16px; margin-top: 1px; color: var(--color-fg-3, #8c8c8c); } .ds-demo-text strong { color: var(--color-fg, #ffffff); font-weight: 600; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "La réception de nuit",
+    "overview": "DetectiveScan est un dashboard SaaS classique, joué droit, au niveau de finition de Linear, Stripe et Ramp, dans la palette inspirée de Netflix choisie par l'utilisateur : fond noir, textes blancs et gris, rouge pour les boutons. L'image directrice est une réception d'hôtel la nuit : ce qui ne sert pas est éteint, chaque chose est à sa place, et une seule lumière rouge indique où agir. La métaphore règle l'ambiance (calme, sombre, précise), jamais l'imagerie : l'interface ne montre ni décor d'hôtel, ni cinéma, ni enquête.\n\nLa densité est celle d'un outil de travail : corps de 14px, éléments de navigation de 40px, une seule famille (Geist). La profondeur vient de quatre paliers de noir et de filets blancs translucides ; une seule ombre existe, pour ce qui flotte. Le rouge a trois rôles : agir (l'aplat du bouton principal, le focus des champs), situer (l'icône de l'élément actif), alerter (erreurs, déconnexion) ; il signe aussi la marque. Tout le reste est blanc ou gris. Le mouvement est bref et fonctionnel (150ms) et s'efface quand l'utilisateur demande moins d'animations.\n\nLe thème est unique et sombre, par choix de l'utilisateur (color-scheme: dark, aucun thème clair). Tokens et composants vivent dans packages/ui (@detectivescan/ui : bloc @theme Tailwind v4 dans styles.css, composants React) ; la seule surface construite à ce jour est l'espace hôtelier (apps/hotel). Refus confirmés par le contrat de direction : le SaaS blanc générique à accent bleu, et le thème décoratif (cinéma, néon, jeu vidéo). La marque est provisoire : aucun logo officiel n'a été fourni.",
+    "keyCharacteristics": [
+      "Cadre noir absolu, contenu sur un noir à peine plus clair, surfaces en deux paliers au-dessus.",
+      "Un seul aplat rouge d'action par vue ; tout rouge en texte ou en icône passe au rouge lisible.",
+      "Geist seul, titres en 600–700 à interlettrage négatif, corps de 14px.",
+      "Plat au repos : filets à 8% et 14% de blanc, shadow-pop pour les seuls calques flottants.",
+      "Rayons de 6, 10 et 14px, icônes Lucide au trait 1.75.",
+      "Navigation en trois formes : sidebar de 248px, rail de 72px, barre du bas à bouton central rouge.",
+      "Transitions de 150ms, coupées par prefers-reduced-motion."
+    ],
+    "rules": [
+      {
+        "name": "La règle du rouge réservé",
+        "body": "Hors marque, un seul aplat rouge par vue : celui de l'action principale (dans l'espace hôtelier, « Actions rapides » dès 768px, le bouton central en dessous). La deuxième action d'une vue prend la variante secondary, et une section à venir reste entièrement neutre.",
+        "section": "colors"
+      },
+      {
+        "name": "La règle du rouge lisible",
+        "body": "Le rouge en texte, en icône ou en bordure d'erreur est toujours red-text (#ff4d55). red (#e50914) ne tient que 4.13:1 sur canvas : il reste un fond.",
+        "section": "colors"
+      },
+      {
+        "name": "La règle du plancher gris",
+        "body": "Aucun texte plus sombre que fg-3 (#8c8c8c). Les gris plus sombres (filets, #333333 de la barre de défilement) ne portent jamais de lecture.",
+        "section": "colors"
+      },
+      {
+        "name": "La règle de la famille unique",
+        "body": "Geist seul, en 400, 500, 600 et 700. Titres en 600–700 avec un interlettrage de -0.01em à -0.02em, texte courant sans interlettrage, text-wrap: balance sur h1–h3.",
+        "section": "typography"
+      },
+      {
+        "name": "La règle de la capitale rare",
+        "body": "Les capitales espacées n'existent que pour les libellés de groupe de la sidebar. Aucun sur-titre en capitales au-dessus d'un titre.",
+        "section": "typography"
+      },
+      {
+        "name": "La règle du libellé jamais perdu",
+        "body": "Dans le rail, chaque libellé reste dans le DOM (sr-only) et réapparaît en info-bulle au survol comme au focus clavier ; les libellés de groupe y deviennent un filet centré de 32px.",
+        "section": "layout"
+      },
+      {
+        "name": "La règle de l'action au pouce",
+        "body": "Sous 768px, l'action principale quitte la barre haute pour le bouton central de la barre du bas ; les sections absentes de la barre (Analytics, Abonnement) passent dans le menu du compte.",
+        "section": "layout"
+      },
+      {
+        "name": "La règle de l'ombre unique",
+        "body": "shadow-pop est réservée à ce qui flotte au-dessus du contenu. Champs, boutons en ligne, barres et conteneurs restent plats : au repos, la profondeur vient du palier de noir et du filet.",
+        "section": "elevation"
+      },
+      {
+        "name": "La règle du rayon qui suit la taille",
+        "body": "6px pour ce qui s'aligne en ligne, 10px pour les tuiles et les menus, 14px pour les grandes pièces flottantes. Hors de cette échelle, seuls la pilule des badges et le cercle de l'avatar mobile.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Réserver l'aplat red (#e50914) à une seule action principale par vue, hors marque ; la deuxième action prend la variante secondary.",
+      "Écrire tout rouge de texte, d'icône ou de bordure d'erreur en red-text (#ff4d55).",
+      "Marquer le focus clavier d'un contour blanc de 2px décalé de 2px (inset dans les listes) ; pour les champs, bordure red et halo de 3px à 35%.",
+      "Accompagner chaque erreur ou état d'une icône et d'un texte, reliés au champ par aria-describedby : jamais la couleur seule.",
+      "Séparer les zones par un palier de noir et un filet (line à 8%, line-strong à 14%), pas par une ombre.",
+      "Poser les icônes Lucide au trait 1.75, en aria-hidden.",
+      "Tenir les transitions d'état à 150ms (200ms pour les rotations de chevron et de « + ») et laisser prefers-reduced-motion les couper.",
+      "Garder chaque destination nommée à toutes les tailles : libellé visible (≥ 1280px), info-bulle au survol et au focus (rail), libellé court (barre du bas)."
+    ],
+    "donts": [
+      "Ne pas poser un second aplat rouge dans une vue, ni employer le rouge en décor (fond de section, illustration, section à venir).",
+      "Ne pas écrire de texte en red (#e50914) sur noir : 4.13:1 sur canvas, sous le seuil AA.",
+      "Ne pas écrire de texte plus sombre que fg-3 (#8c8c8c).",
+      "Ne pas donner d'ombre à ce qui repose dans la page (champs, boutons en ligne, barres, conteneurs) : shadow-pop est réservée aux popovers, aux info-bulles et au bouton central mobile.",
+      "Ne pas introduire de thème clair, d'accent bleu pour les liens ou les actions, ni de famille de caractères autre que Geist.",
+      "Ne pas habiller l'interface d'un thème décoratif (cinéma, néon, jeu vidéo) : ni grain, ni lueur, ni texture, ni typographie fantaisie.",
+      "Ne pas placer de sur-titre en capitales au-dessus d'un titre : les capitales espacées sont réservées aux libellés de groupe de la sidebar.",
+      "Ne pas remplacer une icône par un caractère ou un emoji : toute icône est un SVG Lucide, la marque mise à part."
+    ]
+  }
+}
