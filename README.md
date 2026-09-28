@@ -9,7 +9,7 @@ Le développement avance étape par étape : chaque étape livre une section com
 | Étape | Contenu | Statut |
 | --- | --- | --- |
 | 1 | Fondations, design system, connexion, navigation de l'espace hôtelier | Livrée (mode démo) |
-| 2 | Dashboard | À venir |
+| 2 | Dashboard : chiffres clés, courbe, entonnoir, chambres, dernières parties, filtre de période | Livrée (mode démo) |
 | 3 | QR codes & chambres : saisie, import CSV, mode installation | À venir |
 | 4 | Campagnes (écran de 3 secondes) | À venir |
 | 5 | Avis clients, Analytics | À venir |
@@ -44,7 +44,7 @@ pnpm typecheck    # vérification TypeScript
 
 1. Vercel → **Add New → Project** → importer `ckn69/DetectiveScan-CRM`.
 2. **Root Directory** : `apps/hotel` (Next.js est détecté automatiquement).
-3. Aucune variable d'environnement n'est nécessaire à l'étape 1.
+3. Aucune variable d'environnement n'est nécessaire tant que le mode démo est actif.
 4. **Settings → Domains** : ajouter `app.detectivescan.com`.
 
 ## Mode démo
