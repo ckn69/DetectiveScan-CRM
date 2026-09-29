@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-28T12:58:03.871Z",
+  "generatedAt": "2026-09-29T06:37:01.666Z",
   "title": "Design System: DetectiveScan",
   "extensions": {
     "colorMeta": {
@@ -243,6 +243,66 @@
           "#ffba5c",
           "#ffebd3"
         ]
+      },
+      "viz-1": {
+        "role": "data",
+        "displayName": "Bleu scan",
+        "canonical": "#256abf",
+        "tonalRamp": [
+          "#0d366b",
+          "#104281",
+          "#1c5cab",
+          "#256abf",
+          "#3987e5",
+          "#6da7ec",
+          "#9ec5f4",
+          "#cde2fb"
+        ]
+      },
+      "viz-2": {
+        "role": "data",
+        "displayName": "Bleu partie",
+        "canonical": "#6da7ec",
+        "tonalRamp": [
+          "#0d366b",
+          "#104281",
+          "#1c5cab",
+          "#256abf",
+          "#3987e5",
+          "#6da7ec",
+          "#9ec5f4",
+          "#cde2fb"
+        ]
+      },
+      "viz-3": {
+        "role": "data",
+        "displayName": "Bleu fin de partie",
+        "canonical": "#9ec5f4",
+        "tonalRamp": [
+          "#0d366b",
+          "#104281",
+          "#1c5cab",
+          "#256abf",
+          "#3987e5",
+          "#6da7ec",
+          "#9ec5f4",
+          "#cde2fb"
+        ]
+      },
+      "viz-4": {
+        "role": "data",
+        "displayName": "Bleu victoire",
+        "canonical": "#cde2fb",
+        "tonalRamp": [
+          "#0d366b",
+          "#104281",
+          "#1c5cab",
+          "#256abf",
+          "#3987e5",
+          "#6da7ec",
+          "#9ec5f4",
+          "#cde2fb"
+        ]
       }
     },
     "typographyMeta": {
@@ -285,6 +345,22 @@
       "group-label": {
         "displayName": "Group label",
         "purpose": "Libellés de groupe de la sidebar, en capitales : seul usage des capitales."
+      },
+      "metric": {
+        "displayName": "Metric",
+        "purpose": "Valeur d'un chiffre clé (28px/600), en chiffres proportionnels."
+      },
+      "panel-title": {
+        "displayName": "Panel title",
+        "purpose": "Titre d'un panneau du dashboard, suivi d'une précision en 12.5px fg-3."
+      },
+      "axis": {
+        "displayName": "Axis",
+        "purpose": "Graduations et dates des axes des graphiques, en chiffres tabulaires, fg-3."
+      },
+      "mono": {
+        "displayName": "Mono",
+        "purpose": "Geist Mono, réservée aux identifiants de QR code (12.5px, 12px dans la liste mobile)."
       }
     },
     "shadows": [
@@ -348,6 +424,11 @@
         "purpose": "Rotation du chevron d'« Actions rapides » (180°) et du « + » central (45°)."
       },
       {
+        "name": "period-dim",
+        "value": "opacity 1 → 0.5, 200ms ease-out, aria-busy",
+        "purpose": "Changement de période : le contenu reste en place, atténué, pendant le chargement."
+      },
+      {
         "name": "ease-out",
         "value": "cubic-bezier(0, 0, 0.2, 1)",
         "purpose": "Boutons, champs et rotations d'icône."
@@ -400,6 +481,11 @@
         "purpose": "Rail de 72px, barre haute de 64px, bouton « Actions rapides » ; la barre du bas disparaît."
       },
       {
+        "name": "lg",
+        "value": "1024px",
+        "purpose": "Dashboard : quatre chiffres clés par rangée ; courbe pleine largeur, entonnoir et chambres côte à côte."
+      },
+      {
         "name": "xl",
         "value": "1280px",
         "purpose": "Sidebar de 248px avec libellés ; les info-bulles du rail disparaissent."
@@ -435,9 +521,41 @@
       "name": "Badge",
       "kind": "chip",
       "refersTo": "badge",
-      "description": "Étiquette statique en pilule de 24px ; tons neutre (en usage : Prévu à l'étape N), rouge, succès, alerte.",
-      "html": "<div class=\"ds-badge-stage\"><span class=\"ds-badge\">Prévu à l'étape 2</span><span class=\"ds-badge ds-badge--red\">Rouge</span><span class=\"ds-badge ds-badge--success\">Succès</span><span class=\"ds-badge ds-badge--warning\">Alerte</span></div>",
-      "css": ".ds-badge-stage { display: flex; flex-wrap: wrap; gap: 12px; padding: 24px; background: var(--color-canvas, #0a0a0a); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 9999px; background: rgb(255 255 255 / 0.08); color: var(--color-fg-2, #b3b3b3); font-size: 12px; font-weight: 500; white-space: nowrap; } .ds-badge--red { background: var(--color-red-soft, rgb(229 9 20 / 0.14)); color: var(--color-red-text, #ff4d55); } .ds-badge--success { background: rgb(70 211 105 / 0.12); color: var(--color-success, #46d369); } .ds-badge--warning { background: rgb(245 165 36 / 0.12); color: var(--color-warning, #f5a524); }"
+      "description": "Étiquette statique en pilule de 24px ; tons neutre (Prévu à l'étape N, En cours, Perdue), succès (Gagnée), alerte (Abandonnée), rouge.",
+      "html": "<div class=\"ds-badge-stage\"><span class=\"ds-badge\"><i class=\"ds-badge-dot\"></i>En cours</span><span class=\"ds-badge ds-badge--success\">Gagnée</span><span class=\"ds-badge\">Perdue</span><span class=\"ds-badge ds-badge--warning\">Abandonnée</span><span class=\"ds-badge ds-badge--red\">Rouge</span></div>",
+      "css": ".ds-badge-stage { display: flex; flex-wrap: wrap; gap: 12px; padding: 24px; background: var(--color-canvas, #0a0a0a); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-badge { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 9999px; background: rgb(255 255 255 / 0.08); color: var(--color-fg-2, #b3b3b3); font-size: 12px; font-weight: 500; white-space: nowrap; } .ds-badge--red { background: var(--color-red-soft, rgb(229 9 20 / 0.14)); color: var(--color-red-text, #ff4d55); } .ds-badge--success { background: rgb(70 211 105 / 0.12); color: var(--color-success, #46d369); } .ds-badge--warning { background: rgb(245 165 36 / 0.12); color: var(--color-warning, #f5a524); } .ds-badge-dot { display: inline-block; width: 6px; height: 6px; border-radius: 9999px; background: var(--color-fg-2, #b3b3b3); }"
+    },
+    {
+      "name": "Chiffre clé",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Panneau surface à filet et coins de 10px : libellé, valeur de 28px, évolution comparée, puis deux sous-indicateurs avec leur valeur précédente.",
+      "html": "<div class=\"ds-kpi-stage\"><article class=\"ds-kpi\"><h3 class=\"ds-kpi-label\">Scans</h3><p class=\"ds-kpi-value\">1 238</p><p class=\"ds-kpi-delta\"><span class=\"ds-kpi-up\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M7 7h10v10\"/><path d=\"M7 17 17 7\"/></svg>+15 %</span><span class=\"ds-kpi-prev\">vs 1 072</span></p><dl class=\"ds-kpi-details\"><div><dt>Visiteurs uniques</dt><dd><span class=\"ds-kpi-num\">1 006</span><span class=\"ds-kpi-prev\">vs 869</span></dd></div><div><dt>Scans par chambre</dt><dd><span class=\"ds-kpi-num\">29,5</span><span class=\"ds-kpi-prev\">vs 25,5</span></dd></div></dl></article></div>",
+      "css": ".ds-kpi-stage { padding: 24px; background: var(--color-canvas, #0a0a0a); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-kpi { box-sizing: border-box; width: 260px; padding: 20px; border: 1px solid var(--color-line, rgb(255 255 255 / 0.08)); border-radius: var(--radius-md, 10px); background: var(--color-surface, #141414); } .ds-kpi-label { margin: 0; color: var(--color-fg-2, #b3b3b3); font-size: 13px; font-weight: 500; line-height: 1.375; } .ds-kpi-value { margin: 8px 0 0; color: var(--color-fg, #ffffff); font-size: 28px; font-weight: 600; line-height: 1; letter-spacing: -0.02em; } .ds-kpi-delta { display: flex; align-items: center; gap: 6px; margin: 10px 0 0; font-size: 12.5px; line-height: 20px; } .ds-kpi-up { display: inline-flex; align-items: center; gap: 2px; color: var(--color-success, #46d369); font-weight: 600; } .ds-kpi-up svg { width: 14px; height: 14px; } .ds-kpi-prev { color: var(--color-fg-3, #8c8c8c); font-size: 12px; } .ds-kpi-delta .ds-kpi-prev { font-size: 12.5px; } .ds-kpi-details { display: grid; gap: 10px; margin: 16px 0 0; padding-top: 14px; border-top: 1px solid var(--color-line, rgb(255 255 255 / 0.08)); } .ds-kpi-details dt { color: var(--color-fg-3, #8c8c8c); font-size: 12.5px; line-height: 1.375; } .ds-kpi-details dd { display: flex; align-items: baseline; gap: 6px; margin: 2px 0 0; font-variant-numeric: tabular-nums; } .ds-kpi-num { color: var(--color-fg, #ffffff); font-size: 13.5px; font-weight: 500; }"
+    },
+    {
+      "name": "Filtre de période",
+      "kind": "custom",
+      "refersTo": "segmented",
+      "description": "Le seul filtre du dashboard, au-dessus de tout ce qu'il filtre : liens de 32px dans un cadre surface, sélection en voile de 9%, phrase de période dessous.",
+      "html": "<div class=\"ds-period-stage\"><nav aria-label=\"Période\"><ul class=\"ds-period\"><li><a href=\"#\">Aujourd'hui</a></li><li><a href=\"#\">7 jours</a></li><li><a href=\"#\" aria-current=\"true\">30 jours</a></li><li><a href=\"#\">3 mois</a></li><li><a href=\"#\">Personnalisé</a></li></ul></nav><p class=\"ds-period-caption\">Du 29 août au 27 sept. 2026, comparé aux 30 jours précédents.</p></div>",
+      "css": ".ds-period-stage { padding: 24px; background: var(--color-canvas, #0a0a0a); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-period { display: flex; gap: 2px; width: max-content; margin: 0; padding: 4px; list-style: none; border: 1px solid var(--color-line, rgb(255 255 255 / 0.08)); border-radius: var(--radius-md, 10px); background: var(--color-surface, #141414); } .ds-period a { display: flex; align-items: center; height: 32px; padding: 0 12px; border-radius: var(--radius-sm, 6px); color: var(--color-fg-2, #b3b3b3); font-size: 13px; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), color 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-period a:hover { background: rgb(255 255 255 / 0.05); color: var(--color-fg, #ffffff); } .ds-period a[aria-current=\"true\"] { background: rgb(255 255 255 / 0.09); color: var(--color-fg, #ffffff); } .ds-period a:focus-visible { outline: 2px solid #ffffff; outline-offset: -2px; } .ds-period-caption { margin: 12px 0 0; color: var(--color-fg-3, #8c8c8c); font-size: 13px; line-height: 1.375; }"
+    },
+    {
+      "name": "Graphique d'activité",
+      "kind": "custom",
+      "refersTo": "chart-tooltip",
+      "description": "Scans (viz-1) et parties commencées (viz-2) sur un seul axe : lignes de 2px sans aplat, grille en filets, légende à traits, info-bulle raised qui suit le réticule.",
+      "html": "<div class=\"ds-chart-stage\"><section class=\"ds-chart\"><header class=\"ds-chart-head\"><div><h2 class=\"ds-chart-title\">Scans et parties commencées</h2><p class=\"ds-chart-sub\">Par jour</p></div><ul class=\"ds-chart-legend\"><li><i class=\"ds-key ds-key-1\"></i>Scans</li><li><i class=\"ds-key ds-key-2\"></i>Parties commencées</li></ul></header><div class=\"ds-chart-plot\"><div class=\"ds-grid ds-grid-top\"></div><div class=\"ds-grid ds-grid-mid\"></div><div class=\"ds-grid ds-grid-base\"></div><svg viewBox=\"0 0 300 120\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><polyline class=\"ds-line ds-line-1\" points=\"0.0,54.0 27.3,58.5 54.5,76.5 81.8,78.0 109.1,70.5 136.4,67.5 163.6,52.5 190.9,36.0 218.2,55.5 245.5,72.0 272.7,34.5 300.0,40.5\"/><polyline class=\"ds-line ds-line-2\" points=\"0.0,87.0 27.3,90.0 54.5,97.5 81.8,99.0 109.1,96.0 136.4,94.5 163.6,87.0 190.9,79.5 218.2,85.5 245.5,94.5 272.7,75.0 300.0,79.5\"/></svg><div class=\"ds-cross\"></div><div class=\"ds-tip\"><p class=\"ds-tip-date\">sam. 26 sept.</p><ul class=\"ds-tip-rows\"><li><i class=\"ds-key ds-key-1\"></i><b>57</b>scans</li><li><i class=\"ds-key ds-key-2\"></i><b>30</b>parties commencées</li></ul></div></div></section></div>",
+      "css": ".ds-chart-stage { padding: 24px; background: var(--color-canvas, #0a0a0a); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-chart { box-sizing: border-box; width: 560px; padding: 20px; border: 1px solid var(--color-line, rgb(255 255 255 / 0.08)); border-radius: var(--radius-md, 10px); background: var(--color-surface, #141414); } .ds-chart-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; } .ds-chart-title { margin: 0; color: var(--color-fg, #ffffff); font-size: 15px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.375; } .ds-chart-sub { margin: 2px 0 0; color: var(--color-fg-3, #8c8c8c); font-size: 12.5px; } .ds-chart-legend { display: flex; gap: 16px; margin: 0; padding: 0; list-style: none; color: var(--color-fg-2, #b3b3b3); font-size: 12.5px; } .ds-chart-legend li, .ds-tip-rows li { display: flex; align-items: center; gap: 8px; } .ds-key { display: inline-block; width: 14px; height: 2px; border-radius: 9999px; } .ds-tip-rows .ds-key { width: 12px; } .ds-key-1 { background: var(--color-viz-1, #256abf); } .ds-key-2 { background: var(--color-viz-2, #6da7ec); } .ds-chart-plot { position: relative; height: 160px; margin-top: 20px; } .ds-grid { position: absolute; left: 0; right: 0; border-top: 1px solid var(--color-line, rgb(255 255 255 / 0.08)); } .ds-grid-top { top: 0; } .ds-grid-mid { top: 50%; } .ds-grid-base { top: 100%; border-top-color: var(--color-line-strong, rgb(255 255 255 / 0.14)); } .ds-chart-plot svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; } .ds-line { fill: none; stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; } .ds-line-1 { stroke: var(--color-viz-1, #256abf); } .ds-line-2 { stroke: var(--color-viz-2, #6da7ec); } .ds-cross { position: absolute; top: 0; bottom: 0; left: 91%; width: 1px; background: rgb(255 255 255 / 0.25); } .ds-tip { position: absolute; top: 0; left: 91%; margin-left: -12px; transform: translateX(-100%); padding: 10px 12px; border: 1px solid var(--color-line-strong, rgb(255 255 255 / 0.14)); border-radius: var(--radius-md, 10px); background: var(--color-raised, #1c1c1c); box-shadow: var(--shadow-pop, 0 18px 44px -12px rgb(0 0 0 / 0.85), 0 2px 10px rgb(0 0 0 / 0.55)); white-space: nowrap; } .ds-tip-date { margin: 0; color: var(--color-fg-3, #8c8c8c); font-size: 12px; } .ds-tip-rows { display: grid; gap: 4px; margin: 6px 0 0; padding: 0; list-style: none; color: var(--color-fg-2, #b3b3b3); font-size: 13px; } .ds-tip-rows b { color: var(--color-fg, #ffffff); font-weight: 600; font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Entonnoir",
+      "kind": "custom",
+      "refersTo": "card",
+      "description": "Du scan à la victoire : quatre barres de 10px en viz-1 à viz-4, bout arrondi de 4px, valeur et note écrites : la liste se lit sans le dessin.",
+      "html": "<div class=\"ds-funnel-stage\"><section class=\"ds-funnel\"><h2 class=\"ds-funnel-title\">Du scan à la victoire</h2><p class=\"ds-funnel-sub\">Où les joueurs s'arrêtent</p><ol class=\"ds-funnel-list\"><li><p class=\"ds-stage\"><span>Scans</span><b>1 238</b></p><i class=\"ds-bar ds-bar-1 ds-w-100\"></i></li><li><p class=\"ds-stage\"><span>Parties commencées</span><b>656</b></p><i class=\"ds-bar ds-bar-2 ds-w-53\"></i><p class=\"ds-note\">53 % des scans</p></li><li><p class=\"ds-stage\"><span>Parties terminées</span><b>517</b></p><i class=\"ds-bar ds-bar-3 ds-w-42\"></i><p class=\"ds-note\">79 % des parties commencées · 139 abandons</p></li><li><p class=\"ds-stage\"><span>Parties gagnées</span><b>321</b></p><i class=\"ds-bar ds-bar-4 ds-w-26\"></i><p class=\"ds-note\">62 % des parties terminées · 196 perdues</p></li></ol></section></div>",
+      "css": ".ds-funnel-stage { padding: 24px; background: var(--color-canvas, #0a0a0a); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-funnel { box-sizing: border-box; width: 340px; padding: 20px; border: 1px solid var(--color-line, rgb(255 255 255 / 0.08)); border-radius: var(--radius-md, 10px); background: var(--color-surface, #141414); } .ds-funnel-title { margin: 0; color: var(--color-fg, #ffffff); font-size: 15px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.375; } .ds-funnel-sub { margin: 2px 0 0; color: var(--color-fg-3, #8c8c8c); font-size: 12.5px; } .ds-funnel-list { display: grid; gap: 20px; margin: 20px 0 0; padding: 0; list-style: none; } .ds-stage { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 0; } .ds-stage span { color: var(--color-fg-2, #b3b3b3); font-size: 13px; } .ds-stage b { color: var(--color-fg, #ffffff); font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums; } .ds-bar { display: block; height: 10px; margin-top: 8px; border-radius: 0 4px 4px 0; } .ds-bar-1 { background: var(--color-viz-1, #256abf); } .ds-bar-2 { background: var(--color-viz-2, #6da7ec); } .ds-bar-3 { background: var(--color-viz-3, #9ec5f4); } .ds-bar-4 { background: var(--color-viz-4, #cde2fb); } .ds-w-100 { width: 100%; } .ds-w-53 { width: 53%; } .ds-w-42 { width: 42%; } .ds-w-26 { width: 26%; } .ds-note { margin: 6px 0 0; color: var(--color-fg-3, #8c8c8c); font-size: 12px; line-height: 1.375; }"
     },
     {
       "name": "Sidebar",
@@ -482,11 +600,13 @@
   ],
   "narrative": {
     "northStar": "La réception de nuit",
-    "overview": "DetectiveScan est un dashboard SaaS classique, joué droit, au niveau de finition de Linear, Stripe et Ramp, dans la palette inspirée de Netflix choisie par l'utilisateur : fond noir, textes blancs et gris, rouge pour les boutons. L'image directrice est une réception d'hôtel la nuit : ce qui ne sert pas est éteint, chaque chose est à sa place, et une seule lumière rouge indique où agir. La métaphore règle l'ambiance (calme, sombre, précise), jamais l'imagerie : l'interface ne montre ni décor d'hôtel, ni cinéma, ni enquête.\n\nLa densité est celle d'un outil de travail : corps de 14px, éléments de navigation de 40px, une seule famille (Geist). La profondeur vient de quatre paliers de noir et de filets blancs translucides ; une seule ombre existe, pour ce qui flotte. Le rouge a trois rôles : agir (l'aplat du bouton principal, le focus des champs), situer (l'icône de l'élément actif), alerter (erreurs, déconnexion) ; il signe aussi la marque. Tout le reste est blanc ou gris. Le mouvement est bref et fonctionnel (150ms) et s'efface quand l'utilisateur demande moins d'animations.\n\nLe thème est unique et sombre, par choix de l'utilisateur (color-scheme: dark, aucun thème clair). Tokens et composants vivent dans packages/ui (@detectivescan/ui : bloc @theme Tailwind v4 dans styles.css, composants React) ; la seule surface construite à ce jour est l'espace hôtelier (apps/hotel). Refus confirmés par le contrat de direction : le SaaS blanc générique à accent bleu, et le thème décoratif (cinéma, néon, jeu vidéo). La marque est provisoire : aucun logo officiel n'a été fourni.",
+    "overview": "DetectiveScan est un dashboard SaaS classique, joué droit, au niveau de finition de Linear, Stripe et Ramp, dans la palette inspirée de Netflix choisie par l'utilisateur : fond noir, textes blancs et gris, rouge pour les boutons. L'image directrice est une réception d'hôtel la nuit : ce qui ne sert pas est éteint, chaque chose est à sa place, et une seule lumière rouge indique où agir. La métaphore règle l'ambiance (calme, sombre, précise), jamais l'imagerie : l'interface ne montre ni décor d'hôtel, ni cinéma, ni enquête.\n\nLa densité est celle d'un outil de travail : corps de 14px, éléments de navigation de 40px, une seule famille (Geist). La profondeur vient de quatre paliers de noir et de filets blancs translucides ; une seule ombre existe, pour ce qui flotte. Le rouge a trois rôles : agir (l'aplat du bouton principal, le focus des champs), situer (l'icône de l'élément actif), alerter (erreurs, baisses, déconnexion) ; il signe aussi la marque. Le texte et la structure sont blancs ou gris ; les données, elles, prennent un seul bleu en quatre nuances, et seulement dans les graphiques : puisque le rouge est réservé à l'action, les chiffres tracés ne peuvent pas le porter. Le mouvement est bref et fonctionnel (150ms) et s'efface quand l'utilisateur demande moins d'animations.\n\nLe thème est unique et sombre, par choix de l'utilisateur (color-scheme: dark, aucun thème clair). Tokens et composants vivent dans packages/ui (@detectivescan/ui : bloc @theme Tailwind v4 dans styles.css, composants React) ; la seule surface construite à ce jour est l'espace hôtelier (apps/hotel) : connexion, navigation et dashboard. Refus confirmés par le contrat de direction : le SaaS blanc générique à accent bleu, et le thème décoratif (cinéma, néon, jeu vidéo). La marque est provisoire : aucun logo officiel n'a été fourni.",
     "keyCharacteristics": [
-      "Cadre noir absolu, contenu sur un noir à peine plus clair, surfaces en deux paliers au-dessus.",
+      "Cadre noir absolu, contenu sur un noir à peine plus clair, panneaux et surfaces en deux paliers au-dessus.",
       "Un seul aplat rouge d'action par vue ; tout rouge en texte ou en icône passe au rouge lisible.",
-      "Geist seul, titres en 600–700 à interlettrage négatif, corps de 14px.",
+      "Données en un seul bleu, quatre nuances ordonnées du scan à la victoire, jamais en dehors des graphiques.",
+      "Geist seul pour le texte, titres en 600–700 à interlettrage négatif, corps de 14px ; Geist Mono pour les seuls identifiants de QR code.",
+      "Chiffres tabulaires partout où des nombres s'alignent.",
       "Plat au repos : filets à 8% et 14% de blanc, shadow-pop pour les seuls calques flottants.",
       "Rayons de 6, 10 et 14px, icônes Lucide au trait 1.75.",
       "Navigation en trois formes : sidebar de 248px, rail de 72px, barre du bas à bouton central rouge.",
@@ -504,13 +624,18 @@
         "section": "colors"
       },
       {
+        "name": "La règle du bleu des données",
+        "body": "Le rouge sert à agir, situer et alerter : les données prennent donc une seule autre teinte, le bleu viz-1 à viz-4, dans l'ordre du parcours et uniquement dans les graphiques. Jamais pour une action, un lien, un état ni un texte : valeurs, libellés et légendes restent en blanc et en gris, le bleu n'est porté que par le trait, la barre ou la pastille à côté.",
+        "section": "colors"
+      },
+      {
         "name": "La règle du plancher gris",
         "body": "Aucun texte plus sombre que fg-3 (#8c8c8c). Les gris plus sombres (filets, #333333 de la barre de défilement) ne portent jamais de lecture.",
         "section": "colors"
       },
       {
         "name": "La règle de la famille unique",
-        "body": "Geist seul, en 400, 500, 600 et 700. Titres en 600–700 avec un interlettrage de -0.01em à -0.02em, texte courant sans interlettrage, text-wrap: balance sur h1–h3.",
+        "body": "Geist seul pour tout le texte, en 400, 500, 600 et 700 ; Geist Mono n'existe que pour les identifiants de QR code, qui sont des codes. Titres en 600–700 avec un interlettrage de -0.01em à -0.02em, texte courant sans interlettrage, text-wrap: balance sur h1–h3.",
         "section": "typography"
       },
       {
@@ -519,42 +644,59 @@
         "section": "typography"
       },
       {
+        "name": "La règle des chiffres alignés",
+        "body": "Chiffres tabulaires partout où des nombres se lisent en colonne ou se comparent : tableaux, valeurs des sous-indicateurs, graduations, étiquettes de fin de courbe, info-bulles, dates et heures des listes. Exception voulue : la valeur d'un chiffre clé (28px) garde les chiffres proportionnels, car à cette taille des chiffres de largeur égale paraissent lâches.",
+        "section": "typography"
+      },
+      {
         "name": "La règle du libellé jamais perdu",
-        "body": "Dans le rail, chaque libellé reste dans le DOM (sr-only) et réapparaît en info-bulle au survol comme au focus clavier ; les libellés de groupe y deviennent un filet centré de 32px.",
+        "body": "Dans le rail, chaque libellé reste dans le DOM (sr-only) et réapparaît en info-bulle au survol comme au focus clavier ; les libellés de groupe y deviennent un filet centré de 32px. Même principe pour le contrôle de période sous 640px : « 7 j » et l'icône de calendrier à l'écran, « 7 jours » et « Personnalisé » pour les lecteurs d'écran.",
         "section": "layout"
       },
       {
         "name": "La règle de l'action au pouce",
-        "body": "Sous 768px, l'action principale quitte la barre haute pour le bouton central de la barre du bas ; les sections absentes de la barre (Analytics, Abonnement) passent dans le menu du compte.",
+        "body": "Sous 768px, l'action principale quitte la barre haute pour le bouton central de la barre du bas ; les sections absentes de la barre (Analytics, Abonnement) passent dans le menu du compte, et l'onglet « QR » remplace le bouton « Gérer les QR codes » du dashboard.",
+        "section": "layout"
+      },
+      {
+        "name": "La règle du filtre unique",
+        "body": "Une seule période par page, choisie dans une rangée au-dessus de tout ce qu'elle filtre, et portée par l'adresse (?periode=7j) : chiffres, courbe, entonnoir, chambres et parties se lisent toujours sur la même tranche, comparée à la précédente, et un lien partagé ouvre la même vue.",
         "section": "layout"
       },
       {
         "name": "La règle de l'ombre unique",
-        "body": "shadow-pop est réservée à ce qui flotte au-dessus du contenu. Champs, boutons en ligne, barres et conteneurs restent plats : au repos, la profondeur vient du palier de noir et du filet.",
+        "body": "shadow-pop est réservée à ce qui flotte au-dessus du contenu. Champs, boutons en ligne, barres, panneaux et chiffres clés restent plats : au repos, la profondeur vient du palier de noir et du filet.",
         "section": "elevation"
       },
       {
         "name": "La règle du rayon qui suit la taille",
-        "body": "6px pour ce qui s'aligne en ligne, 10px pour les tuiles et les menus, 14px pour les grandes pièces flottantes. Hors de cette échelle, seuls la pilule des badges et le cercle de l'avatar mobile.",
+        "body": "6px pour ce qui s'aligne en ligne, 10px pour les panneaux, les tuiles et les menus, 14px pour les grandes pièces flottantes. Hors de cette échelle, seuls la pilule des badges, le cercle de l'avatar mobile et l'extrémité des marques de données : une barre de graphique a un bout arrondi de 4px et reste carrée sur sa ligne de base.",
         "section": "shapes"
       }
     ],
     "dos": [
       "Réserver l'aplat red (#e50914) à une seule action principale par vue, hors marque ; la deuxième action prend la variante secondary.",
       "Écrire tout rouge de texte, d'icône ou de bordure d'erreur en red-text (#ff4d55).",
+      "Tracer les données avec le seul bleu viz-1 à viz-4, dans l'ordre du parcours (scans, parties commencées, terminées, gagnées), sur le fond surface du panneau.",
+      "Accompagner chaque graphique d'une légende (dès deux séries), d'une info-bulle au survol comme au clavier, et d'une vue tableau.",
+      "Aligner en chiffres tabulaires tout nombre lu en colonne ; garder les chiffres proportionnels pour la valeur d'un chiffre clé.",
+      "Comparer chaque indicateur à la période précédente de même durée, avec la valeur précédente écrite à côté.",
       "Marquer le focus clavier d'un contour blanc de 2px décalé de 2px (inset dans les listes) ; pour les champs, bordure red et halo de 3px à 35%.",
       "Accompagner chaque erreur ou état d'une icône et d'un texte, reliés au champ par aria-describedby : jamais la couleur seule.",
       "Séparer les zones par un palier de noir et un filet (line à 8%, line-strong à 14%), pas par une ombre.",
       "Poser les icônes Lucide au trait 1.75, en aria-hidden.",
-      "Tenir les transitions d'état à 150ms (200ms pour les rotations de chevron et de « + ») et laisser prefers-reduced-motion les couper.",
+      "Tenir les transitions d'état à 150ms (200ms pour les rotations de chevron et de « + » et pour l'atténuation d'un changement de période) et laisser prefers-reduced-motion les couper.",
       "Garder chaque destination nommée à toutes les tailles : libellé visible (≥ 1280px), info-bulle au survol et au focus (rail), libellé court (barre du bas)."
     ],
     "donts": [
-      "Ne pas poser un second aplat rouge dans une vue, ni employer le rouge en décor (fond de section, illustration, section à venir).",
+      "Ne pas poser un second aplat rouge dans une vue, ni employer le rouge en décor (fond de section, illustration, section à venir) ni dans un graphique.",
       "Ne pas écrire de texte en red (#e50914) sur noir : 4.13:1 sur canvas, sous le seuil AA.",
+      "Ne pas employer le bleu des données pour un texte, un lien, une action ou un état, ni hors d'un graphique.",
+      "Ne pas poser d'aplat de couleur sous une courbe, ni de deuxième axe vertical.",
       "Ne pas écrire de texte plus sombre que fg-3 (#8c8c8c).",
-      "Ne pas donner d'ombre à ce qui repose dans la page (champs, boutons en ligne, barres, conteneurs) : shadow-pop est réservée aux popovers, aux info-bulles et au bouton central mobile.",
-      "Ne pas introduire de thème clair, d'accent bleu pour les liens ou les actions, ni de famille de caractères autre que Geist.",
+      "Ne pas donner d'ombre à ce qui repose dans la page (champs, boutons en ligne, barres, panneaux) : shadow-pop est réservée aux popovers, aux info-bulles et au bouton central mobile.",
+      "Ne pas imbriquer un panneau dans un autre.",
+      "Ne pas introduire de thème clair, d'accent bleu pour les liens ou les actions, ni de famille de caractères autre que Geist (Geist Mono aux seuls identifiants).",
       "Ne pas habiller l'interface d'un thème décoratif (cinéma, néon, jeu vidéo) : ni grain, ni lueur, ni texture, ni typographie fantaisie.",
       "Ne pas placer de sur-titre en capitales au-dessus d'un titre : les capitales espacées sont réservées aux libellés de groupe de la sidebar.",
       "Ne pas remplacer une icône par un caractère ou un emoji : toute icône est un SVG Lucide, la marque mise à part."
