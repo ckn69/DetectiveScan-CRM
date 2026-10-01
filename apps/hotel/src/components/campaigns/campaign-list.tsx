@@ -354,7 +354,7 @@ function NowPanel({
         {later.length > 0 ? (
           <section
             aria-labelledby="later-title"
-            className="max-md:hidden md:w-[17rem] md:shrink-0 md:self-stretch md:border-l md:border-line md:pl-5 xl:w-full xl:border-l-0 xl:border-t xl:pl-0 xl:pt-4"
+            className="max-md:hidden md:w-[17rem] md:shrink-0 md:self-stretch md:border-l md:border-line md:pl-5 xl:hidden"
           >
             <h3 id="later-title" className="text-[13px] font-medium text-fg-2">
               À suivre

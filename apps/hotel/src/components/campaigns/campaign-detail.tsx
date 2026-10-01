@@ -227,11 +227,37 @@ export function CampaignDetail({
           ))}
         </Card>
 
+        {/* Sous 1 280 px : une vignette compacte, à la largeur de son contenu. */}
+        <Card aria-labelledby="preview-title-compact" className="flex w-full max-w-[30rem] items-start gap-4 p-4 md:p-5 xl:hidden">
+          {preview(112, "")}
+          <div className="grid min-w-0 content-start gap-3">
+            <div>
+              <h3 id="preview-title-compact" className="text-[15px] font-semibold leading-snug tracking-[-0.01em] text-fg">
+                Aperçu
+              </h3>
+              <p className="mt-0.5 text-[12.5px] leading-snug text-fg-3">
+                Affiché environ 3 secondes, pendant le chargement de l'enquête.
+              </p>
+            </div>
+            <div className="grid justify-items-start gap-1">
+              <Button variant="ghost" size="sm" className="-ml-3" onClick={() => setReplay((value) => value + 1)}>
+                <RotateCcw strokeWidth={1.75} aria-hidden />
+                Rejouer
+              </Button>
+              <Link href={`${href}/${campaign.id}/preview`} className={buttonClasses({ variant: "ghost", size: "sm", className: "-ml-3" })}>
+                <Expand strokeWidth={1.75} aria-hidden />
+                Voir en plein écran
+              </Link>
+            </div>
+          </div>
+        </Card>
+
+        {/* Dès 1 280 px : l'aperçu en grand, dans la colonne de droite, qui suit le défilement. */}
         <Card
           aria-labelledby="preview-title"
-          className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-2 p-4 md:p-5 xl:sticky xl:top-[88px] xl:col-start-2 xl:row-span-3 xl:row-start-1 xl:grid-cols-1 xl:gap-y-4"
+          className="grid justify-items-center gap-4 p-5 max-xl:hidden xl:sticky xl:top-[88px] xl:col-start-2 xl:row-span-3 xl:row-start-1"
         >
-          <header className="col-start-2 row-start-1 grid justify-items-start gap-2 xl:col-start-1 xl:flex xl:items-start xl:justify-between xl:gap-3">
+          <header className="flex w-full items-start justify-between gap-3">
             <div>
               <h3 id="preview-title" className="text-[15px] font-semibold leading-snug tracking-[-0.01em] text-fg">
                 Aperçu
@@ -240,18 +266,15 @@ export function CampaignDetail({
                 Affiché environ 3 secondes, pendant le chargement de l'enquête.
               </p>
             </div>
-            <Button variant="ghost" size="sm" className="-ml-3 shrink-0 xl:-mr-2 xl:ml-0" onClick={() => setReplay((value) => value + 1)}>
+            <Button variant="ghost" size="sm" className="-mr-2 shrink-0" onClick={() => setReplay((value) => value + 1)}>
               <RotateCcw strokeWidth={1.75} aria-hidden />
               Rejouer
             </Button>
           </header>
-          <div className="col-start-1 row-span-2 row-start-1 xl:row-span-1 xl:row-start-2 xl:justify-self-center">
-            {preview(112, "xl:hidden")}
-            {preview(256, "max-xl:hidden")}
-          </div>
+          {preview(256, "")}
           <Link
             href={`${href}/${campaign.id}/preview`}
-            className="col-start-2 row-start-2 inline-flex w-fit items-center gap-2 self-start rounded-sm text-[13px] text-fg-2 transition-colors duration-150 hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white xl:col-start-1 xl:row-start-3 xl:justify-self-center"
+            className="inline-flex w-fit items-center gap-2 rounded-sm text-[13px] text-fg-2 transition-colors duration-150 hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
           >
             <Expand className="size-4" strokeWidth={1.75} aria-hidden />
             Voir en plein écran

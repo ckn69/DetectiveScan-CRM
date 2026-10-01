@@ -620,7 +620,7 @@ function EditorForm({
               <Button type="submit" size="lg" loading={saving}>
                 {editing ? "Enregistrer" : "Publier la campagne"}
               </Button>
-              <Link href={backHref} className={buttonClasses({ variant: "ghost", size: "lg" })}>
+              <Link href={backHref} className={buttonClasses({ variant: "ghost", size: "lg", className: "max-sm:hidden" })}>
                 Annuler
               </Link>
             </div>
