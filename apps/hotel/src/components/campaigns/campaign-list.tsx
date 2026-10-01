@@ -153,7 +153,7 @@ export function CampaignList({
                   <li key={campaign.id} className={cn(index > 0 && "border-t border-line")}>
                     <Link
                       href={`${href}/${campaign.id}`}
-                      className="flex items-center gap-4 px-4 py-3.5 transition-colors duration-150 hover:bg-white/[0.04] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white md:px-5"
+                      className="flex items-center gap-4 px-4 py-3.5 transition-colors duration-150 hover:bg-white/[0.05] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white md:px-5"
                     >
                       <ScreenThumb width={52} content={campaign} hotelName={hotelName} />
                       <span className="grid min-w-0 flex-1 gap-1">

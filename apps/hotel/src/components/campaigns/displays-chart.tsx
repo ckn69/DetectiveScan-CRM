@@ -2,7 +2,7 @@
 
 import { Button, Card, cn } from "@detectivescan/ui";
 import { ChartColumn, Table2 } from "lucide-react";
-import { type KeyboardEvent, type PointerEvent, useId, useState } from "react";
+import { type KeyboardEvent, type PointerEvent, useCallback, useEffect, useId, useRef, useState } from "react";
 import { niceScale, xTicks } from "@/lib/chart-scale";
 import type { DayNumber } from "@/lib/dates";
 import { formatDay, formatInteger, formatWeekday, plural } from "@/lib/format";
@@ -244,37 +244,57 @@ function Plot({
 }
 
 function DataTable({ points, titleId }: { points: Point[]; titleId: string }) {
+  const scroller = useRef<HTMLDivElement>(null);
+  const [moreBelow, setMoreBelow] = useState(false);
+  const measure = useCallback(() => {
+    const box = scroller.current;
+    if (box) setMoreBelow(box.scrollTop + box.clientHeight < box.scrollHeight - 1);
+  }, []);
+  useEffect(measure, [measure, points]);
+
   return (
     <div className="grid gap-2">
       <p className="text-[12.5px] text-fg-3">{`${plural(points.length, "jour")}, du plus récent au plus ancien.`}</p>
-      <div
-        role="region"
-        tabIndex={0}
-        aria-labelledby={titleId}
-        className="max-h-[22rem] overflow-auto rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-      >
-        <table className="w-full text-[13px]">
-          <thead className="sticky top-0 bg-surface text-[12px] text-fg-3">
-            <tr>
-              <th scope="col" className="py-2 pr-3 text-left font-medium">
-                Jour
-              </th>
-              <th scope="col" className="py-2 pl-3 text-right font-medium">
-                Affichages
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {[...points].reverse().map((point) => (
-              <tr key={point.day} className="border-t border-line">
-                <th scope="row" className="py-2 pr-3 text-left font-normal text-fg-2">
-                  {formatWeekday(point.day)}
+      <div className="relative">
+        <div
+          ref={scroller}
+          onScroll={measure}
+          role="region"
+          tabIndex={0}
+          aria-labelledby={titleId}
+          className="max-h-[26rem] overflow-auto rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          <table className="w-full text-[13px]">
+            <thead className="sticky top-0 bg-surface text-[12px] text-fg-3">
+              <tr>
+                <th scope="col" className="py-2 pr-3 text-left font-medium">
+                  Jour
                 </th>
-                <td className="py-2 pl-3 text-right tabular-nums text-fg">{formatInteger(point.displays)}</td>
+                <th scope="col" className="py-2 pl-3 text-right font-medium">
+                  Affichages
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {[...points].reverse().map((point) => (
+                <tr key={point.day} className="border-t border-line">
+                  <th scope="row" className="py-2 pr-3 text-left font-normal text-fg-2">
+                    {formatWeekday(point.day)}
+                  </th>
+                  <td className="py-2 pl-3 text-right tabular-nums text-fg">{formatInteger(point.displays)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {/* Fondu du bas tant qu'il reste des lignes à faire défiler. */}
+        <div
+          aria-hidden
+          className={cn(
+            "pointer-events-none absolute inset-x-0 bottom-0 h-14 bg-linear-to-t from-surface to-transparent transition-opacity duration-150",
+            moreBelow ? "opacity-100" : "opacity-0",
+          )}
+        />
       </div>
     </div>
   );

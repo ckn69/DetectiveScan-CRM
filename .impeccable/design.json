@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-01T08:30:39.211Z",
+  "generatedAt": "2026-10-01T13:27:07.099Z",
   "title": "Design System: DetectiveScan",
   "extensions": {
     "colorMeta": {
@@ -312,7 +312,7 @@
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Titre de contenu d'une section, limité à 34ch."
+        "purpose": "Titre de contenu d'une section, limité à 34ch ; titre d'une fiche en page (une campagne)."
       },
       "page-title": {
         "displayName": "Page title",
@@ -348,11 +348,11 @@
       },
       "metric": {
         "displayName": "Metric",
-        "purpose": "Valeur d'un chiffre clé (28px/600), en chiffres proportionnels."
+        "purpose": "Valeur d'un chiffre clé (28px/600), en chiffres proportionnels ; résultats d'une campagne. Le titre de l'écran du joueur reprend ce pas (28px/600, 1.16)."
       },
       "panel-title": {
         "displayName": "Panel title",
-        "purpose": "Titre d'un panneau du dashboard, suivi d'une précision en 12.5px fg-3."
+        "purpose": "Titre d'un panneau du dashboard, suivi d'une précision en 12.5px fg-3 ; titre d'une ligne de la liste des campagnes et des sections de l'éditeur."
       },
       "axis": {
         "displayName": "Axis",
@@ -360,11 +360,11 @@
       },
       "mono": {
         "displayName": "Mono",
-        "purpose": "Geist Mono, réservée aux identifiants de QR code (12.5px, 12px dans la liste mobile)."
+        "purpose": "Geist Mono, réservée aux codes : identifiants et adresses de QR, colonnes et fichiers CSV."
       },
       "page-title-mobile": {
         "displayName": "Page title mobile",
-        "purpose": "Titre de page sous 768px, et titre de l'écran plein (Mode installation) à toutes les tailles."
+        "purpose": "Titre de page sous 768px, et titre d'un écran plein (Mode installation, Nouvelle campagne) à toutes les tailles."
       },
       "input-touch": {
         "displayName": "Input touch",
@@ -407,7 +407,7 @@
       {
         "name": "focus-inset",
         "value": "outline: 2px solid #ffffff; outline-offset: -2px",
-        "purpose": "Éléments de liste pleine largeur : navigation, menus, actions rapides, bouton d'affichage du mot de passe (-4px pour les onglets mobiles)."
+        "purpose": "Éléments de liste pleine largeur : navigation, menus, actions rapides, lignes de la liste des campagnes, bouton d'affichage du mot de passe (-4px pour les onglets mobiles)."
       },
       {
         "name": "focus-field",
@@ -480,28 +480,48 @@
         "name": "sheet-slide",
         "value": "translate 100% → 0, 220ms cubic-bezier(0.22, 1, 0.36, 1), voile noir à 60% en fondu",
         "purpose": "Ouverture et fermeture du panneau latéral (classe ds-sheet, @starting-style)."
+      },
+      {
+        "name": "load-bar",
+        "value": "transform scaleX(0) → scaleX(1), 3s cubic-bezier(0.45, 0, 0.25, 1), fill both (ds-load-bar)",
+        "purpose": "Barre de chargement de l'écran du joueur : 3 secondes, le temps du chargement de l'enquête. Elle appartient au jeu, pas à l'espace hôtelier."
+      },
+      {
+        "name": "reveal",
+        "value": "opacity 0 → 1, translate 0 8px → 0, 600ms cubic-bezier(0.22, 1, 0.36, 1), 120ms de délai (ds-reveal)",
+        "purpose": "Entrée du message de l'hôtel sur l'écran du joueur."
+      },
+      {
+        "name": "still",
+        "value": "animation: none ; barre figée à scaleX(0.62) (ds-still)",
+        "purpose": "Vignette figée de l'écran du joueur dans la liste des campagnes."
+      },
+      {
+        "name": "bar-highlight",
+        "value": "filter: brightness(1.35), 150ms",
+        "purpose": "Barre survolée ou choisie au clavier dans les affichages par jour."
       }
     ],
     "breakpoints": [
       {
         "name": "sm",
         "value": "640px",
-        "purpose": "Écrans d'accès : marge haute de 14vh."
+        "purpose": "Écrans d'accès : marge haute de 14vh. Campagnes : affichages en colonne dans la liste ; sur la fiche, actions en tête (en dessous, Dupliquer et Supprimer au pied) ; dans l'éditeur, « Annuler » dans la barre d'action."
       },
       {
         "name": "md",
         "value": "768px",
-        "purpose": "Rail de 72px, barre haute de 64px, bouton « Actions rapides » ; la barre du bas disparaît."
+        "purpose": "Rail de 72px, barre haute de 64px, bouton « Actions rapides » ; la barre du bas disparaît. Colonne « À suivre » du panneau En ce moment (jusqu'à 1279px)."
       },
       {
         "name": "lg",
         "value": "1024px",
-        "purpose": "Dashboard : quatre chiffres clés par rangée ; courbe pleine largeur, entonnoir et chambres côte à côte."
+        "purpose": "Dashboard : quatre chiffres clés par rangée ; courbe pleine largeur, entonnoir et chambres côte à côte. Éditeur de campagne : aperçu de 340px à droite (en dessous, bouton Aperçu et plein écran)."
       },
       {
         "name": "xl",
         "value": "1280px",
-        "purpose": "Sidebar de 248px avec libellés ; les info-bulles du rail disparaissent."
+        "purpose": "Sidebar de 248px avec libellés ; les info-bulles du rail disparaissent. Campagnes : panneau En ce moment et aperçu de la fiche en colonne de 320px (téléphones de 236 et 256px, 112px en dessous)."
       }
     ]
   },
@@ -641,11 +661,43 @@
       "description": "Label du champ fichier de l'import CSV : filet pointillé line-strong, coins de 10px, tuile d'icône, consigne 15px/600 et règle 13px fg-3 ; voile de 5% pendant un glisser, contour blanc au focus.",
       "html": "<div class=\"ds-drop-stage\"><label class=\"ds-drop\"><span class=\"ds-drop-tile\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3v12\"/><path d=\"m17 8-5-5-5 5\"/><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/></svg></span><strong>Déposez le fichier ici, ou choisissez-le</strong><small>CSV ou texte, 1 Mo au plus.</small></label></div>",
       "css": ".ds-drop-stage { padding: 24px; background: var(--color-canvas, #0a0a0a); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-drop { display: grid; justify-items: center; gap: 12px; padding: 40px 24px; border: 1px dashed rgb(255 255 255 / 0.14); border-radius: 10px; background: var(--color-surface, #141414); text-align: center; cursor: pointer; transition: border-color 150ms cubic-bezier(0, 0, 0.2, 1); } .ds-drop:hover { border-color: rgb(255 255 255 / 0.25); } .ds-drop-tile { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 10px; background: rgb(255 255 255 / 0.06); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08); color: #b3b3b3; } .ds-drop strong { color: #fff; font-size: 15px; font-weight: 600; } .ds-drop small { color: #8c8c8c; font-size: 13px; }"
+    },
+    {
+      "name": "Écran de chargement du joueur",
+      "kind": "custom",
+      "refersTo": "loading-screen",
+      "description": "L'écran du joueur rendu à sa taille réelle (390 × 780) puis réduit : dans le cadre de téléphone (236px, bord #161616, anneau blanc à 12%) et en vignette figée de 52px. Fond noir, message de l'hôtel qui entre en 600ms, barre rouge du jeu qui se remplit en 3 s : elle appartient au jeu, pas à l'espace hôtelier. Image facultative en haut (420px, fondue vers le noir), absente ici.",
+      "html": "<div class=\"ds-ls-stage\"><figure class=\"ds-ls-phone\" aria-label=\"Aperçu de l'écran de chargement : Brunch du week-end\"><div class=\"ds-ls-bezel\"><div class=\"ds-ls-glass\" aria-hidden=\"true\"><div class=\"ds-ls-screen\"><div class=\"ds-ls-msg\"><p class=\"ds-ls-title\">Brunch du week-end</p><p class=\"ds-ls-text\">Viennoiseries maison, œufs et jus pressés, servis au salon du rez-de-chaussée.</p><p class=\"ds-ls-sign\">Hôtel Démo</p></div><div class=\"ds-ls-load\"><div class=\"ds-ls-track\"><div class=\"ds-ls-bar\"></div></div><p class=\"ds-ls-caption\">Préparation de votre enquête…</p></div></div></div></div><figcaption class=\"ds-ls-sr\">Titre : Brunch du week-end. Texte : Viennoiseries maison, œufs et jus pressés, servis au salon du rez-de-chaussée. Sans image.</figcaption></figure><div class=\"ds-ls-thumb\" aria-hidden=\"true\"><div class=\"ds-ls-screen ds-ls-still\"><div class=\"ds-ls-msg\"><p class=\"ds-ls-title\">Brunch du week-end</p><p class=\"ds-ls-text\">Viennoiseries maison, œufs et jus pressés, servis au salon du rez-de-chaussée.</p><p class=\"ds-ls-sign\">Hôtel Démo</p></div><div class=\"ds-ls-load\"><div class=\"ds-ls-track\"><div class=\"ds-ls-bar\"></div></div><p class=\"ds-ls-caption\">Préparation de votre enquête…</p></div></div></div></div>",
+      "css": ".ds-ls-stage { display: flex; align-items: flex-end; gap: 24px; padding: 24px; background: var(--color-surface, #141414); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-ls-phone { flex-shrink: 0; width: 236px; margin: 0; } .ds-ls-bezel { padding: 8px; border-radius: 33px; background: #161616; box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12); } .ds-ls-glass { position: relative; overflow: hidden; width: 220px; height: 440px; border-radius: 25px; background: #000000; } .ds-ls-screen { position: absolute; left: 0; top: 0; width: 390px; height: 780px; overflow: hidden; transform-origin: top left; background: #000000; color: #ffffff; -webkit-font-smoothing: antialiased; } .ds-ls-glass .ds-ls-screen { transform: scale(0.5641); } .ds-ls-msg { position: absolute; left: 0; right: 0; top: 0; bottom: 104px; display: flex; flex-direction: column; justify-content: center; padding: 0 28px; animation: ds-ls-reveal 600ms cubic-bezier(0.22, 1, 0.36, 1) 120ms both; } .ds-ls-title { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; margin: 0; font-size: 28px; font-weight: 600; line-height: 1.16; letter-spacing: -0.015em; text-wrap: balance; } .ds-ls-text { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 5; overflow: hidden; margin: 12px 0 0; color: #b3b3b3; font-size: 16px; line-height: 1.5; } .ds-ls-sign { margin: 20px 0 0; color: #8c8c8c; font-size: 13px; font-weight: 500; } .ds-ls-load { position: absolute; left: 0; right: 0; bottom: 40px; display: grid; justify-items: center; gap: 12px; } .ds-ls-track { width: 148px; height: 2px; overflow: hidden; border-radius: 9999px; background: rgb(255 255 255 / 0.14); } .ds-ls-bar { width: 100%; height: 100%; background: #e50914; transform-origin: left; animation: ds-ls-load 3s cubic-bezier(0.45, 0, 0.25, 1) both; } .ds-ls-caption { margin: 0; color: #8c8c8c; font-size: 12.5px; } .ds-ls-thumb { position: relative; flex-shrink: 0; width: 52px; height: 104px; overflow: hidden; border-radius: var(--radius-sm, 6px); outline: 1px solid rgb(255 255 255 / 0.12); outline-offset: -1px; } .ds-ls-thumb .ds-ls-screen { transform: scale(0.1333); } .ds-ls-still .ds-ls-msg { animation: none; } .ds-ls-still .ds-ls-bar { animation: none; transform: scaleX(0.62); } .ds-ls-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; } @keyframes ds-ls-load { from { transform: scaleX(0); } to { transform: scaleX(1); } } @keyframes ds-ls-reveal { from { opacity: 0; translate: 0 8px; } } @media (prefers-reduced-motion: reduce) { .ds-ls-msg, .ds-ls-bar { animation-duration: 0.01ms; } }"
+    },
+    {
+      "name": "Statut de campagne",
+      "kind": "chip",
+      "refersTo": "status-dot",
+      "description": "La règle de l'état calme : En diffusion en pastille success de 6px et libellé fg-2 ; En pause, à traiter, en badge alerte ; Hors créneau, Programmée et Terminée en badges neutres ; chacun suivi de sa précision en 13px fg-3.",
+      "html": "<div class=\"ds-cs-stage\"><p class=\"ds-cs-row\"><span class=\"ds-cs-live\"><i></i>En diffusion</span><span class=\"ds-cs-detail\">jusqu'à 20 h</span></p><p class=\"ds-cs-row\"><span class=\"ds-cs-badge\">Hors créneau</span><span class=\"ds-cs-detail\">reprend aujourd'hui à 17 h</span></p><p class=\"ds-cs-row\"><span class=\"ds-cs-badge\">Programmée</span><span class=\"ds-cs-detail\">à partir du 9 oct.</span></p><p class=\"ds-cs-row\"><span class=\"ds-cs-badge ds-cs-badge--warning\">En pause</span></p><p class=\"ds-cs-row\"><span class=\"ds-cs-badge\">Terminée</span><span class=\"ds-cs-detail\">le 31 août</span></p></div>",
+      "css": ".ds-cs-stage { display: grid; gap: 12px; padding: 24px; background: var(--color-surface, #141414); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-cs-row { display: flex; flex-wrap: wrap; align-items: center; column-gap: 10px; row-gap: 4px; margin: 0; font-size: 13px; } .ds-cs-live { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; color: var(--color-fg-2, #b3b3b3); } .ds-cs-live i { width: 6px; height: 6px; border-radius: 9999px; background: var(--color-success, #46d369); } .ds-cs-badge { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 9999px; background: rgb(255 255 255 / 0.08); color: var(--color-fg-2, #b3b3b3); font-size: 12px; font-weight: 500; white-space: nowrap; } .ds-cs-badge--warning { background: rgb(245 165 36 / 0.12); color: var(--color-warning, #f5a524); } .ds-cs-detail { color: var(--color-fg-3, #8c8c8c); }"
+    },
+    {
+      "name": "Affichages par jour",
+      "kind": "custom",
+      "refersTo": "chart-tooltip",
+      "description": "Une seule série en viz-1, sans légende : barres de 24px au plus, au moins 2px d'air, bout arrondi de 4px ; seule la valeur du jour le plus haut est écrite. Au survol, la barre s'éclaircit et l'info-bulle raised donne le jour et la valeur ; la bascule ghost ouvre la vue tableau.",
+      "html": "<div class=\"ds-dc-stage\"><section class=\"ds-dc\" aria-labelledby=\"ds-dc-title\"><header class=\"ds-dc-head\"><div><h2 id=\"ds-dc-title\" class=\"ds-dc-title\">Affichages par jour</h2><p class=\"ds-dc-sub\">Du 1er sept. au 14 sept.</p></div><button type=\"button\" class=\"ds-dc-toggle\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M3 9h18\"/><path d=\"M9 3v18\"/><rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/></svg>Tableau</button></header><div class=\"ds-dc-plot\"><div class=\"ds-dc-area\" tabindex=\"0\" role=\"group\" aria-roledescription=\"graphique\" aria-labelledby=\"ds-dc-title\"><div class=\"ds-dc-grid is-base\" style=\"bottom: 0%\"><span>0</span></div><div class=\"ds-dc-grid\" style=\"bottom: 25%\"><span>5</span></div><div class=\"ds-dc-grid\" style=\"bottom: 50%\"><span>10</span></div><div class=\"ds-dc-grid\" style=\"bottom: 75%\"><span>15</span></div><div class=\"ds-dc-grid\" style=\"bottom: 100%\"><span>20</span></div><div class=\"ds-dc-cols\"><div class=\"ds-dc-col\"><i class=\"ds-dc-bar\" style=\"height: 40%\"></i><span class=\"ds-dc-tip\"><span class=\"ds-dc-day\">mar. 1er sept.</span><span class=\"ds-dc-val\"><span class=\"ds-dc-key\"></span><strong>8</strong>affichages</span></span></div><div class=\"ds-dc-col\"><i class=\"ds-dc-bar\" style=\"height: 35%\"></i><span class=\"ds-dc-tip\"><span class=\"ds-dc-day\">mer. 2 sept.</span><span class=\"ds-dc-val\"><span class=\"ds-dc-key\"></span><strong>7</strong>affichages</span></span></div><div class=\"ds-dc-col\"><i class=\"ds-dc-bar\" style=\"height: 40%\"></i><span class=\"ds-dc-tip\"><span class=\"ds-dc-day\">jeu. 3 sept.</span><span class=\"ds-dc-val\"><span class=\"ds-dc-key\"></span><strong>8</strong>affichages</span></span></div><div class=\"ds-dc-col\"><i class=\"ds-dc-bar\" style=\"height: 60%\"></i><span class=\"ds-dc-tip\"><span class=\"ds-dc-day\">ven. 4 sept.</span><span class=\"ds-dc-val\"><span class=\"ds-dc-key\"></span><strong>12</strong>affichages</span></span></div><div class=\"ds-dc-col\"><i class=\"ds-dc-bar\" style=\"height: 85%\"></i><span class=\"ds-dc-tip\"><span class=\"ds-dc-day\">sam. 5 sept.</span><span class=\"ds-dc-val\"><span class=\"ds-dc-key\"></span><strong>17</strong>affichages</span></span></div><div class=\"ds-dc-col\"><i class=\"ds-dc-bar\" style=\"height: 55%\"></i><span class=\"ds-dc-tip\"><span class=\"ds-dc-day\">dim. 6 sept.</span><span class=\"ds-dc-val\"><span class=\"ds-dc-key\"></span><strong>11</strong>affichages</span></span></div><div class=\"ds-dc-col\"><i class=\"ds-dc-bar\" style=\"height: 45%\"></i><span class=\"ds-dc-tip\"><span class=\"ds-dc-day\">lun. 7 sept.</span><span class=\"ds-dc-val\"><span class=\"ds-dc-key\"></span><strong>9</strong>affichages</span></span></div><div class=\"ds-dc-col\"><i class=\"ds-dc-bar\" style=\"height: 50%\"></i><span class=\"ds-dc-tip\"><span class=\"ds-dc-day\">mar. 8 sept.</span><span class=\"ds-dc-val\"><span class=\"ds-dc-key\"></span><strong>10</strong>affichages</span></span></div><div class=\"ds-dc-col is-right\"><i class=\"ds-dc-bar\" style=\"height: 45%\"></i><span class=\"ds-dc-tip\"><span class=\"ds-dc-day\">mer. 9 sept.</span><span class=\"ds-dc-val\"><span class=\"ds-dc-key\"></span><strong>9</strong>affichages</span></span></div><div class=\"ds-dc-col is-right\"><i class=\"ds-dc-bar\" style=\"height: 45%\"></i><span class=\"ds-dc-tip\"><span class=\"ds-dc-day\">jeu. 10 sept.</span><span class=\"ds-dc-val\"><span class=\"ds-dc-key\"></span><strong>9</strong>affichages</span></span></div><div class=\"ds-dc-col is-right\"><i class=\"ds-dc-bar\" style=\"height: 65%\"></i><span class=\"ds-dc-tip\"><span class=\"ds-dc-day\">ven. 11 sept.</span><span class=\"ds-dc-val\"><span class=\"ds-dc-key\"></span><strong>13</strong>affichages</span></span></div><div class=\"ds-dc-col is-right\"><i class=\"ds-dc-bar\" style=\"height: 70%\"></i><span class=\"ds-dc-tip\"><span class=\"ds-dc-day\">sam. 12 sept.</span><span class=\"ds-dc-val\"><span class=\"ds-dc-key\"></span><strong>14</strong>affichages</span></span></div><div class=\"ds-dc-col is-right\"><i class=\"ds-dc-bar\" style=\"height: 40%\"></i><span class=\"ds-dc-tip\"><span class=\"ds-dc-day\">dim. 13 sept.</span><span class=\"ds-dc-val\"><span class=\"ds-dc-key\"></span><strong>8</strong>affichages</span></span></div><div class=\"ds-dc-col is-right\"><i class=\"ds-dc-bar\" style=\"height: 35%\"></i><span class=\"ds-dc-tip\"><span class=\"ds-dc-day\">lun. 14 sept.</span><span class=\"ds-dc-val\"><span class=\"ds-dc-key\"></span><strong>7</strong>affichages</span></span></div></div><span class=\"ds-dc-peak\" style=\"left: 32.14%; bottom: 85%\">17</span><span class=\"ds-dc-date\" style=\"left: 10.71%\">2 sept.</span><span class=\"ds-dc-date\" style=\"left: 25.00%\">4 sept.</span><span class=\"ds-dc-date\" style=\"left: 39.29%\">6 sept.</span><span class=\"ds-dc-date\" style=\"left: 53.57%\">8 sept.</span><span class=\"ds-dc-date\" style=\"left: 67.86%\">10 sept.</span><span class=\"ds-dc-date\" style=\"left: 82.14%\">12 sept.</span><span class=\"ds-dc-date is-end\">14 sept.</span></div></div></section></div>",
+      "css": ".ds-dc-stage { padding: 24px; background: var(--color-canvas, #0a0a0a); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-dc { box-sizing: border-box; width: 560px; padding: 20px; border: 1px solid var(--color-line, rgb(255 255 255 / 0.08)); border-radius: var(--radius-md, 10px); background: var(--color-surface, #141414); } .ds-dc-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; column-gap: 16px; row-gap: 8px; } .ds-dc-title { margin: 0; color: var(--color-fg, #ffffff); font-size: 15px; font-weight: 600; line-height: 1.375; letter-spacing: -0.01em; } .ds-dc-sub { margin: 2px 0 0; color: var(--color-fg-3, #8c8c8c); font-size: 12.5px; line-height: 1.375; } .ds-dc-toggle { display: inline-flex; align-items: center; gap: 8px; height: 32px; margin-right: -8px; padding: 0 12px; border: 0; border-radius: var(--radius-sm, 6px); background: transparent; color: var(--color-fg-2, #b3b3b3); font: 600 13px var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); white-space: nowrap; cursor: pointer; transition: background-color 150ms cubic-bezier(0, 0, 0.2, 1), color 150ms cubic-bezier(0, 0, 0.2, 1); } .ds-dc-toggle:hover { background: rgb(255 255 255 / 0.08); color: var(--color-fg, #ffffff); } .ds-dc-toggle:active { background: rgb(255 255 255 / 0.12); } .ds-dc-toggle:focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; } .ds-dc-plot { box-sizing: border-box; height: 228px; margin-top: 20px; padding: 20px 0 28px 40px; } .ds-dc-area { position: relative; height: 100%; border-radius: var(--radius-sm, 6px); outline: none; } .ds-dc-area:focus-visible { outline: 2px solid #ffffff; outline-offset: 4px; } .ds-dc-grid { position: absolute; left: 0; right: 0; border-top: 1px solid var(--color-line, rgb(255 255 255 / 0.08)); } .ds-dc-grid.is-base { border-top-color: var(--color-line-strong, rgb(255 255 255 / 0.14)); } .ds-dc-grid span { position: absolute; right: 100%; top: 0; margin-right: 12px; transform: translateY(-50%); color: var(--color-fg-3, #8c8c8c); font-size: 11.5px; font-variant-numeric: tabular-nums; } .ds-dc-cols { position: absolute; inset: 0; display: flex; } .ds-dc-col { position: relative; flex: 1; display: flex; align-items: flex-end; justify-content: center; } .ds-dc-bar { display: block; width: min(24px, calc(100% - 2px)); border-radius: 4px 4px 0 0; background: var(--color-viz-1, #256abf); transition: filter 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-dc-col:hover .ds-dc-bar { filter: brightness(1.35); } .ds-dc-tip { position: absolute; top: 0; left: calc(50% + 14px); z-index: 10; display: none; padding: 10px 12px; border: 1px solid var(--color-line-strong, rgb(255 255 255 / 0.14)); border-radius: var(--radius-md, 10px); background: var(--color-raised, #1c1c1c); box-shadow: var(--shadow-pop, 0 18px 44px -12px rgb(0 0 0 / 0.85), 0 2px 10px rgb(0 0 0 / 0.55)); white-space: nowrap; pointer-events: none; } .ds-dc-col.is-right .ds-dc-tip { left: auto; right: calc(50% + 14px); } .ds-dc-col:hover .ds-dc-tip { display: block; } .ds-dc-day { display: block; color: var(--color-fg-3, #8c8c8c); font-size: 12px; } .ds-dc-val { display: flex; align-items: center; gap: 8px; margin-top: 6px; color: var(--color-fg-2, #b3b3b3); font-size: 13px; } .ds-dc-key { width: 4px; height: 10px; border-radius: 9999px; background: var(--color-viz-1, #256abf); } .ds-dc-val strong { color: var(--color-fg, #ffffff); font-weight: 600; font-variant-numeric: tabular-nums; } .ds-dc-peak { position: absolute; margin-bottom: 6px; transform: translateX(-50%); color: var(--color-fg-2, #b3b3b3); font-size: 12px; font-weight: 500; font-variant-numeric: tabular-nums; pointer-events: none; } .ds-dc-area:hover .ds-dc-peak { display: none; } .ds-dc-date { position: absolute; top: 100%; margin-top: 8px; transform: translateX(-50%); color: var(--color-fg-3, #8c8c8c); font-size: 11.5px; font-variant-numeric: tabular-nums; white-space: nowrap; } .ds-dc-date.is-end { right: 0; transform: none; }"
+    },
+    {
+      "name": "Jours de diffusion",
+      "kind": "input",
+      "refersTo": "day-toggle",
+      "description": "Sept bascules de 40px (aria-pressed), lundi d'abord, l'initiale à l'écran et le nom du jour pour les lecteurs d'écran : repos en filet line et fg-3, jour retenu en bordure blanche à 25%, voile de 12% et fg ; raccourcis ghost sm à côté.",
+      "html": "<div class=\"ds-days-stage\"><fieldset class=\"ds-days\"><legend class=\"ds-days-legend\">Jours</legend><div class=\"ds-days-row\"><div class=\"ds-days-toggles\"><button type=\"button\" class=\"ds-day\" aria-pressed=\"true\" aria-label=\"lundi\"><span aria-hidden=\"true\">L</span></button><button type=\"button\" class=\"ds-day\" aria-pressed=\"true\" aria-label=\"mardi\"><span aria-hidden=\"true\">M</span></button><button type=\"button\" class=\"ds-day\" aria-pressed=\"true\" aria-label=\"mercredi\"><span aria-hidden=\"true\">M</span></button><button type=\"button\" class=\"ds-day\" aria-pressed=\"true\" aria-label=\"jeudi\"><span aria-hidden=\"true\">J</span></button><button type=\"button\" class=\"ds-day\" aria-pressed=\"true\" aria-label=\"vendredi\"><span aria-hidden=\"true\">V</span></button><button type=\"button\" class=\"ds-day\" aria-pressed=\"false\" aria-label=\"samedi\"><span aria-hidden=\"true\">S</span></button><button type=\"button\" class=\"ds-day\" aria-pressed=\"false\" aria-label=\"dimanche\"><span aria-hidden=\"true\">D</span></button></div><div class=\"ds-days-presets\"><button type=\"button\" class=\"ds-days-preset\">Tous les jours</button><button type=\"button\" class=\"ds-days-preset\">En semaine</button><button type=\"button\" class=\"ds-days-preset\">Le week-end</button></div></div></fieldset></div>",
+      "css": ".ds-days-stage { padding: 24px; background: var(--color-canvas, #0a0a0a); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-days { display: grid; gap: 10px; min-width: 0; margin: 0; padding: 0; border: 0; } .ds-days-legend { margin-bottom: 8px; padding: 0; color: var(--color-fg-2, #b3b3b3); font-size: 13px; font-weight: 500; } .ds-days-row { display: flex; flex-wrap: wrap; align-items: center; column-gap: 16px; row-gap: 10px; } .ds-days-toggles { display: flex; gap: 6px; } .ds-day { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; padding: 0; border: 1px solid var(--color-line, rgb(255 255 255 / 0.08)); border-radius: var(--radius-sm, 6px); background: transparent; color: var(--color-fg-3, #8c8c8c); font: 600 13px var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); cursor: pointer; transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1), border-color 150ms cubic-bezier(0.4, 0, 0.2, 1), color 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-day:hover { border-color: var(--color-line-strong, rgb(255 255 255 / 0.14)); color: var(--color-fg-2, #b3b3b3); } .ds-day[aria-pressed=\"true\"] { border-color: rgb(255 255 255 / 0.25); background: rgb(255 255 255 / 0.12); color: var(--color-fg, #ffffff); } .ds-day:focus-visible, .ds-days-preset:focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; } .ds-days-presets { display: flex; flex-wrap: wrap; gap: 4px; } .ds-days-preset { height: 32px; padding: 0 12px; border: 0; border-radius: var(--radius-sm, 6px); background: transparent; color: var(--color-fg-2, #b3b3b3); font: 600 13px var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); white-space: nowrap; cursor: pointer; transition: background-color 150ms cubic-bezier(0, 0, 0.2, 1), color 150ms cubic-bezier(0, 0, 0.2, 1); } .ds-days-preset:hover { background: rgb(255 255 255 / 0.08); color: var(--color-fg, #ffffff); } .ds-days-preset:active { background: rgb(255 255 255 / 0.12); }"
     }
   ],
   "narrative": {
     "northStar": "La réception de nuit",
-    "overview": "DetectiveScan est un dashboard SaaS classique, joué droit, au niveau de finition de Linear, Stripe et Ramp, dans la palette inspirée de Netflix choisie par l'utilisateur : fond noir, textes blancs et gris, rouge pour les boutons. L'image directrice est une réception d'hôtel la nuit : ce qui ne sert pas est éteint, chaque chose est à sa place, et une seule lumière rouge indique où agir. La métaphore règle l'ambiance (calme, sombre, précise), jamais l'imagerie : l'interface ne montre ni décor d'hôtel, ni cinéma, ni enquête.\n\nLa densité est celle d'un outil de travail : corps de 14px, éléments de navigation de 40px, une seule famille (Geist). La profondeur vient de quatre paliers de noir et de filets blancs translucides ; une seule ombre existe, pour ce qui flotte. Le rouge a trois rôles : agir (l'aplat du bouton principal, le focus des champs), situer (l'icône de l'élément actif), alerter (erreurs, baisses, déconnexion) ; il signe aussi la marque. Le texte et la structure sont blancs ou gris ; les données, elles, prennent un seul bleu en quatre nuances, et seulement dans les graphiques : puisque le rouge est réservé à l'action, les chiffres tracés ne peuvent pas le porter. Le mouvement est bref et fonctionnel (150ms) et s'efface quand l'utilisateur demande moins d'animations.\n\nLe thème est unique et sombre, par choix de l'utilisateur (color-scheme: dark, aucun thème clair). Tokens et composants vivent dans packages/ui (@detectivescan/ui : bloc @theme Tailwind v4 dans styles.css, composants React) ; la seule surface construite à ce jour est l'espace hôtelier (apps/hotel) : connexion, navigation, dashboard, et QR codes & chambres (liste, fiche, import CSV, mode installation). Refus confirmés par le contrat de direction : le SaaS blanc générique à accent bleu, et le thème décoratif (cinéma, néon, jeu vidéo). La marque est provisoire : aucun logo officiel n'a été fourni.",
+    "overview": "DetectiveScan est un dashboard SaaS classique, joué droit, au niveau de finition de Linear, Stripe et Ramp, dans la palette inspirée de Netflix choisie par l'utilisateur : fond noir, textes blancs et gris, rouge pour les boutons. L'image directrice est une réception d'hôtel la nuit : ce qui ne sert pas est éteint, chaque chose est à sa place, et une seule lumière rouge indique où agir. La métaphore règle l'ambiance (calme, sombre, précise), jamais l'imagerie : l'interface ne montre ni décor d'hôtel, ni cinéma, ni enquête.\n\nLa densité est celle d'un outil de travail : corps de 14px, éléments de navigation de 40px, une seule famille (Geist). La profondeur vient de quatre paliers de noir et de filets blancs translucides ; une seule ombre existe, pour ce qui flotte. Le rouge a trois rôles : agir (l'aplat du bouton principal, le focus des champs), situer (l'icône de l'élément actif), alerter (erreurs, baisses, déconnexion) ; il signe aussi la marque et, hors de l'espace, le chargement du jeu sur l'écran du joueur. Le texte et la structure sont blancs ou gris ; les données, elles, prennent un seul bleu en quatre nuances, et seulement dans les graphiques : puisque le rouge est réservé à l'action, les chiffres tracés ne peuvent pas le porter. Le mouvement est bref et fonctionnel (150ms) et s'efface quand l'utilisateur demande moins d'animations ; seul l'écran du joueur prend son temps : 3 secondes de chargement, 600ms pour l'entrée du message.\n\nLe thème est unique et sombre, par choix de l'utilisateur (color-scheme: dark, aucun thème clair). Tokens et composants vivent dans packages/ui (@detectivescan/ui : bloc @theme Tailwind v4 dans styles.css, composants React) ; la seule surface construite à ce jour est l'espace hôtelier (apps/hotel) : connexion, navigation, dashboard, QR codes & chambres (liste, fiche, import CSV, mode installation) et campagnes (liste, fiche, éditeur, aperçu). Un écran du joueur y est déjà dessiné : l'écran de chargement qui porte la campagne de l'hôtel, que le script du jeu reproduira à l'identique. Refus confirmés par le contrat de direction : le SaaS blanc générique à accent bleu, et le thème décoratif (cinéma, néon, jeu vidéo). La marque est provisoire : aucun logo officiel n'a été fourni.",
     "keyCharacteristics": [
       "Cadre noir absolu, contenu sur un noir à peine plus clair, panneaux et surfaces en deux paliers au-dessus.",
       "Un seul aplat rouge d'action par vue ; tout rouge en texte ou en icône passe au rouge lisible.",
@@ -654,14 +706,15 @@
       "Chiffres tabulaires partout où des nombres s'alignent.",
       "Plat au repos : filets à 8% et 14% de blanc, shadow-pop pour les seuls calques flottants.",
       "Rayons de 6, 10 et 14px, icônes Lucide au trait 1.75.",
-      "Navigation en trois formes : sidebar de 248px, rail de 72px, barre du bas à bouton central rouge ; un écran plein, sans navigation, pour les tâches de terrain.",
-      "La fiche d'un objet s'ouvre dans un panneau latéral modal, par-dessus la liste qu'elle prolonge.",
+      "Navigation en trois formes : sidebar de 248px, rail de 72px, barre du bas à bouton central rouge ; un écran plein, sans navigation, pour une tâche qui prend tout l'écran : la pose des QR sur le terrain, l'édition d'une campagne.",
+      "La fiche d'un objet s'ouvre dans un panneau latéral modal, par-dessus la liste qu'elle prolonge ; seule exception, la fiche d'une campagne prend une page entière, parce que son graphique par jour, sa vue tableau et l'aperçu de téléphone de 256px ne tiennent pas dans 440px.",
+      "L'écran du joueur (390 × 780) est rendu une seule fois et réduit à l'échelle dans chaque aperçu ; sa barre rouge appartient au jeu, pas à l'espace.",
       "Transitions de 150ms, coupées par prefers-reduced-motion."
     ],
     "rules": [
       {
         "name": "La règle du rouge réservé",
-        "body": "Hors marque, un seul aplat rouge par vue : celui de l'action principale (dans l'espace hôtelier, « Actions rapides » dès 768px, le bouton central en dessous). La deuxième action d'une vue prend la variante secondary, et une section à venir reste entièrement neutre. Un panneau modal ou un écran plein est une vue à part : il porte l'aplat de sa propre validation (« Ajouter le QR code », « Enregistrer », « Enregistrer la pose », « Scanner le QR suivant »), puisque la page derrière est inerte ou absente. Les actions d'une page de l'espace (« Mode installation », « Ajouter un QR code », « Importer N QR codes ») restent secondary : « Actions rapides » garde l'aplat.",
+        "body": "Hors marque, un seul aplat rouge par vue : celui de l'action principale (dans l'espace hôtelier, « Actions rapides » dès 768px, le bouton central en dessous). La deuxième action d'une vue prend la variante secondary, et une section à venir reste entièrement neutre. Un panneau modal ou un écran plein est une vue à part : il porte l'aplat de sa propre validation (« Ajouter le QR code », « Enregistrer », « Enregistrer la pose », « Scanner le QR suivant », « Publier la campagne »), puisque la page derrière est inerte ou absente. Les actions d'une page de l'espace (« Mode installation », « Ajouter un QR code », « Importer N QR codes », « Nouvelle campagne », « Modifier ») restent secondary : « Actions rapides » garde l'aplat. L'écran du joueur, montré en aperçu, n'est pas une vue de l'espace : sa barre de chargement rouge est celle du jeu et ne compte pas, comme la marque.",
         "section": "colors"
       },
       {
@@ -671,7 +724,7 @@
       },
       {
         "name": "La règle du bleu des données",
-        "body": "Le rouge sert à agir, situer et alerter : les données prennent donc une seule autre teinte, le bleu viz-1 à viz-4, dans l'ordre du parcours et uniquement dans les graphiques. Jamais pour une action, un lien, un état ni un texte : valeurs, libellés et légendes restent en blanc et en gris, le bleu n'est porté que par le trait, la barre ou la pastille à côté.",
+        "body": "Le rouge sert à agir, situer et alerter : les données prennent donc une seule autre teinte, le bleu viz-1 à viz-4, dans l'ordre du parcours et uniquement dans les graphiques ; une série seule prend viz-1, sans légende. Jamais pour une action, un lien, un état ni un texte : valeurs, libellés et légendes restent en blanc et en gris, le bleu n'est porté que par le trait, la barre ou la pastille à côté.",
         "section": "colors"
       },
       {
@@ -701,12 +754,17 @@
       },
       {
         "name": "La règle de l'action au pouce",
-        "body": "Sous 768px, l'action principale quitte la barre haute pour le bouton central de la barre du bas ; les sections absentes de la barre (Analytics, Abonnement) passent dans le menu du compte, et l'onglet « QR » remplace le bouton « Gérer les QR codes » du dashboard.",
+        "body": "Sous 768px, l'action principale quitte la barre haute pour le bouton central de la barre du bas ; les sections absentes de la barre (Analytics, Abonnement) passent dans le menu du compte, et l'onglet « QR » remplace le bouton « Gérer les QR codes » du dashboard. Sous 640px, la fiche d'une campagne garde en tête ses actions courantes en pleine largeur (« Modifier », la pause) et descend les autres à son pied (« Dupliquer », « Supprimer ») ; un « Annuler » qui doublerait la croix d'un écran plein disparaît : l'éditeur ne garde en bas que « Publier la campagne », en pleine largeur.",
         "section": "layout"
       },
       {
         "name": "La règle du filtre unique",
         "body": "Une seule période par page, choisie dans une rangée au-dessus de tout ce qu'elle filtre, et portée par l'adresse (?periode=7j) : chiffres, courbe, entonnoir, chambres et parties se lisent toujours sur la même tranche, comparée à la précédente, et un lien partagé ouvre la même vue.",
+        "section": "layout"
+      },
+      {
+        "name": "La règle de la fiche en panneau",
+        "body": "La fiche d'un objet s'ouvre dans le panneau latéral de 440px, par-dessus la liste qu'elle prolonge. Exception voulue : la fiche d'une campagne est une page entière, parce qu'un graphique par jour avec sa vue tableau et un aperçu de téléphone de 256px ne tiennent pas dans 440px. Une fiche qui tient dans le panneau y reste.",
         "section": "layout"
       },
       {
@@ -716,14 +774,24 @@
       },
       {
         "name": "La règle du rayon qui suit la taille",
-        "body": "6px pour ce qui s'aligne en ligne, 10px pour les panneaux, les tuiles et les menus, 14px pour les grandes pièces flottantes. Hors de cette échelle, seuls la pilule des badges, le cercle de l'avatar mobile et l'extrémité des marques de données : une barre de graphique a un bout arrondi de 4px et reste carrée sur sa ligne de base.",
+        "body": "6px pour ce qui s'aligne en ligne, 10px pour les panneaux, les tuiles et les menus, 14px pour les grandes pièces flottantes. Hors de cette échelle, seuls la pilule des badges, le cercle de l'avatar mobile et des contrôles de l'aperçu plein écran, le cadre de téléphone, dont les coins suivent la largeur, et l'extrémité des marques de données : une barre de graphique a un bout arrondi de 4px et reste carrée sur sa ligne de base.",
         "section": "shapes"
+      },
+      {
+        "name": "La règle de l'écran exact",
+        "body": "L'écran du joueur n'existe qu'une fois, à sa taille réelle (390 × 780, LoadingScreen) ; vignette, téléphone et plein écran le réduisent à l'échelle sans rien recomposer, pour que l'hôtelier voie exactement ce que verra son client. Ses couleurs sont celles du jeu, écrites en clair : sa barre rouge est l'indicateur de chargement du jeu, pas l'aplat d'action de l'espace, et elle n'existe que dans cet écran.",
+        "section": "components"
+      },
+      {
+        "name": "La règle de l'état calme",
+        "body": "L'état normal d'un objet s'écrit discrètement, d'une pastille success de 6px et d'un libellé fg-2 (« Posé », « En diffusion ») ; seul ce qui demande une action prend un badge d'alerte (« À poser », « En pause »), le reste un badge neutre (« Désactivé », « Hors créneau », « Programmée », « Terminée »).",
+        "section": "components"
       }
     ],
     "dos": [
       "Réserver l'aplat red (#e50914) à une seule action principale par vue, hors marque ; la deuxième action prend la variante secondary. Un panneau modal ou un écran plein porte l'aplat de sa propre validation.",
       "Écrire tout rouge de texte, d'icône ou de bordure d'erreur en red-text (#ff4d55).",
-      "Tracer les données avec le seul bleu viz-1 à viz-4, dans l'ordre du parcours (scans, parties commencées, terminées, gagnées), sur le fond surface du panneau.",
+      "Tracer les données avec le seul bleu viz-1 à viz-4, dans l'ordre du parcours (scans, parties commencées, terminées, gagnées), sur le fond surface du panneau ; une série seule en viz-1.",
       "Accompagner chaque graphique d'une légende (dès deux séries), d'une info-bulle au survol comme au clavier, et d'une vue tableau.",
       "Aligner en chiffres tabulaires tout nombre lu en colonne ; garder les chiffres proportionnels pour la valeur d'un chiffre clé.",
       "Comparer chaque indicateur à la période précédente de même durée, avec la valeur précédente écrite à côté.",
@@ -734,10 +802,13 @@
       "Tenir les transitions d'état à 150ms (200ms pour les rotations de chevron et de « + » et pour l'atténuation d'un changement de période) et laisser prefers-reduced-motion les couper.",
       "Afficher toutes les erreurs d'un formulaire à la fois, et porter le focus sur la première.",
       "Saisir en 16px au moins dans un écran utilisé au téléphone.",
-      "Garder chaque destination nommée à toutes les tailles : libellé visible (≥ 1280px), info-bulle au survol et au focus (rail), libellé court (barre du bas)."
+      "Garder chaque destination nommée à toutes les tailles : libellé visible (≥ 1280px), info-bulle au survol et au focus (rail), libellé court (barre du bas).",
+      "Montrer l'écran du joueur par son rendu réel (390 × 780) réduit à l'échelle, dans le cadre de téléphone ou en vignette, avec sa description pour les lecteurs d'écran.",
+      "Écrire l'état normal d'un objet en pastille et libellé (« Posé », « En diffusion ») ; le badge signale ce qui est à traiter (alerte) ou à l'arrêt (neutre).",
+      "Composer à la française, à l'affichage, le texte saisi par l'hôtel : espace insécable avant « : ; ! ? », dans les guillemets et entre un nombre et son unité."
     ],
     "donts": [
-      "Ne pas poser un second aplat rouge dans une vue, ni employer le rouge en décor (fond de section, illustration, section à venir) ni dans un graphique.",
+      "Ne pas poser un second aplat rouge dans une vue, ni employer le rouge en décor (fond de section, illustration, section à venir) ni dans un graphique ; la barre de chargement de l'écran du joueur, montrée en aperçu, appartient au jeu et ne compte pas.",
       "Ne pas écrire de texte en red (#e50914) sur noir : 4.13:1 sur canvas, sous le seuil AA.",
       "Ne pas employer le bleu des données pour un texte, un lien, une action ou un état, ni hors d'un graphique.",
       "Ne pas poser d'aplat de couleur sous une courbe, ni de deuxième axe vertical.",
@@ -747,7 +818,8 @@
       "Ne pas introduire de thème clair, d'accent bleu pour les liens ou les actions, ni de famille de caractères autre que Geist (Geist Mono aux seuls codes).",
       "Ne pas habiller l'interface d'un thème décoratif (cinéma, néon, jeu vidéo) : ni grain, ni lueur, ni texture, ni typographie fantaisie.",
       "Ne pas placer de sur-titre en capitales au-dessus d'un titre : les capitales espacées sont réservées aux libellés de groupe de la sidebar.",
-      "Ne pas remplacer une icône par un caractère ou un emoji : toute icône est un SVG Lucide, la marque mise à part."
+      "Ne pas remplacer une icône par un caractère ou un emoji : toute icône est un SVG Lucide, la marque mise à part.",
+      "Ne pas faire de la barre rouge du joueur un élément de l'espace hôtelier (un chargement de page, par exemple), ni redessiner l'écran du joueur à une autre taille : on réduit son rendu réel."
     ]
   }
 }

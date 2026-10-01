@@ -37,12 +37,12 @@ type Draft = {
 };
 
 const fieldClasses =
-  "w-full rounded-sm border border-line-strong bg-surface px-3.5 text-[15px] text-fg placeholder:text-fg-3 " +
+  "w-full rounded-sm border border-line-strong bg-surface px-3.5 text-[16px] text-fg placeholder:text-fg-3 sm:text-[15px] " +
   "transition-[border-color,box-shadow] duration-150 ease-out hover:border-white/25 " +
   "focus:border-red focus:outline-none focus:ring-3 focus:ring-red/35 aria-invalid:border-red-text aria-invalid:focus:ring-red-text/30";
 
 const pickerClasses =
-  "h-10 rounded-sm border border-line-strong bg-surface px-3 text-[14px] tabular-nums text-fg " +
+  "h-10 rounded-sm border border-line-strong bg-surface px-3 text-[16px] tabular-nums text-fg sm:text-[14px] " +
   "transition-[border-color,box-shadow] duration-150 ease-out hover:border-white/25 " +
   "focus:border-red focus:outline-none focus:ring-3 focus:ring-red/35 aria-invalid:border-red-text aria-invalid:focus:ring-red-text/30";
 
