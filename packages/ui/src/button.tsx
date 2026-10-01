@@ -1,4 +1,4 @@
-import type { ButtonHTMLAttributes } from "react";
+import type { ButtonHTMLAttributes, Ref } from "react";
 import { cn } from "./cn";
 import { Spinner } from "./spinner";
 
@@ -38,6 +38,8 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize;
   /** Affiche un indicateur et bloque le bouton pendant une action. */
   loading?: boolean;
+  /** Transmis au `<button>` (React 19 : `ref` est une prop comme une autre). */
+  ref?: Ref<HTMLButtonElement>;
 }
 
 export function Button({

@@ -328,7 +328,7 @@ function EditorForm({
 
       <main
         id="contenu"
-        className="mx-auto grid w-full max-w-[1120px] gap-10 px-4 pb-[calc(48px+env(safe-area-inset-bottom))] pt-6 md:px-8 lg:grid-cols-[minmax(0,1fr)_340px] lg:pt-8"
+        className="mx-auto grid w-full max-w-[1120px] gap-10 px-4 pt-6 md:px-8 lg:grid-cols-[minmax(0,1fr)_340px] lg:pt-8"
       >
         <form noValidate onSubmit={submit} className="grid min-w-0 max-w-[600px] content-start gap-8">
           <section aria-labelledby={`${formId}-message-title`} className="grid gap-5">
@@ -353,7 +353,7 @@ function EditorForm({
                 value={draft.title}
                 onChange={(event) => set("title", event.target.value)}
                 maxLength={TITLE_MAX}
-                placeholder="Ce soir, dîner au restaurant"
+                placeholder="Ex. : Ce soir, dîner au restaurant"
                 autoComplete="off"
                 aria-invalid={errors.title ? true : undefined}
                 aria-describedby={errors.title ? `${ids.title}-error` : `${ids.title}-hint`}
@@ -375,7 +375,7 @@ function EditorForm({
                 onChange={(event) => set("message", event.target.value)}
                 maxLength={MESSAGE_MAX}
                 rows={3}
-                placeholder="Menu de saison et vins de la région. Réservez à la réception."
+                placeholder="Ex. : Menu de saison et vins de la région. Réservez à la réception."
                 aria-invalid={errors.message ? true : undefined}
                 aria-describedby={errors.message ? `${ids.message}-error` : `${ids.message}-hint`}
                 className={cn(fieldClasses, "min-h-[96px] resize-y py-2.5 leading-relaxed")}
@@ -613,7 +613,8 @@ function EditorForm({
             ) : null}
           </section>
 
-          <div className="grid gap-4 border-t border-line pt-6">
+          {/* Toujours à portée : ce qui se passera, et le bouton qui le fait. */}
+          <div className="sticky bottom-0 z-20 -mx-4 grid gap-3 border-t border-line bg-canvas px-4 pb-[calc(16px+env(safe-area-inset-bottom))] pt-4 md:-mx-8 md:px-8 lg:mx-0 lg:px-0">
             {outlook ? <p className="text-[13.5px] leading-snug text-fg-2">{outlook}</p> : null}
             <div className="grid gap-2 sm:flex">
               <Button type="submit" size="lg" loading={saving}>

@@ -5,7 +5,12 @@ const at = (hour: number, minute = 0) => hour * 60 + minute;
 /**
  * Campagnes fictives de l'Hôtel Démo : deux en cours qui se chevauchent le soir (elles
  * alternent), une le week-end matin sans image, une soirée programmée, une terminée.
- * Les images sont des images de démonstration, à remplacer par les photos de l'hôtel.
+ *
+ * Les images (`public/demo/campagnes/`) sont synthétiques : des lumières floues rendues par
+ * un script au canvas de Chromium (1 080 × 1 350, graines 11, 23 et 37, JPEG qualité 80),
+ * le bas laissé noir pour le fondu de l'écran de chargement. Leur origine est aussi écrite
+ * dans chaque fichier (commentaire JPEG). Ce sont des exemples, à remplacer par les photos
+ * de l'hôtel.
  */
 export function demoCampaignsBase(): Campaign[] {
   return [

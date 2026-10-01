@@ -8,7 +8,7 @@ related_targets: []
 # Surface brief · Espace hôtelier (app.detectivescan.com)
 
 ## Scope
-Mode : **Operate**. Surface : l'application de l'hôtelier (connexion, mot de passe oublié, structure de navigation desktop / tablette / mobile). Livrée section par section ; l'étape 1 couvre les fondations, la connexion et la navigation, les sections métier arrivent ensuite.
+Mode : **Operate**. Surface : l'application de l'hôtelier (connexion, mot de passe oublié, structure de navigation desktop / tablette / mobile). Livrée section par section : étape 1 fondations, connexion et navigation ; étape 2 dashboard ; étape 3 QR codes & chambres ; étape 4 campagnes. Les autres sections suivent.
 
 ## Audience, tâche, contraintes
 - Hôteliers membres (directeur, marketing, réception) : se connecter, retrouver leur hôtel, atteindre n'importe quelle section en un clic.
@@ -22,6 +22,8 @@ Sortie standard choisie par l'utilisateur : dashboard SaaS classique en noir et 
 - Logo officiel DetectiveScan non fourni : marque provisoire.
 - Recherche par QR ou par chambre : livrée dans la section QR codes (étape 3). Une recherche globale dans la barre haute reste possible plus tard.
 - Format réel des adresses encodées dans les QR : inconnu (modèle provisoire `https://detectivescan.com/?qr={id}`, réglable par hôtel dans le back-office).
+- Campagnes (étape 4) : une campagne est un message (titre, texte, image facultative, sans bouton) sur l'écran noir de chargement que voit le joueur au lancement d'une chasse, environ 3 secondes ; diffusion par dates, jours et heures, alternance d'une chasse à l'autre quand elles se chevauchent. Cet écran n'existait pas sur le site du jeu : il est dessiné ici (`LoadingScreen`, 390 × 780) et le script de l'étape 8 doit le reproduire à l'identique. On mesure les affichages, pas les clics.
+- Images des campagnes de démo : synthétiques (lumières floues rendues par script), à remplacer par les photos de l'hôtel.
 
 ## Direction contract
 THESIS: Un dashboard SaaS classique joué droit, au niveau de Linear et Stripe, dans une palette noire inspirée de Netflix. Il refuse le SaaS blanc générique à accent bleu comme le thème décoratif (cinéma, néon, jeu vidéo).

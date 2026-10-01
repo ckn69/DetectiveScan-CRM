@@ -17,11 +17,14 @@ export function LoadingScreen({
   content,
   hotelName,
   still = false,
+  height = SCREEN.height,
 }: {
   content: ScreenContent | null;
   hotelName: string;
   /** Vignette figée : barre à mi-course, sans animation. */
   still?: boolean;
+  /** Hauteur logique : 780 par défaut ; le plein écran prend celle du téléphone qui l'affiche. */
+  height?: number;
 }) {
   const title = content ? typeset(content.title.trim()) : "";
   const message = content ? typeset(content.message.trim()) : "";
@@ -30,7 +33,7 @@ export function LoadingScreen({
   return (
     <div
       className={cn("relative overflow-hidden bg-black font-sans text-white antialiased", still && "ds-still")}
-      style={{ width: SCREEN.width, height: SCREEN.height }}
+      style={{ width: SCREEN.width, height }}
     >
       {image ? (
         <div className="absolute inset-x-0 top-0 h-[420px]">

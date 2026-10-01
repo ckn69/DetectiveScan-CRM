@@ -4,7 +4,7 @@ import { Button, buttonClasses, Card, cn } from "@detectivescan/ui";
 import { ArrowLeft, Copy, Expand, Pause, Pencil, Play, RotateCcw } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { type RefObject, useEffect, useRef, useState } from "react";
 import {
   campaignStatus,
   datesLabel,
@@ -57,7 +57,15 @@ export function CampaignDetail({
   const notice = useNotice();
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [replay, setReplay] = useState(0);
+  const confirmTop = useRef<HTMLButtonElement>(null);
+  const confirmFoot = useRef<HTMLButtonElement>(null);
   const show = notice.show;
+
+  // La confirmation apparaît à l'endroit visible (tête ou pied) : le focus va à son bouton.
+  useEffect(() => {
+    if (!confirmDelete) return;
+    [confirmTop.current, confirmFoot.current].find((button) => button && button.offsetParent !== null)?.focus();
+  }, [confirmDelete]);
 
   useEffect(() => {
     const arrival = new URLSearchParams(window.location.search).get("statut");
@@ -100,9 +108,31 @@ export function CampaignDetail({
   }
 
   const preview = (width: number, className: string) => (
-    <PhoneFrame width={width} description={describeScreen(campaign)} label={`Aperçu de l'écran de chargement : ${campaign.title}`} className={className}>
+    <PhoneFrame
+      width={width}
+      description={describeScreen(campaign)}
+      label={`Aperçu de l'écran de chargement : ${campaign.title}`}
+      className={className}
+    >
       <LoadingScreen key={replay} content={campaign} hotelName={hotelName} />
     </PhoneFrame>
+  );
+
+  // Confirmation de suppression, à la place des boutons : dans la tête de page dès 640 px, au pied en dessous.
+  const confirmation = (ref: RefObject<HTMLButtonElement | null>, id: string) => (
+    <div className="grid gap-2.5 sm:justify-items-end">
+      <p id={id} className="text-[13.5px] text-fg">
+        Supprimer cette campagne ? Ses affichages sont effacés avec elle.
+      </p>
+      <div className="flex gap-2">
+        <Button ref={ref} variant="danger" onClick={remove} aria-describedby={id}>
+          Supprimer
+        </Button>
+        <Button variant="ghost" onClick={() => setConfirmDelete(false)}>
+          Annuler
+        </Button>
+      </div>
+    </div>
   );
 
   return (
@@ -125,22 +155,13 @@ export function CampaignDetail({
           </div>
 
           {confirmDelete ? (
-            <div className="grid gap-2.5 sm:justify-items-end">
-              <p id="delete-title" className="text-[13.5px] text-fg">
-                Supprimer cette campagne ? Ses affichages sont effacés avec elle.
-              </p>
-              <div className="flex gap-2">
-                <Button variant="danger" onClick={remove} autoFocus aria-describedby="delete-title">
-                  Supprimer
-                </Button>
-                <Button variant="ghost" onClick={() => setConfirmDelete(false)}>
-                  Annuler
-                </Button>
-              </div>
-            </div>
+            <div className="max-sm:hidden">{confirmation(confirmTop, "delete-top")}</div>
           ) : (
-            <div className="flex flex-wrap gap-2">
-              <Link href={`${href}/${campaign.id}/edit`} className={buttonClasses({ variant: "secondary" })}>
+            <div className="grid w-full grid-cols-2 gap-2 sm:flex sm:w-auto sm:flex-wrap">
+              <Link
+                href={`${href}/${campaign.id}/edit`}
+                className={buttonClasses({ variant: "secondary", className: status === "ended" ? "max-sm:col-span-2" : undefined })}
+              >
                 <Pencil strokeWidth={1.75} aria-hidden />
                 Modifier
               </Link>
@@ -150,11 +171,14 @@ export function CampaignDetail({
                   {campaign.paused ? "Reprendre" : "Mettre en pause"}
                 </Button>
               )}
-              <Link href={`${href}/new?depuis=${campaign.id}`} className={buttonClasses({ variant: "ghost" })}>
+              <Link
+                href={`${href}/new?depuis=${campaign.id}`}
+                className={buttonClasses({ variant: "ghost", className: "max-sm:hidden" })}
+              >
                 <Copy strokeWidth={1.75} aria-hidden />
                 Dupliquer
               </Link>
-              <Button variant="danger" onClick={() => setConfirmDelete(true)}>
+              <Button variant="danger" className="max-sm:hidden" onClick={() => setConfirmDelete(true)}>
                 Supprimer
               </Button>
             </div>
@@ -162,9 +186,52 @@ export function CampaignDetail({
         </div>
       </div>
 
-      <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_320px] xl:items-start">
-        <Card aria-labelledby="preview-title" className="p-4 md:p-5 xl:sticky xl:top-[88px] xl:col-start-2 xl:row-start-1">
-          <header className="flex items-start justify-between gap-3">
+      {/* Les chiffres d'abord : l'aperçu vient à droite dès 1 280 px, en vignette en dessous. */}
+      <div className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_320px] xl:grid-rows-[auto_auto_1fr] xl:items-start">
+        <Card as="section" aria-label="Résultats" className="grid sm:grid-cols-3 xl:col-start-1 xl:row-start-1">
+          {[
+            {
+              label: "Affichages",
+              value: formatInteger(stat?.displays ?? 0),
+              note: "depuis le début",
+              big: true,
+            },
+            {
+              label: "Part des chasses lancées",
+              value: stat?.share != null ? formatPercent(stat.share) : "—",
+              note: "pendant ses dates",
+              big: true,
+            },
+            {
+              label: "Dernier affichage",
+              value: stat?.lastShown ?? "Aucun",
+              note: null,
+              big: false,
+            },
+          ].map((item, index) => (
+            <div
+              key={item.label}
+              className={cn("grid content-start gap-1.5 p-4 md:p-5", index > 0 && "border-t border-line sm:border-l sm:border-t-0")}
+            >
+              <p className="text-[13px] font-medium text-fg-2">{item.label}</p>
+              <p
+                className={cn(
+                  "text-fg",
+                  item.big ? "text-[28px] font-semibold leading-none tracking-[-0.02em]" : "text-[15px] font-medium tabular-nums",
+                )}
+              >
+                {item.value}
+              </p>
+              {item.note ? <p className="text-[12.5px] text-fg-3">{item.note}</p> : null}
+            </div>
+          ))}
+        </Card>
+
+        <Card
+          aria-labelledby="preview-title"
+          className="grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 gap-y-2 p-4 md:p-5 xl:sticky xl:top-[88px] xl:col-start-2 xl:row-span-3 xl:row-start-1 xl:grid-cols-1 xl:gap-y-4"
+        >
+          <header className="col-start-2 row-start-1 grid justify-items-start gap-2 xl:col-start-1 xl:flex xl:items-start xl:justify-between xl:gap-3">
             <div>
               <h3 id="preview-title" className="text-[15px] font-semibold leading-snug tracking-[-0.01em] text-fg">
                 Aperçu
@@ -173,116 +240,93 @@ export function CampaignDetail({
                 Affiché environ 3 secondes, pendant le chargement de l'enquête.
               </p>
             </div>
-            <Button variant="ghost" size="sm" className="-mr-2 shrink-0" onClick={() => setReplay((value) => value + 1)}>
+            <Button variant="ghost" size="sm" className="-ml-3 shrink-0 xl:-mr-2 xl:ml-0" onClick={() => setReplay((value) => value + 1)}>
               <RotateCcw strokeWidth={1.75} aria-hidden />
               Rejouer
             </Button>
           </header>
-          <div className="mt-4 grid justify-items-center gap-3">
+          <div className="col-start-1 row-span-2 row-start-1 xl:row-span-1 xl:row-start-2 xl:justify-self-center">
+            {preview(112, "xl:hidden")}
             {preview(256, "max-xl:hidden")}
-            {preview(208, "xl:hidden")}
-            <Link
-              href={`${href}/${campaign.id}/preview`}
-              className="inline-flex items-center gap-2 rounded-sm text-[13px] text-fg-2 transition-colors duration-150 hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-            >
-              <Expand className="size-4" strokeWidth={1.75} aria-hidden />
-              Voir en plein écran
-            </Link>
           </div>
+          <Link
+            href={`${href}/${campaign.id}/preview`}
+            className="col-start-2 row-start-2 inline-flex w-fit items-center gap-2 self-start rounded-sm text-[13px] text-fg-2 transition-colors duration-150 hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white xl:col-start-1 xl:row-start-3 xl:justify-self-center"
+          >
+            <Expand className="size-4" strokeWidth={1.75} aria-hidden />
+            Voir en plein écran
+          </Link>
         </Card>
 
-        <div className="grid min-w-0 content-start gap-5 xl:col-start-1 xl:row-start-1">
-          <Card as="section" aria-label="Résultats" className="grid sm:grid-cols-3">
+        <DisplaysChart
+          className="xl:col-start-1 xl:row-start-2"
+          points={stat?.daily ?? []}
+          emptyText={status === "scheduled" ? "La campagne n'a pas encore commencé." : "Pas encore d'affichage : ils apparaîtront ici."}
+        />
+
+        <Card as="section" aria-labelledby="schedule-title" className="p-4 md:p-5 xl:col-start-1 xl:row-start-3">
+          <h3 id="schedule-title" className="text-[15px] font-semibold leading-snug tracking-[-0.01em] text-fg">
+            Diffusion
+          </h3>
+          <dl className="mt-4 grid gap-x-8 gap-y-3 text-[13.5px] sm:grid-cols-[10rem_minmax(0,1fr)]">
             {[
-              {
-                label: "Affichages",
-                value: formatInteger(stat?.displays ?? 0),
-                note: "depuis le début",
-                big: true,
-              },
-              {
-                label: "Part des chasses lancées",
-                value: stat?.share != null ? formatPercent(stat.share) : "—",
-                note: "pendant ses dates",
-                big: true,
-              },
-              {
-                label: "Dernier affichage",
-                value: stat?.lastShown ?? "Aucun",
-                note: null,
-                big: false,
-              },
-            ].map((item, index) => (
-              <div
-                key={item.label}
-                className={cn("grid content-start gap-1.5 p-4 md:p-5", index > 0 && "border-t border-line sm:border-l sm:border-t-0")}
-              >
-                <p className="text-[13px] font-medium text-fg-2">{item.label}</p>
-                <p
-                  className={cn(
-                    "text-fg",
-                    item.big ? "text-[28px] font-semibold leading-none tracking-[-0.02em]" : "text-[15px] font-medium tabular-nums",
-                  )}
-                >
-                  {item.value}
-                </p>
-                {item.note ? <p className="text-[12.5px] text-fg-3">{item.note}</p> : null}
+              ["Dates", datesLabel(campaign, now.day)],
+              ["Jours", daysLabel(campaign.days)],
+              ["Heures", capitalize(hoursLabel(campaign.hours))],
+              ["Créée le", formatDateTime(campaign.createdAt)],
+            ].map(([term, value]) => (
+              <div key={term} className="contents">
+                <dt className="text-fg-3">{term}</dt>
+                <dd className="-mt-2 text-fg sm:mt-0">{value}</dd>
               </div>
             ))}
-          </Card>
+            {status === "ended" ? null : (
+              <div className="contents">
+                <dt className="text-fg-3">Alterne avec</dt>
+                <dd className="-mt-2 text-fg sm:mt-0">
+                  {alternates.length === 0 ? (
+                    <span className="text-fg-2">Aucune autre campagne sur ses créneaux</span>
+                  ) : (
+                    <ul className="grid gap-1">
+                      {alternates.map((other) => (
+                        <li key={other.id}>
+                          <Link
+                            href={`${href}/${other.id}`}
+                            className="rounded-sm underline decoration-white/30 underline-offset-4 transition-colors duration-150 hover:decoration-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                          >
+                            {other.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </dd>
+              </div>
+            )}
+          </dl>
+          {alternates.length > 0 ? (
+            <p className="mt-4 text-[12.5px] leading-relaxed text-fg-3">
+              Quand leurs créneaux se croisent, les campagnes s'affichent à tour de rôle, une par chasse lancée.
+            </p>
+          ) : null}
+        </Card>
+      </div>
 
-          <DisplaysChart
-            points={stat?.daily ?? []}
-            emptyText={status === "scheduled" ? "La campagne n'a pas encore commencé." : "Pas encore d'affichage : ils apparaîtront ici."}
-          />
-
-          <Card as="section" aria-labelledby="schedule-title" className="p-4 md:p-5">
-            <h3 id="schedule-title" className="text-[15px] font-semibold leading-snug tracking-[-0.01em] text-fg">
-              Diffusion
-            </h3>
-            <dl className="mt-4 grid gap-x-8 gap-y-3 text-[13.5px] sm:grid-cols-[10rem_minmax(0,1fr)]">
-              {[
-                ["Dates", datesLabel(campaign, now.day)],
-                ["Jours", daysLabel(campaign.days)],
-                ["Heures", capitalize(hoursLabel(campaign.hours))],
-                ["Créée le", formatDateTime(campaign.createdAt)],
-              ].map(([term, value]) => (
-                <div key={term} className="contents">
-                  <dt className="text-fg-3">{term}</dt>
-                  <dd className="-mt-2 text-fg sm:mt-0">{value}</dd>
-                </div>
-              ))}
-              {status === "ended" ? null : (
-                <div className="contents">
-                  <dt className="text-fg-3">Alterne avec</dt>
-                  <dd className="-mt-2 text-fg sm:mt-0">
-                    {alternates.length === 0 ? (
-                      <span className="text-fg-2">Aucune autre campagne sur ses créneaux</span>
-                    ) : (
-                      <ul className="grid gap-1">
-                        {alternates.map((other) => (
-                          <li key={other.id}>
-                            <Link
-                              href={`${href}/${other.id}`}
-                              className="rounded-sm underline decoration-white/30 underline-offset-4 transition-colors duration-150 hover:decoration-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-                            >
-                              {other.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </dd>
-                </div>
-              )}
-            </dl>
-            {alternates.length > 0 ? (
-              <p className="mt-4 text-[12.5px] leading-relaxed text-fg-3">
-                Quand leurs créneaux se croisent, les campagnes s'affichent à tour de rôle, une par chasse lancée.
-              </p>
-            ) : null}
-          </Card>
-        </div>
+      {/* Sous 640 px, la copie et la suppression descendent au pied de la fiche. */}
+      <div className="border-t border-line pt-5 sm:hidden">
+        {confirmDelete ? (
+          confirmation(confirmFoot, "delete-foot")
+        ) : (
+          <div className="flex items-center justify-between gap-3">
+            <Link href={`${href}/new?depuis=${campaign.id}`} className={buttonClasses({ variant: "ghost", className: "-ml-4" })}>
+              <Copy strokeWidth={1.75} aria-hidden />
+              Dupliquer
+            </Link>
+            <Button variant="danger" onClick={() => setConfirmDelete(true)}>
+              Supprimer
+            </Button>
+          </div>
+        )}
       </div>
 
       <Notice message={notice.message} />

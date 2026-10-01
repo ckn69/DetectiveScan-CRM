@@ -153,7 +153,8 @@ export function slotLabel(campaign: Pick<Campaign, "days" | "hours">): string {
 
 /**
  * Campagnes qui partageront l'écran avec celle-ci : chevauchement de dates, de jours et
- * d'heures, testé minute par minute sur une semaine type (assez pour quelques campagnes).
+ * d'heures, testé par quart d'heure sur les deux premières semaines où les deux campagnes
+ * tournent ensemble (deux semaines couvrent tous les jours et toutes les plages).
  */
 export function overlaps(campaign: Campaign, others: Campaign[], today: DayNumber): Campaign[] {
   const run = runOf(campaign);
@@ -161,8 +162,9 @@ export function overlaps(campaign: Campaign, others: Campaign[], today: DayNumbe
   return others.filter((other) => {
     if (other.id === campaign.id || other.paused) return false;
     const otherRun = runOf(other);
-    const last = Math.min(run.end ?? Infinity, otherRun.end ?? Infinity, first + 13);
-    for (let day = Math.max(first, otherRun.start); day <= last; day++) {
+    const from = Math.max(first, otherRun.start);
+    const last = Math.min(run.end ?? Infinity, otherRun.end ?? Infinity, from + 13);
+    for (let day = from; day <= last; day++) {
       for (let minutes = 0; minutes < 1440; minutes += 15) {
         if (inSlot(campaign, day, minutes) && inSlot(other, day, minutes)) return true;
       }

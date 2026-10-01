@@ -243,12 +243,16 @@ function NowPanel({
   const [index, setIndex] = useState(0);
   const [replay, setReplay] = useState(0);
 
-  const next = upcoming
+  const queue = upcoming
     .map((campaign) => ({ campaign, at: nextShowing(campaign, now) }))
     .filter((item): item is { campaign: Campaign; at: { day: number; minutes: number } } => item.at !== null)
-    .sort((a, b) => a.at.day - b.at.day || a.at.minutes - b.at.minutes)[0]?.campaign;
+    .sort((a, b) => a.at.day - b.at.day || a.at.minutes - b.at.minutes)
+    .map((item) => item.campaign);
+  const next = queue[0];
   const isLive = live.length > 0;
   const shown = isLive ? live[index % live.length] : next;
+  // Ce qui passera ensuite, hors campagne affichée : la grille de la journée et des jours qui viennent.
+  const later = queue.filter((campaign) => campaign.id !== shown?.id).slice(0, 3);
   const status = shown ? campaignStatus(shown, now) : null;
 
   const heading = isLive ? "En ce moment" : next ? "Prochaine campagne" : "À l'écran";
@@ -279,7 +283,7 @@ function NowPanel({
         </Button>
       </header>
 
-      <div className="mt-4 flex items-start gap-4 xl:grid xl:justify-items-center">
+      <div className="mt-4 flex items-start gap-4 md:gap-5 xl:grid xl:justify-items-center xl:gap-4">
         {frame(236, "max-xl:hidden")}
         {frame(112, "xl:hidden")}
 
@@ -346,6 +350,30 @@ function NowPanel({
             </>
           )}
         </div>
+
+        {later.length > 0 ? (
+          <section
+            aria-labelledby="later-title"
+            className="max-md:hidden md:w-[17rem] md:shrink-0 md:self-stretch md:border-l md:border-line md:pl-5 xl:w-full xl:border-l-0 xl:border-t xl:pl-0 xl:pt-4"
+          >
+            <h3 id="later-title" className="text-[13px] font-medium text-fg-2">
+              À suivre
+            </h3>
+            <ul className="mt-2.5 grid gap-2.5">
+              {later.map((campaign) => (
+                <li key={campaign.id} className="grid gap-0.5">
+                  <Link
+                    href={`${href}/${campaign.id}`}
+                    className="w-fit rounded-sm text-[13.5px] text-fg underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                  >
+                    {campaign.title}
+                  </Link>
+                  <span className="text-[12.5px] text-fg-3 first-letter:uppercase">{nextShowingLabel(campaign, now)}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
       </div>
     </Card>
   );
