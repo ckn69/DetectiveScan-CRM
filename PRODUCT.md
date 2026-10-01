@@ -18,11 +18,11 @@ Validé par l'utilisateur (cadrage v1.2) : monorepo Turborepo + pnpm, Next.js (A
 
 ## Product Purpose
 
-DetectiveScan installe des chasses au trésor / enquêtes immersives via QR codes en chambre d'hôtel pour augmenter la satisfaction client et le chiffre d'affaires de l'hôtel. La plateforme donne à l'hôtelier la preuve que ça marche (scans, joueurs, participation, satisfaction, clics sur ses campagnes) et donne à l'équipe DetectiveScan un outil pour intégrer, suivre et convertir chaque hôtel. Succès : un hôtel voit en 10 secondes si l'expérience fonctionne chez lui, et un essai se convertit en abonnement.
+DetectiveScan installe des chasses au trésor / enquêtes immersives via QR codes en chambre d'hôtel pour augmenter la satisfaction client et le chiffre d'affaires de l'hôtel. La plateforme donne à l'hôtelier la preuve que ça marche (scans, joueurs, participation, satisfaction, affichages de ses campagnes) et donne à l'équipe DetectiveScan un outil pour intégrer, suivre et convertir chaque hôtel. Succès : un hôtel voit en 10 secondes si l'expérience fonctionne chez lui, et un essai se convertit en abonnement.
 
 ## Positioning
 
-La seule plateforme qui relie un QR code physique posé dans une chambre précise à un scan, un joueur, une partie, un avis et une campagne de l'hôtel (chaîne QR → chambre → scan → joueur → partie → résultat → avis → campagne → performance). L'hôtel communique pendant les 3 secondes qui précèdent l'enquête, au moment où le client est le plus disponible.
+La seule plateforme qui relie un QR code physique posé dans une chambre précise à un scan, un joueur, une partie, un avis et une campagne de l'hôtel (chaîne QR → chambre → scan → joueur → partie → résultat → avis → campagne → performance). L'hôtel communique pendant les quelques secondes de chargement qui précèdent l'enquête, au moment où le client est le plus disponible.
 
 ## Operating Context
 
@@ -30,7 +30,8 @@ La seule plateforme qui relie un QR code physique posé dans une chambre précis
 - **L'admin DetectiveScan peut tout modifier** depuis le back-office : prix, informations de l'hôtel, chambres, QR codes, comptes.
 - L'espace hôtelier est **réservé aux hôtels membres**. En fin d'essai sans paiement, l'équipe DetectiveScan **coupe les QR** de l'hôtel depuis le back-office ; le paiement les réactive.
 - Vente accompagnée : l'équipe crée l'hôtel, enregistre chambres et QR (saisie manuelle ou import CSV), installe, teste, puis invite l'hôtelier. Module **Onboarding clients** côté back-office.
-- Le jeu tourne déjà sur le site DetectiveScan (https://detectivescan.com/, HTML statique sur Vercel, code sur GitHub). La plateforme s'y branche par un **script** (scan, campagne 3 s, suivi des parties, avis) sans redirection.
+- Le jeu tourne déjà sur le site DetectiveScan (https://detectivescan.com/, HTML statique sur Vercel, code sur GitHub). La plateforme s'y branche par un **script** (scan, campagne, suivi des parties, avis) sans redirection.
+- **Campagne** : au lancement d'une chasse, le téléphone du joueur affiche un écran noir de chargement de quelques secondes (environ 3 s). L'hôtel y fait passer un message marketing simple : un texte, souvent avec une image, **sans bouton** (on mesure donc des affichages, pas des clics). Chaque campagne a ses dates et, au besoin, ses jours et ses heures ; quand plusieurs campagnes se chevauchent, elles alternent d'une partie à l'autre. L'écran de chargement n'existe pas encore sur le site du jeu : il est dessiné dans l'espace hôtelier (aperçu exact) et le script de l'étape 8 l'affichera à l'identique.
 - **Chaque QR posé a sa propre URL** : c'est elle qui dit quelle chambre joue. Format d'identifiant connu : `01-254-00` (QR) associé à une chambre (ex. `12`).
 
 ## Capabilities and Constraints

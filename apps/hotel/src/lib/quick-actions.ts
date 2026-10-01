@@ -5,7 +5,7 @@ import { LifeBuoy, type LucideIcon, Megaphone, ScanLine } from "lucide-react";
  * `path` mène à une page précise de la section (sinon, à son accueil).
  */
 export const QUICK_ACTIONS: Array<{ slug: string; path?: string; title: string; detail: string; icon: LucideIcon }> = [
-  { slug: "campaigns", title: "Nouvelle campagne", detail: "Restaurant, spa, événement…", icon: Megaphone },
+  { slug: "campaigns", path: "new", title: "Nouvelle campagne", detail: "Restaurant, spa, événement…", icon: Megaphone },
   {
     slug: "qr-codes",
     path: "installation",

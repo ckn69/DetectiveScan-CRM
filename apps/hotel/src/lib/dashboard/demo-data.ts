@@ -2,6 +2,8 @@ import { type DayNumber, dayFromIso, type LocalNow, weekday } from "../dates";
 import { DEMO_HOTEL } from "../demo";
 import { formatDay, formatHour, formatTime, formatWeekday, plural } from "../format";
 import type { Cutoff, DayRange, Period } from "./period";
+import { inSlot } from "../campaigns/schedule";
+import type { Campaign, CampaignStats } from "../campaigns/types";
 import type { QrActivity } from "../qr/types";
 import type { ChartPoint, DashboardData, GameStatus, RecentGame, RoomStat, Totals } from "./types";
 
@@ -428,6 +430,58 @@ export function demoQrActivity(now: LocalNow): Record<string, QrActivity> {
         quiet: !stat || stat.last < quietBefore,
       };
       return [qr, activity];
+    }),
+  );
+}
+
+/**
+ * Affichages des campagnes, comptés sur le même journal que le dashboard : chaque partie
+ * commencée est un lancement de chasse, donc un écran de chargement. La campagne en créneau
+ * s'y affiche ; quand plusieurs le sont, elles alternent d'un lancement à l'autre.
+ */
+export function demoCampaignStats(campaigns: Campaign[], now: LocalNow): Record<string, CampaignStats> {
+  const runs = campaigns.map((campaign) => ({
+    campaign,
+    start: dayFromIso(campaign.start) ?? now.day,
+    end: campaign.end ? (dayFromIso(campaign.end) ?? now.day) : null,
+    displays: 0,
+    launches: 0,
+    perDay: new Map<DayNumber, number>(),
+    last: null as { day: DayNumber; minutes: number } | null,
+  }));
+  const first = Math.max(DEMO_DATA_SINCE, Math.min(...runs.map((run) => run.start)));
+  const cutoff: Cutoff = { hour: now.hour, minute: now.minute };
+  let turn = 0;
+
+  for (let day = first; day <= now.day; day++) {
+    for (const scan of scansOf(day, day === now.day ? cutoff : null)) {
+      if (!scan.game) continue;
+      for (const run of runs) if (day >= run.start && (run.end === null || day <= run.end)) run.launches += 1;
+      const showing = runs.filter((run) => !run.campaign.paused && inSlot(run.campaign, day, scan.minutes));
+      const shown = showing[turn % Math.max(1, showing.length)];
+      if (!shown) continue;
+      turn += 1;
+      shown.displays += 1;
+      shown.perDay.set(day, (shown.perDay.get(day) ?? 0) + 1);
+      shown.last = { day, minutes: scan.minutes };
+    }
+  }
+
+  return Object.fromEntries(
+    runs.map((run) => {
+      const to = Math.min(run.end ?? now.day, now.day);
+      const from = Math.max(run.start, DEMO_DATA_SINCE, to - 89);
+      const daily = to < from ? [] : Array.from({ length: to - from + 1 }, (_, index) => ({
+        day: from + index,
+        displays: run.perDay.get(from + index) ?? 0,
+      }));
+      const stats: CampaignStats = {
+        displays: run.displays,
+        share: run.launches > 0 ? run.displays / run.launches : null,
+        daily,
+        lastShown: run.last ? whenLabel(run.last.day, run.last.minutes, now) : null,
+      };
+      return [run.campaign.id, stats];
     }),
   );
 }

@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
-import { CampaignList } from "@/components/campaigns/campaign-list";
+import { CampaignDetail } from "@/components/campaigns/campaign-detail";
 import { demoCampaignsBase } from "@/lib/campaigns/demo-campaigns";
 import { demoCampaignStats } from "@/lib/dashboard/demo-data";
 import { hotelNow } from "@/lib/dates";
 import { DEMO_HOTEL } from "@/lib/demo";
 import { sectionHref } from "@/lib/nav";
 
-export const metadata: Metadata = { title: "Campagnes" };
+export const metadata: Metadata = { title: "Campagne" };
 
-/** Le message de l'hôtel sur l'écran de chargement de l'enquête : ce qui passe maintenant, puis chaque campagne. */
-export default async function CampaignsPage({ params }: { params: Promise<{ hotel: string }> }) {
-  const { hotel } = await params;
+export default async function CampaignPage({ params }: { params: Promise<{ hotel: string; id: string }> }) {
+  const { hotel, id } = await params;
   const now = hotelNow();
   const base = demoCampaignsBase();
   return (
-    <CampaignList
+    <CampaignDetail
+      id={id}
       base={base}
       stats={demoCampaignStats(base, now)}
       now={now}

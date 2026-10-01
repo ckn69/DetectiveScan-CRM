@@ -11,7 +11,7 @@ Le développement avance étape par étape : chaque étape livre une section com
 | 1 | Fondations, design system, connexion, navigation de l'espace hôtelier | Livrée (mode démo) |
 | 2 | Dashboard : chiffres clés, courbe, entonnoir, chambres, dernières parties, filtre de période | Livrée (mode démo) |
 | 3 | QR codes & chambres : saisie, import CSV, mode installation | Livrée (mode démo) |
-| 4 | Campagnes (écran de 3 secondes) | À venir |
+| 4 | Campagnes : message sur l'écran de chargement, créneaux, aperçu exact, affichages | Livrée (mode démo) |
 | 5 | Avis clients, Analytics | À venir |
 | 6 | Abonnement Stripe, support, paramètres, notifications | À venir |
 | 7 | Back-office : hôtels, onboarding clients | À venir |
@@ -52,3 +52,5 @@ pnpm typecheck    # vérification TypeScript
 Tant que la base de données n'est pas branchée, l'espace s'ouvre avec le bouton « Explorer la démo » et affiche des données fictives, étiquetées « Hôtel Démo ». La connexion par e-mail et mot de passe s'activera avec Supabase (voir `apps/hotel/.env.example`).
 
 En démo, les QR codes ajoutés, modifiés, importés ou posés restent dans le navigateur (`localStorage`) ; « Revenir au parc de départ » remet le parc fictif à zéro. L'adresse des QR suit un modèle provisoire (`https://detectivescan.com/?qr={id}`) en attendant le format réel.
+
+Les campagnes de démo, leurs images (des exemples à remplacer par les photos de l'hôtel) et celles que vous créez restent aussi dans le navigateur ; « Revenir aux campagnes de départ » les remet à zéro. Leurs affichages sont comptés sur les mêmes parties fictives que le dashboard.

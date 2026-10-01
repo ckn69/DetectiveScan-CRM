@@ -60,12 +60,13 @@ export const SECTION_GROUPS: SectionGroup[] = [
         label: "Campagnes",
         icon: Megaphone,
         step: 4,
-        summary: "L'écran de 3 secondes que vos clients voient avant l'enquête : restaurant, spa, événements.",
+        summary: "Votre message sur l'écran de chargement de l'enquête : restaurant, spa, événements.",
         features: [
-          "Campagnes actives, programmées et terminées",
-          "Création avec texte, image et bouton d'action",
+          "Campagnes en cours, programmées et terminées",
+          "Un texte et une image sur l'écran de chargement",
+          "Dates, jours et heures de diffusion",
           "Aperçu exact sur téléphone",
-          "Affichages, clics et taux de clic",
+          "Affichages par campagne",
         ],
       },
       {

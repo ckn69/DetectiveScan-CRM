@@ -3,3 +3,43 @@
 
 /* Les composants du design system utilisent des classes Tailwind : on les scanne aussi. */
 @source "../../../../packages/ui/src";
+
+@layer components {
+  /*
+   * Écran de chargement du joueur, rendu à l'identique dans l'aperçu des campagnes :
+   * la barre se remplit en 3 s, le message apparaît en fondu. `ds-still` fige une vignette.
+   */
+  .ds-load-bar {
+    transform-origin: left;
+    animation: ds-load 3s cubic-bezier(0.45, 0, 0.25, 1) both;
+  }
+
+  .ds-reveal {
+    animation: ds-reveal 600ms var(--ease-out-quint) 120ms both;
+  }
+
+  .ds-still .ds-load-bar {
+    animation: none;
+    transform: scaleX(0.62);
+  }
+
+  .ds-still .ds-reveal {
+    animation: none;
+  }
+
+  @keyframes ds-load {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes ds-reveal {
+    from {
+      opacity: 0;
+      translate: 0 8px;
+    }
+  }
+}
