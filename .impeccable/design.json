@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-29T06:37:01.666Z",
+  "generatedAt": "2026-10-01T08:30:39.211Z",
   "title": "Design System: DetectiveScan",
   "extensions": {
     "colorMeta": {
@@ -361,13 +361,21 @@
       "mono": {
         "displayName": "Mono",
         "purpose": "Geist Mono, réservée aux identifiants de QR code (12.5px, 12px dans la liste mobile)."
+      },
+      "page-title-mobile": {
+        "displayName": "Page title mobile",
+        "purpose": "Titre de page sous 768px, et titre de l'écran plein (Mode installation) à toutes les tailles."
+      },
+      "input-touch": {
+        "displayName": "Input touch",
+        "purpose": "Texte saisi dans les champs de l'écran plein, au téléphone : 16px, sinon Safari sur iPhone agrandit la page au focus."
       }
     },
     "shadows": [
       {
         "name": "shadow-pop",
         "value": "0 18px 44px -12px rgb(0 0 0 / 0.85), 0 2px 10px rgb(0 0 0 / 0.55)",
-        "purpose": "Seule ombre du système : popover d'actions rapides, menu du compte, info-bulles du rail, bouton central mobile."
+        "purpose": "Seule ombre du système : popover d'actions rapides, menu du compte, info-bulles du rail et du graphique, bouton central mobile, panneau latéral, confirmation."
       },
       {
         "name": "ring-field-focus",
@@ -467,6 +475,11 @@
         "name": "reduced-motion",
         "value": "animation-duration and transition-duration 0.01ms, 1 iteration, scroll-behavior auto",
         "purpose": "Réglage global sous prefers-reduced-motion: reduce."
+      },
+      {
+        "name": "sheet-slide",
+        "value": "translate 100% → 0, 220ms cubic-bezier(0.22, 1, 0.36, 1), voile noir à 60% en fondu",
+        "purpose": "Ouverture et fermeture du panneau latéral (classe ds-sheet, @starting-style)."
       }
     ],
     "breakpoints": [
@@ -596,26 +609,59 @@
       "description": "Bande pleine largeur sous la barre haute qui rappelle en permanence que les données sont fictives.",
       "html": "<div class=\"ds-demo-stage\"><div class=\"ds-demo-banner\"><p class=\"ds-demo-text\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 16v-4\"/><path d=\"M12 8h.01\"/></svg><span><strong>Mode démo</strong> · données fictives de l'Hôtel Démo. Les comptes s'activeront au branchement de la base de données.</span></p></div></div>",
       "css": ".ds-demo-stage { padding-bottom: 24px; background: var(--color-canvas, #0a0a0a); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-demo-banner { padding: 10px 32px; background: rgb(20 20 20 / 0.70); border-bottom: 1px solid var(--color-line, rgb(255 255 255 / 0.08)); } .ds-demo-text { display: flex; align-items: flex-start; gap: 8px; margin: 0; color: var(--color-fg-2, #b3b3b3); font-size: 12.5px; line-height: 1.375; } .ds-demo-text svg { flex-shrink: 0; width: 16px; height: 16px; margin-top: 1px; color: var(--color-fg-3, #8c8c8c); } .ds-demo-text strong { color: var(--color-fg, #ffffff); font-weight: 600; }"
+    },
+    {
+      "name": "Panneau latéral",
+      "kind": "container",
+      "refersTo": "sheet",
+      "description": "Fiche d'un QR en dialog modal : 440px à droite (plein écran sous 640px), raised, bord gauche line-strong, shadow-pop ; titre de la chambre en 20px, blocs séparés par des filets, pied collé avec Modifier, Désactiver et Supprimer.",
+      "html": "<div class=\"ds-sheet-stage\"><aside class=\"ds-sheet-demo\"><header><h3>Chambre 12</h3><p><span class=\"ds-mono\">QR 01-254-00</span><span class=\"ds-dot\"></span>Posé</p></header><section><p class=\"ds-k\">Adresse encodée dans le QR</p><p class=\"ds-mono ds-url\">https://detectivescan.com/?qr=01-254-00</p></section><section><p class=\"ds-k\">30 derniers jours</p><dl><div><dt>Scans</dt><dd>49</dd></div><div><dt>Participation</dt><dd>66 %</dd></div><div><dt>Dernier scan</dt><dd>lun. 28 sept. · 17 h 47</dd></div></dl></section><footer><button class=\"ds-b ds-b--sec\">Modifier</button><button class=\"ds-b ds-b--ghost\">Désactiver</button><button class=\"ds-b ds-b--danger\">Supprimer</button></footer></aside></div>",
+      "css": ".ds-sheet-stage { display: flex; justify-content: flex-end; padding: 24px; background: rgb(0 0 0 / 0.6); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-sheet-demo { width: 440px; max-width: 100%; background: var(--color-raised, #1c1c1c); border-left: 1px solid var(--color-line-strong, rgb(255 255 255 / 0.14)); box-shadow: 0 18px 44px -12px rgb(0 0 0 / 0.85), 0 2px 10px rgb(0 0 0 / 0.55); color: #fff; } .ds-sheet-demo header { padding: 16px 20px; border-bottom: 1px solid rgb(255 255 255 / 0.08); } .ds-sheet-demo h3 { margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -0.01em; } .ds-sheet-demo header p { display: flex; align-items: center; gap: 8px; margin: 8px 0 0; font-size: 13px; color: #b3b3b3; } .ds-mono { font-family: var(--font-mono, \"Geist Mono\", ui-monospace, SFMono-Regular, Menlo, monospace); font-size: 12.5px; } .ds-dot { width: 6px; height: 6px; border-radius: 9999px; background: var(--color-success, #46d369); margin-left: 4px; } .ds-sheet-demo section { margin: 0 20px; padding: 20px 0; border-bottom: 1px solid rgb(255 255 255 / 0.08); } .ds-k { margin: 0 0 6px; font-size: 12.5px; color: #8c8c8c; } .ds-url { margin: 0; color: #b3b3b3; word-break: break-all; } .ds-sheet-demo dl { display: grid; grid-template-columns: 0.8fr 1fr 1.7fr; gap: 12px; margin: 8px 0 0; } .ds-sheet-demo dt { font-size: 12.5px; color: #8c8c8c; } .ds-sheet-demo dd { margin: 2px 0 0; font-size: 14px; font-weight: 500; font-variant-numeric: tabular-nums; } .ds-sheet-demo footer { display: flex; gap: 8px; padding: 16px 20px; } .ds-b { height: 40px; padding: 0 16px; border: 0; border-radius: 6px; font: 600 14px var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); cursor: pointer; } .ds-b--sec { background: rgb(255 255 255 / 0.10); color: #fff; } .ds-b--ghost { background: transparent; color: #b3b3b3; } .ds-b--danger { margin-left: auto; background: transparent; color: var(--color-red-text, #ff4d55); box-shadow: inset 0 0 0 1px rgb(255 77 85 / 0.4); }"
+    },
+    {
+      "name": "Confirmation",
+      "kind": "feedback",
+      "refersTo": "toast",
+      "description": "Message éphémère d'une zone role=status toujours présente : raised, bordure line-strong, coins de 10px, icône success, shadow-pop ; 4 secondes, dans le panneau ouvert quand il y en a un.",
+      "html": "<div class=\"ds-toast-stage\"><p class=\"ds-toast\"><svg viewBox=\"0 0 24 24\" width=\"16\" height=\"16\" fill=\"none\" stroke=\"#46d369\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"m9 12 2 2 4-4\"/></svg>QR 01-254-07 ajouté.</p></div>",
+      "css": ".ds-toast-stage { padding: 24px; background: var(--color-canvas, #0a0a0a); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-toast { display: inline-flex; align-items: center; gap: 10px; margin: 0; padding: 12px 16px; border-radius: 10px; border: 1px solid rgb(255 255 255 / 0.14); background: var(--color-raised, #1c1c1c); color: #fff; font-size: 13.5px; box-shadow: 0 18px 44px -12px rgb(0 0 0 / 0.85), 0 2px 10px rgb(0 0 0 / 0.55); }"
+    },
+    {
+      "name": "Statut de QR",
+      "kind": "chip",
+      "refersTo": "badge",
+      "description": "Posé : pastille success de 6px et libellé (l'état normal reste discret) ; À poser : badge alerte ; Désactivé : badge neutre ; sans scan depuis 7 jours : dernier scan en warning avec icône.",
+      "html": "<div class=\"ds-qrs-stage\"><span class=\"ds-qrs\"><i></i>Posé</span><span class=\"ds-badge ds-badge--warning\">À poser</span><span class=\"ds-badge\">Désactivé</span><span class=\"ds-quiet\"><svg viewBox=\"0 0 24 24\" width=\"14\" height=\"14\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" aria-hidden=\"true\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><path d=\"M12 8v4M12 16h.01\"/></svg>dim. 20 sept. · 20 h 12</span></div>",
+      "css": ".ds-qrs-stage { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 24px; background: var(--color-surface, #141414); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); font-size: 13px; } .ds-qrs { display: inline-flex; align-items: center; gap: 8px; color: #b3b3b3; } .ds-qrs i { width: 6px; height: 6px; border-radius: 9999px; background: var(--color-success, #46d369); } .ds-badge { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: 9999px; background: rgb(255 255 255 / 0.08); color: #b3b3b3; font-size: 12px; font-weight: 500; } .ds-badge--warning { background: rgb(245 165 36 / 0.12); color: var(--color-warning, #f5a524); } .ds-quiet { display: inline-flex; align-items: center; gap: 6px; color: var(--color-warning, #f5a524); font-size: 13.5px; font-variant-numeric: tabular-nums; }"
+    },
+    {
+      "name": "Zone de dépôt",
+      "kind": "input",
+      "refersTo": "dropzone",
+      "description": "Label du champ fichier de l'import CSV : filet pointillé line-strong, coins de 10px, tuile d'icône, consigne 15px/600 et règle 13px fg-3 ; voile de 5% pendant un glisser, contour blanc au focus.",
+      "html": "<div class=\"ds-drop-stage\"><label class=\"ds-drop\"><span class=\"ds-drop-tile\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M12 3v12\"/><path d=\"m17 8-5-5-5 5\"/><path d=\"M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4\"/></svg></span><strong>Déposez le fichier ici, ou choisissez-le</strong><small>CSV ou texte, 1 Mo au plus.</small></label></div>",
+      "css": ".ds-drop-stage { padding: 24px; background: var(--color-canvas, #0a0a0a); font-family: var(--font-sans, Geist, ui-sans-serif, system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif); } .ds-drop { display: grid; justify-items: center; gap: 12px; padding: 40px 24px; border: 1px dashed rgb(255 255 255 / 0.14); border-radius: 10px; background: var(--color-surface, #141414); text-align: center; cursor: pointer; transition: border-color 150ms cubic-bezier(0, 0, 0.2, 1); } .ds-drop:hover { border-color: rgb(255 255 255 / 0.25); } .ds-drop-tile { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 10px; background: rgb(255 255 255 / 0.06); box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.08); color: #b3b3b3; } .ds-drop strong { color: #fff; font-size: 15px; font-weight: 600; } .ds-drop small { color: #8c8c8c; font-size: 13px; }"
     }
   ],
   "narrative": {
     "northStar": "La réception de nuit",
-    "overview": "DetectiveScan est un dashboard SaaS classique, joué droit, au niveau de finition de Linear, Stripe et Ramp, dans la palette inspirée de Netflix choisie par l'utilisateur : fond noir, textes blancs et gris, rouge pour les boutons. L'image directrice est une réception d'hôtel la nuit : ce qui ne sert pas est éteint, chaque chose est à sa place, et une seule lumière rouge indique où agir. La métaphore règle l'ambiance (calme, sombre, précise), jamais l'imagerie : l'interface ne montre ni décor d'hôtel, ni cinéma, ni enquête.\n\nLa densité est celle d'un outil de travail : corps de 14px, éléments de navigation de 40px, une seule famille (Geist). La profondeur vient de quatre paliers de noir et de filets blancs translucides ; une seule ombre existe, pour ce qui flotte. Le rouge a trois rôles : agir (l'aplat du bouton principal, le focus des champs), situer (l'icône de l'élément actif), alerter (erreurs, baisses, déconnexion) ; il signe aussi la marque. Le texte et la structure sont blancs ou gris ; les données, elles, prennent un seul bleu en quatre nuances, et seulement dans les graphiques : puisque le rouge est réservé à l'action, les chiffres tracés ne peuvent pas le porter. Le mouvement est bref et fonctionnel (150ms) et s'efface quand l'utilisateur demande moins d'animations.\n\nLe thème est unique et sombre, par choix de l'utilisateur (color-scheme: dark, aucun thème clair). Tokens et composants vivent dans packages/ui (@detectivescan/ui : bloc @theme Tailwind v4 dans styles.css, composants React) ; la seule surface construite à ce jour est l'espace hôtelier (apps/hotel) : connexion, navigation et dashboard. Refus confirmés par le contrat de direction : le SaaS blanc générique à accent bleu, et le thème décoratif (cinéma, néon, jeu vidéo). La marque est provisoire : aucun logo officiel n'a été fourni.",
+    "overview": "DetectiveScan est un dashboard SaaS classique, joué droit, au niveau de finition de Linear, Stripe et Ramp, dans la palette inspirée de Netflix choisie par l'utilisateur : fond noir, textes blancs et gris, rouge pour les boutons. L'image directrice est une réception d'hôtel la nuit : ce qui ne sert pas est éteint, chaque chose est à sa place, et une seule lumière rouge indique où agir. La métaphore règle l'ambiance (calme, sombre, précise), jamais l'imagerie : l'interface ne montre ni décor d'hôtel, ni cinéma, ni enquête.\n\nLa densité est celle d'un outil de travail : corps de 14px, éléments de navigation de 40px, une seule famille (Geist). La profondeur vient de quatre paliers de noir et de filets blancs translucides ; une seule ombre existe, pour ce qui flotte. Le rouge a trois rôles : agir (l'aplat du bouton principal, le focus des champs), situer (l'icône de l'élément actif), alerter (erreurs, baisses, déconnexion) ; il signe aussi la marque. Le texte et la structure sont blancs ou gris ; les données, elles, prennent un seul bleu en quatre nuances, et seulement dans les graphiques : puisque le rouge est réservé à l'action, les chiffres tracés ne peuvent pas le porter. Le mouvement est bref et fonctionnel (150ms) et s'efface quand l'utilisateur demande moins d'animations.\n\nLe thème est unique et sombre, par choix de l'utilisateur (color-scheme: dark, aucun thème clair). Tokens et composants vivent dans packages/ui (@detectivescan/ui : bloc @theme Tailwind v4 dans styles.css, composants React) ; la seule surface construite à ce jour est l'espace hôtelier (apps/hotel) : connexion, navigation, dashboard, et QR codes & chambres (liste, fiche, import CSV, mode installation). Refus confirmés par le contrat de direction : le SaaS blanc générique à accent bleu, et le thème décoratif (cinéma, néon, jeu vidéo). La marque est provisoire : aucun logo officiel n'a été fourni.",
     "keyCharacteristics": [
       "Cadre noir absolu, contenu sur un noir à peine plus clair, panneaux et surfaces en deux paliers au-dessus.",
       "Un seul aplat rouge d'action par vue ; tout rouge en texte ou en icône passe au rouge lisible.",
       "Données en un seul bleu, quatre nuances ordonnées du scan à la victoire, jamais en dehors des graphiques.",
-      "Geist seul pour le texte, titres en 600–700 à interlettrage négatif, corps de 14px ; Geist Mono pour les seuls identifiants de QR code.",
+      "Geist seul pour le texte, titres en 600–700 à interlettrage négatif, corps de 14px ; Geist Mono pour les seuls codes : identifiants et adresses de QR, colonnes et fichiers CSV.",
       "Chiffres tabulaires partout où des nombres s'alignent.",
       "Plat au repos : filets à 8% et 14% de blanc, shadow-pop pour les seuls calques flottants.",
       "Rayons de 6, 10 et 14px, icônes Lucide au trait 1.75.",
-      "Navigation en trois formes : sidebar de 248px, rail de 72px, barre du bas à bouton central rouge.",
+      "Navigation en trois formes : sidebar de 248px, rail de 72px, barre du bas à bouton central rouge ; un écran plein, sans navigation, pour les tâches de terrain.",
+      "La fiche d'un objet s'ouvre dans un panneau latéral modal, par-dessus la liste qu'elle prolonge.",
       "Transitions de 150ms, coupées par prefers-reduced-motion."
     ],
     "rules": [
       {
         "name": "La règle du rouge réservé",
-        "body": "Hors marque, un seul aplat rouge par vue : celui de l'action principale (dans l'espace hôtelier, « Actions rapides » dès 768px, le bouton central en dessous). La deuxième action d'une vue prend la variante secondary, et une section à venir reste entièrement neutre.",
+        "body": "Hors marque, un seul aplat rouge par vue : celui de l'action principale (dans l'espace hôtelier, « Actions rapides » dès 768px, le bouton central en dessous). La deuxième action d'une vue prend la variante secondary, et une section à venir reste entièrement neutre. Un panneau modal ou un écran plein est une vue à part : il porte l'aplat de sa propre validation (« Ajouter le QR code », « Enregistrer », « Enregistrer la pose », « Scanner le QR suivant »), puisque la page derrière est inerte ou absente. Les actions d'une page de l'espace (« Mode installation », « Ajouter un QR code », « Importer N QR codes ») restent secondary : « Actions rapides » garde l'aplat.",
         "section": "colors"
       },
       {
@@ -635,7 +681,7 @@
       },
       {
         "name": "La règle de la famille unique",
-        "body": "Geist seul pour tout le texte, en 400, 500, 600 et 700 ; Geist Mono n'existe que pour les identifiants de QR code, qui sont des codes. Titres en 600–700 avec un interlettrage de -0.01em à -0.02em, texte courant sans interlettrage, text-wrap: balance sur h1–h3.",
+        "body": "Geist seul pour tout le texte, en 400, 500, 600 et 700 ; Geist Mono n'existe que pour les codes : identifiants et adresses de QR, colonnes et fichiers CSV. Titres en 600–700 avec un interlettrage de -0.01em à -0.02em, texte courant sans interlettrage, text-wrap: balance sur h1–h3.",
         "section": "typography"
       },
       {
@@ -675,7 +721,7 @@
       }
     ],
     "dos": [
-      "Réserver l'aplat red (#e50914) à une seule action principale par vue, hors marque ; la deuxième action prend la variante secondary.",
+      "Réserver l'aplat red (#e50914) à une seule action principale par vue, hors marque ; la deuxième action prend la variante secondary. Un panneau modal ou un écran plein porte l'aplat de sa propre validation.",
       "Écrire tout rouge de texte, d'icône ou de bordure d'erreur en red-text (#ff4d55).",
       "Tracer les données avec le seul bleu viz-1 à viz-4, dans l'ordre du parcours (scans, parties commencées, terminées, gagnées), sur le fond surface du panneau.",
       "Accompagner chaque graphique d'une légende (dès deux séries), d'une info-bulle au survol comme au clavier, et d'une vue tableau.",
@@ -686,6 +732,8 @@
       "Séparer les zones par un palier de noir et un filet (line à 8%, line-strong à 14%), pas par une ombre.",
       "Poser les icônes Lucide au trait 1.75, en aria-hidden.",
       "Tenir les transitions d'état à 150ms (200ms pour les rotations de chevron et de « + » et pour l'atténuation d'un changement de période) et laisser prefers-reduced-motion les couper.",
+      "Afficher toutes les erreurs d'un formulaire à la fois, et porter le focus sur la première.",
+      "Saisir en 16px au moins dans un écran utilisé au téléphone.",
       "Garder chaque destination nommée à toutes les tailles : libellé visible (≥ 1280px), info-bulle au survol et au focus (rail), libellé court (barre du bas)."
     ],
     "donts": [
@@ -694,9 +742,9 @@
       "Ne pas employer le bleu des données pour un texte, un lien, une action ou un état, ni hors d'un graphique.",
       "Ne pas poser d'aplat de couleur sous une courbe, ni de deuxième axe vertical.",
       "Ne pas écrire de texte plus sombre que fg-3 (#8c8c8c).",
-      "Ne pas donner d'ombre à ce qui repose dans la page (champs, boutons en ligne, barres, panneaux) : shadow-pop est réservée aux popovers, aux info-bulles et au bouton central mobile.",
+      "Ne pas donner d'ombre à ce qui repose dans la page (champs, boutons en ligne, barres, panneaux) : shadow-pop est réservée aux popovers, aux info-bulles, au bouton central mobile, au panneau latéral et à la confirmation.",
       "Ne pas imbriquer un panneau dans un autre.",
-      "Ne pas introduire de thème clair, d'accent bleu pour les liens ou les actions, ni de famille de caractères autre que Geist (Geist Mono aux seuls identifiants).",
+      "Ne pas introduire de thème clair, d'accent bleu pour les liens ou les actions, ni de famille de caractères autre que Geist (Geist Mono aux seuls codes).",
       "Ne pas habiller l'interface d'un thème décoratif (cinéma, néon, jeu vidéo) : ni grain, ni lueur, ni texture, ni typographie fantaisie.",
       "Ne pas placer de sur-titre en capitales au-dessus d'un titre : les capitales espacées sont réservées aux libellés de groupe de la sidebar.",
       "Ne pas remplacer une icône par un caractère ou un emoji : toute icône est un SVG Lucide, la marque mise à part."

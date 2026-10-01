@@ -12,10 +12,10 @@ export function QuickActionsList({ hotelSlug, popoverId }: { hotelSlug: string; 
     <>
       <p className="px-3 pb-2 pt-1.5 text-[12px] font-semibold text-fg-3">Actions rapides</p>
       <ul className="grid gap-0.5">
-        {QUICK_ACTIONS.map(({ slug, title, detail, icon: Icon }) => (
+        {QUICK_ACTIONS.map(({ slug, path, title, detail, icon: Icon }) => (
           <li key={title}>
             <Link
-              href={sectionHref(hotelSlug, slug)}
+              href={path ? `${sectionHref(hotelSlug, slug)}/${path}` : sectionHref(hotelSlug, slug)}
               onClick={close}
               className="flex items-center gap-3 rounded-md p-2.5 transition-colors duration-150 hover:bg-white/8 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white"
             >

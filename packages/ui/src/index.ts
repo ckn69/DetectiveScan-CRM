@@ -6,4 +6,5 @@ export { Field, describedBy, type FieldProps } from "./field";
 export { Input, inputClasses, type InputProps } from "./input";
 export { Logo, LogoMark } from "./logo";
 export { PasswordInput } from "./password-input";
+export { Sheet } from "./sheet";
 export { Spinner } from "./spinner";

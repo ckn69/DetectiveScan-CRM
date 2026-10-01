@@ -26,11 +26,12 @@ La seule plateforme qui relie un QR code physique posé dans une chambre précis
 
 ## Operating Context
 
-- Modèle : **essai gratuit d'un mois, puis abonnement Stripe à 50 € par hôtel** (prix ajustable hôtel par hôtel ; Qonto s'ajoutera plus tard). HT/TTC, périodicité et engagement restent à confirmer.
+- Modèle : **essai gratuit d'un mois, puis abonnement Stripe à 50 € HT par hôtel** (Qonto s'ajoutera plus tard). Le prix se règle hôtel par hôtel depuis le back-office ; périodicité et engagement restent à confirmer.
+- **L'admin DetectiveScan peut tout modifier** depuis le back-office : prix, informations de l'hôtel, chambres, QR codes, comptes.
 - L'espace hôtelier est **réservé aux hôtels membres**. En fin d'essai sans paiement, l'équipe DetectiveScan **coupe les QR** de l'hôtel depuis le back-office ; le paiement les réactive.
 - Vente accompagnée : l'équipe crée l'hôtel, enregistre chambres et QR (saisie manuelle ou import CSV), installe, teste, puis invite l'hôtelier. Module **Onboarding clients** côté back-office.
-- Le jeu tourne déjà sur le site DetectiveScan (HTML statique sur Vercel, domaine personnalisé, code sur GitHub). La plateforme s'y branche par un **script** (scan, campagne 3 s, suivi des parties, avis) sans redirection.
-- Format d'identifiant QR connu : `01-254-00` (QR) associé à une chambre (ex. `12`).
+- Le jeu tourne déjà sur le site DetectiveScan (https://detectivescan.com/, HTML statique sur Vercel, code sur GitHub). La plateforme s'y branche par un **script** (scan, campagne 3 s, suivi des parties, avis) sans redirection.
+- **Chaque QR posé a sa propre URL** : c'est elle qui dit quelle chambre joue. Format d'identifiant connu : `01-254-00` (QR) associé à une chambre (ex. `12`).
 
 ## Capabilities and Constraints
 
@@ -39,7 +40,7 @@ La seule plateforme qui relie un QR code physique posé dans une chambre précis
 - Données joueurs pseudonymes par défaut ; nom/téléphone uniquement avec consentement, masqués pour le staff, purgés automatiquement (RGPD, hébergement UE).
 - Navigateurs cibles : Chrome, Safari, Firefox, Edge ; desktop, tablette, mobile. Pas d'application native.
 - MVP / V2 / V3 définis dans `docs/cadrage/index.html` (CRM, agenda, signature, coffre-fort en V2).
-- **Ouvert** : chaque QR posé a-t-il sa propre URL (nécessaire pour savoir quelle chambre joue) ; accès au dépôt GitHub du site du jeu ; tarif HT ou TTC.
+- **Ouvert** : forme exacte de l'URL d'un QR (un exemple réel suffit) ; dépôt GitHub du site du jeu à connecter à Claude (site et dépôt inaccessibles depuis l'environnement actuel) ; périodicité et engagement de l'abonnement.
 
 ## Brand Commitments
 

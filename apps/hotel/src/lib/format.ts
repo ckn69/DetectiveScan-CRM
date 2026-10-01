@@ -66,3 +66,23 @@ export function formatDayOfMonth(day: DayNumber): string {
 export function formatWeekday(day: DayNumber): string {
   return withFirst(WEEKDAY_DAY_MONTH.format(dateFromDay(day)));
 }
+
+const PARIS_DATE = new Intl.DateTimeFormat("fr-FR", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "Europe/Paris",
+});
+const PARIS_TIME = new Intl.DateTimeFormat("en-GB", {
+  hour: "2-digit",
+  minute: "2-digit",
+  hourCycle: "h23",
+  timeZone: "Europe/Paris",
+});
+
+/** « 14 mars 2026, 10 h 00 », à l'heure de l'hôtel. */
+export function formatDateTime(iso: string): string {
+  const date = new Date(iso);
+  const [hour = "0", minute = "00"] = PARIS_TIME.format(date).split(":");
+  return `${withFirst(PARIS_DATE.format(date))}, ${formatTime(Number(hour), Number(minute))}`;
+}

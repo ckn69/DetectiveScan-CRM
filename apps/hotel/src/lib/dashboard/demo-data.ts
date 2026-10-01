@@ -2,6 +2,7 @@ import { type DayNumber, dayFromIso, type LocalNow, weekday } from "../dates";
 import { DEMO_HOTEL } from "../demo";
 import { formatDay, formatHour, formatTime, formatWeekday, plural } from "../format";
 import type { Cutoff, DayRange, Period } from "./period";
+import type { QrActivity } from "../qr/types";
 import type { ChartPoint, DashboardData, GameStatus, RecentGame, RoomStat, Totals } from "./types";
 
 /*
@@ -125,6 +126,9 @@ const ROOMS: DemoRoom[] = (() => {
 
 const ROOM_WEIGHT_TOTAL = ROOMS.reduce((acc, room) => acc + room.weight, 0);
 
+/** Les 42 chambres de l'Hôtel Démo et leur QR code, dans l'ordre de pose. */
+export const DEMO_ROOMS: { room: string; qr: string }[] = ROOMS.map(({ room, qr }) => ({ room, qr }));
+
 function pickRoom(value: number): DemoRoom {
   let target = value * ROOM_WEIGHT_TOTAL;
   for (const room of ROOMS) {
@@ -133,6 +137,12 @@ function pickRoom(value: number): DemoRoom {
   }
   return ROOMS[ROOMS.length - 1] as DemoRoom;
 }
+
+/**
+ * L'incident de la démo : le QR de la chambre 3 s'est décollé le 22 septembre 2026 et personne
+ * ne l'a remplacé. Plus aucun scan dans cette chambre depuis ; la page QR codes le signale.
+ */
+const LOST_QR = { room: "3", since: dayFromIso("2026-09-22") ?? 0 } as const;
 
 // Noms fictifs, déjà masqués (longueur fixe : le masque ne trahit rien du nom).
 const CONSENTED_PLAYERS = ["J. D••••", "L. B••••", "S. R••••", "A. L••••", "T. G••••", "N. P••••"];
@@ -165,6 +175,7 @@ function dayLog(day: DayNumber): Scan[] {
     for (let index = 0; index < count; index++) {
       const key = [day, hour, index] as const;
       const room = pickRoom(noise(Salt.ScanRoom, ...key));
+      if (day >= LOST_QR.since && room.room === LOST_QR.room) continue;
       let game: Game | null = null;
       if (noise(Salt.Plays, ...key) < playRate * room.play) {
         const draw = noise(Salt.Outcome, ...key);
@@ -328,7 +339,7 @@ function topRooms({ from, to, cutoff }: DayRange, totals: Totals, limit = 6): Ro
     .slice(0, limit);
 }
 
-function whenLabel(day: DayNumber, minutes: number, now: LocalNow): string {
+export function whenLabel(day: DayNumber, minutes: number, now: LocalNow): string {
   const time = formatTime(Math.floor(minutes / 60), minutes % 60);
   if (day === now.day) return time;
   if (day === now.day - 1) return `Hier · ${time}`;
@@ -381,4 +392,42 @@ export function getDemoDashboard(period: Period, now: LocalNow): DashboardData {
     topRooms: topRooms(period.range, totals),
     recentGames: recentGames(period.range, now),
   };
+}
+
+/** Activité de chaque QR sur les 30 derniers jours, jusqu'à maintenant (page QR codes & chambres). */
+export function demoQrActivity(now: LocalNow): Record<string, QrActivity> {
+  const range: DayRange = { from: now.day - 29, to: now.day, cutoff: { hour: now.hour, minute: now.minute } };
+  const totals = rangeTotals(range);
+  const hotelRate = totals.visitors > 0 ? totals.players / totals.visitors : null;
+  const hotelGamesPerScan = totals.scans > 0 ? totals.started / totals.scans : 0;
+  const quietBefore = (now.day - 7) * 1440 + now.hour * 60 + now.minute;
+
+  const byQr = new Map<string, { scans: number; games: number; last: number; day: DayNumber; minutes: number }>();
+  for (let day = range.from; day <= range.to; day++) {
+    for (const scan of scansOf(day, day === range.to ? range.cutoff : null)) {
+      const stat = byQr.get(scan.room.qr) ?? { scans: 0, games: 0, last: -1, day, minutes: 0 };
+      stat.scans += 1;
+      if (scan.game) stat.games += 1;
+      const at = day * 1440 + scan.minutes;
+      if (at > stat.last) Object.assign(stat, { last: at, day, minutes: scan.minutes });
+      byQr.set(scan.room.qr, stat);
+    }
+  }
+
+  return Object.fromEntries(
+    ROOMS.map(({ qr }) => {
+      const stat = byQr.get(qr);
+      const participation =
+        !stat || hotelRate === null || hotelGamesPerScan === 0 || stat.scans < 5
+          ? null
+          : Math.min(1, (hotelRate * stat.games) / stat.scans / hotelGamesPerScan);
+      const activity: QrActivity = {
+        scans: stat?.scans ?? 0,
+        participation,
+        lastScan: stat ? { label: whenLabel(stat.day, stat.minutes, now), sort: stat.last } : null,
+        quiet: !stat || stat.last < quietBefore,
+      };
+      return [qr, activity];
+    }),
+  );
 }

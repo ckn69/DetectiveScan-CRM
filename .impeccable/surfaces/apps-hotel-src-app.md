@@ -20,7 +20,8 @@ Sortie standard choisie par l'utilisateur : dashboard SaaS classique en noir et 
 
 ## Décisions ouvertes
 - Logo officiel DetectiveScan non fourni : marque provisoire.
-- Recherche globale (QR, chambre) : livrée avec la section QR codes.
+- Recherche par QR ou par chambre : livrée dans la section QR codes (étape 3). Une recherche globale dans la barre haute reste possible plus tard.
+- Format réel des adresses encodées dans les QR : inconnu (modèle provisoire `https://detectivescan.com/?qr={id}`, réglable par hôtel dans le back-office).
 
 ## Direction contract
 THESIS: Un dashboard SaaS classique joué droit, au niveau de Linear et Stripe, dans une palette noire inspirée de Netflix. Il refuse le SaaS blanc générique à accent bleu comme le thème décoratif (cinéma, néon, jeu vidéo).

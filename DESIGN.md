@@ -47,6 +47,12 @@ typography:
     fontWeight: 600
     lineHeight: 1.25
     letterSpacing: "-0.01em"
+  page-title-mobile:
+    fontFamily: "Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+    fontSize: "17px"
+    fontWeight: 600
+    lineHeight: 1.25
+    letterSpacing: "-0.01em"
   panel-title:
     fontFamily: "Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
     fontSize: "15px"
@@ -61,6 +67,11 @@ typography:
   body:
     fontFamily: "Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
     fontSize: "14px"
+    fontWeight: 400
+    lineHeight: 1.5
+  input-touch:
+    fontFamily: "Geist, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+    fontSize: "16px"
     fontWeight: 400
     lineHeight: 1.5
   button:
@@ -295,6 +306,28 @@ components:
     backgroundColor: "rgb(20 20 20 / 0.70)"
     textColor: "{colors.fg-2}"
     padding: "10px 32px"
+  sheet:
+    backgroundColor: "{colors.raised}"
+    width: "440px"
+  toast:
+    backgroundColor: "{colors.raised}"
+    textColor: "{colors.fg}"
+    rounded: "{rounded.md}"
+    padding: "12px 16px"
+  input-touch:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.fg}"
+    typography: "{typography.input-touch}"
+    rounded: "{rounded.sm}"
+    height: "48px"
+    padding: "0 14px"
+  dropzone:
+    backgroundColor: "{colors.surface}"
+    rounded: "{rounded.md}"
+    padding: "40px 24px"
+  scanner:
+    backgroundColor: "{colors.chrome}"
+    rounded: "{rounded.md}"
 ---
 
 # Design System: DetectiveScan
@@ -307,17 +340,18 @@ DetectiveScan est un dashboard SaaS classique, joué droit, au niveau de finitio
 
 La densité est celle d'un outil de travail : corps de 14px, éléments de navigation de 40px, une seule famille (Geist). La profondeur vient de quatre paliers de noir et de filets blancs translucides ; une seule ombre existe, pour ce qui flotte. Le rouge a trois rôles : agir (l'aplat du bouton principal, le focus des champs), situer (l'icône de l'élément actif), alerter (erreurs, baisses, déconnexion) ; il signe aussi la marque. Le texte et la structure sont blancs ou gris ; les données, elles, prennent un seul bleu en quatre nuances, et seulement dans les graphiques : puisque le rouge est réservé à l'action, les chiffres tracés ne peuvent pas le porter. Le mouvement est bref et fonctionnel (150ms) et s'efface quand l'utilisateur demande moins d'animations.
 
-Le thème est unique et sombre, par choix de l'utilisateur (`color-scheme: dark`, aucun thème clair). Tokens et composants vivent dans `packages/ui` (`@detectivescan/ui` : bloc `@theme` Tailwind v4 dans `styles.css`, composants React) ; la seule surface construite à ce jour est l'espace hôtelier (`apps/hotel`) : connexion, navigation et dashboard. Refus confirmés par le contrat de direction : le SaaS blanc générique à accent bleu, et le thème décoratif (cinéma, néon, jeu vidéo). La marque est provisoire : aucun logo officiel n'a été fourni.
+Le thème est unique et sombre, par choix de l'utilisateur (`color-scheme: dark`, aucun thème clair). Tokens et composants vivent dans `packages/ui` (`@detectivescan/ui` : bloc `@theme` Tailwind v4 dans `styles.css`, composants React) ; la seule surface construite à ce jour est l'espace hôtelier (`apps/hotel`) : connexion, navigation, dashboard, et QR codes & chambres (liste, fiche, import CSV, mode installation). Refus confirmés par le contrat de direction : le SaaS blanc générique à accent bleu, et le thème décoratif (cinéma, néon, jeu vidéo). La marque est provisoire : aucun logo officiel n'a été fourni.
 
 **Key Characteristics:**
 - Cadre noir absolu, contenu sur un noir à peine plus clair, panneaux et surfaces en deux paliers au-dessus.
 - Un seul aplat rouge d'action par vue ; tout rouge en texte ou en icône passe au rouge lisible.
 - Données en un seul bleu, quatre nuances ordonnées du scan à la victoire, jamais en dehors des graphiques.
-- Geist seul pour le texte, titres en 600–700 à interlettrage négatif, corps de 14px ; Geist Mono pour les seuls identifiants de QR code.
+- Geist seul pour le texte, titres en 600–700 à interlettrage négatif, corps de 14px ; Geist Mono pour les seuls codes : identifiants et adresses de QR, colonnes et fichiers CSV.
 - Chiffres tabulaires partout où des nombres s'alignent.
 - Plat au repos : filets à 8% et 14% de blanc, `shadow-pop` pour les seuls calques flottants.
 - Rayons de 6, 10 et 14px, icônes Lucide au trait 1.75.
-- Navigation en trois formes : sidebar de 248px, rail de 72px, barre du bas à bouton central rouge.
+- Navigation en trois formes : sidebar de 248px, rail de 72px, barre du bas à bouton central rouge ; un écran plein, sans navigation, pour les tâches de terrain.
+- La fiche d'un objet s'ouvre dans un panneau latéral modal, par-dessus la liste qu'elle prolonge.
 - Transitions de 150ms, coupées par `prefers-reduced-motion`.
 
 ## Colors
@@ -328,7 +362,7 @@ Un noir en quatre paliers, deux gris de texte, un rouge qui ne sert qu'à agir, 
 - **Rouge DetectiveScan** (#e50914, `red`) : aplat du bouton d'action principale (« Se connecter », « Envoyer le lien », « Actions rapides », bouton central mobile) et fond de la marque. Sert aussi de bordure de focus des champs (avec un halo `rgb(229 9 20 / 0.35)` de 3px), de curseur de saisie (`caret-color`) et, à 55%, de fond de sélection de texte. Texte blanc dessus : 4.79:1.
 - **Rouge survol** (#c8070f, `red-hover`) : bouton principal au survol (texte blanc 6.01:1).
 - **Rouge pressé** (#a8060d, `red-press`) : bouton principal au clic, et bouton central mobile tant que ses actions sont ouvertes (texte blanc 7.79:1).
-- **Rouge lisible** (#ff4d55, `red-text`) : tout rouge porté par un trait fin : icône de l'élément de navigation actif, bordure et message d'erreur, « Se déconnecter », variante `danger`, badge rouge, évolution en baisse d'un chiffre clé, pouce baissé d'un avis. 6.08:1 sur `canvas`, 5.23:1 sur `raised`.
+- **Rouge lisible** (#ff4d55, `red-text`) : tout rouge porté par un trait fin : icône de l'élément de navigation actif, bordure et message d'erreur, « Se déconnecter », variante `danger` (« Supprimer »), badge rouge, évolution en baisse d'un chiffre clé, pouce baissé d'un avis, ligne en erreur d'un import. 6.08:1 sur `canvas`, 5.23:1 sur `raised`.
 - **Voile rouge** (`rgb(229 9 20 / 0.14)`, `red-soft`) : fond de l'alerte de formulaire, du badge rouge et du survol `danger`, toujours sous du blanc ou du `red-text`.
 
 ### Secondary
@@ -353,10 +387,10 @@ Un noir en quatre paliers, deux gris de texte, un rouge qui ne sert qu'à agir, 
 Les états interactifs posent un voile blanc (`rgb(255 255 255 / x)`) plutôt qu'un nouveau gris : 5% (survol de la navigation et du contrôle de période), 6% (tuiles d'icône, squelette, survol du déclencheur de compte), 8% (badge neutre, tuiles d'actions rapides, survol des menus et du bouton `ghost`), 9% (élément actif de la navigation et du contrôle de période, cloche active), 10%, 16% et 22% (bouton secondaire au repos, au survol, au clic), 25% (bordure de champ au survol, réticule du graphique). La barre de défilement est fine, curseur #333333 sur piste transparente.
 
 ### Status
-- **Vert validé** (#46d369, `success`) et **Ambre** (#f5a524, `warning`) : tons du `Badge` (fond à 12%, texte plein : partie « Gagnée » en vert, « Abandonnée » en ambre) ; en trait, évolution en hausse d'un chiffre clé (vert, flèche montante), pouce levé d'un avis (vert), icône du bandeau de période refusée (ambre). Toujours avec une icône ou un libellé : jamais la couleur seule. `--color-info` (#6ea8ff) est déclaré dans `styles.css` mais aucun composant ne l'emploie : il n'est pas repris ici.
+- **Vert validé** (#46d369, `success`) et **Ambre** (#f5a524, `warning`) : tons du `Badge` (fond à 12%, texte plein : partie « Gagnée » en vert, « Abandonnée » en ambre) ; en trait, évolution en hausse d'un chiffre clé (vert, flèche montante), pouce levé d'un avis (vert), icône du bandeau de période refusée (ambre). Statut d'un QR : « Posé » est une pastille `success` de 6px suivie du libellé (l'état normal reste discret), « À poser » un badge alerte, « Désactivé » un badge neutre ; un QR posé sans scan depuis 7 jours passe son dernier scan en `warning`, précédé d'une icône d'alerte. Une confirmation porte une icône `success`. Toujours avec une icône ou un libellé : jamais la couleur seule. `--color-info` (#6ea8ff) est déclaré dans `styles.css` mais aucun composant ne l'emploie : il n'est pas repris ici.
 
 ### Named Rules
-**La règle du rouge réservé.** Hors marque, un seul aplat rouge par vue : celui de l'action principale (dans l'espace hôtelier, « Actions rapides » dès 768px, le bouton central en dessous). La deuxième action d'une vue prend la variante `secondary`, et une section à venir reste entièrement neutre.
+**La règle du rouge réservé.** Hors marque, un seul aplat rouge par vue : celui de l'action principale (dans l'espace hôtelier, « Actions rapides » dès 768px, le bouton central en dessous). La deuxième action d'une vue prend la variante `secondary`, et une section à venir reste entièrement neutre. Un panneau modal ou un écran plein est une vue à part : il porte l'aplat de sa propre validation (« Ajouter le QR code », « Enregistrer », « Enregistrer la pose », « Scanner le QR suivant »), puisque la page derrière est inerte ou absente. Les actions d'une page de l'espace (« Mode installation », « Ajouter un QR code », « Importer N QR codes ») restent `secondary` : « Actions rapides » garde l'aplat.
 
 **La règle du rouge lisible.** Le rouge en texte, en icône ou en bordure d'erreur est toujours `red-text` (#ff4d55). `red` (#e50914) ne tient que 4.13:1 sur `canvas` : il reste un fond.
 
@@ -368,7 +402,7 @@ Les états interactifs posent un voile blanc (`rgb(255 255 255 / x)`) plutôt qu
 
 **Display Font:** Geist (paquet `geist`, chargé par `next/font/local`, fonte variable 100–900 exposée en `--font-geist-sans`), avec ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif
 **Body Font:** Geist, même pile
-**Label/Mono Font:** Geist Mono (`--font-mono`), réservée aux identifiants de QR code (`01-254-00`) : 12.5px dans les tableaux, 12px dans la liste mobile.
+**Label/Mono Font:** Geist Mono (`--font-mono`), réservée aux codes : identifiants de QR (`01-254-00`, 12.5px dans les tableaux et les listes, 12px dans la liste mobile du dashboard, 14px dans un titre de formulaire, à la taille du titre ailleurs), adresses encodées dans les QR, noms des colonnes et du fichier CSV.
 
 **Character:** Une grotesque technique, nette et neutre, qui laisse le noir et le rouge porter l'identité. La hiérarchie tient au poids et à l'interlettrage négatif des titres, jamais à une seconde voix.
 
@@ -376,9 +410,10 @@ Les états interactifs posent un voile blanc (`rgb(255 255 255 / x)`) plutôt qu
 - **Headline** (700, 28px, 1.25, -0.02em) : titre des écrans d'accès et d'erreur (« Connexion », « Mot de passe oublié », « Demande enregistrée », « Page introuvable »).
 - **Metric** (600, 28px, 1, -0.02em) : valeur d'un chiffre clé (« 1 238 », « 61 % »), en chiffres proportionnels.
 - **Title** (600, 22px, 1.375, -0.015em) : titre de contenu d'une section, limité à 34ch.
-- **Page title** (600, 20px dès 768px et 17px en dessous, 1.25, -0.01em) : titre de page dans la barre haute, sur une seule ligne tronquée.
-- **Panel title** (600, 15px, 1.375, -0.01em) : titre d'un panneau du dashboard (« Scans et parties commencées », « Du scan à la victoire »), suivi d'une précision en 12.5px `fg-3`.
+- **Page title** (600, 20px dès 768px et 17px en dessous, 1.25, -0.01em) : titre de page dans la barre haute, sur une seule ligne tronquée ; titre d'une fiche en panneau latéral (la chambre, « Chambre 12 »), en 20px. Le titre de l'écran plein (« Mode installation ») garde 17px à toutes les tailles.
+- **Panel title** (600, 15px, 1.375, -0.01em) : titre d'un panneau du dashboard (« Scans et parties commencées », « Du scan à la victoire »), suivi d'une précision en 12.5px `fg-3` ; titre d'un formulaire en panneau latéral (« Ajouter un QR code ») et d'un bloc de page (« Format du fichier »).
 - **Body large** (400, 15px, 1.5 à 1.625) : texte d'introduction des écrans d'accès, texte saisi dans les champs ; les boutons `lg` sont en 15px/600.
+- **Input touch** (400, 16px, 1.5) : texte saisi dans les champs de l'écran plein, utilisé au téléphone : sous 16px, Safari sur iPhone agrandit la page au focus.
 - **Body** (400, 14px, 1.5) : corps de base de `body`, listes de contenu, champs de date ; 14px/600 pour les boutons `md`, les titres d'actions rapides et les valeurs de l'entonnoir, 14px/500 pour le titre d'une ligne de la liste mobile.
 - **Nav** (500, 13.5px) : éléments de la sidebar et du menu du compte ; 13.5px/400 pour l'alerte de formulaire et le bandeau d'information ; 13.5px pour les cellules de tableau et les valeurs des sous-indicateurs (500).
 - **Label** (500, 13px) : libellés de champ, libellés de chiffre clé, contrôle de période ; en 400 pour les aides, les erreurs, les liens secondaires, les notes, la phrase de période et les étapes de l'entonnoir ; les boutons `sm` sont en 13px/600.
@@ -391,7 +426,7 @@ Le mot-symbole « DetectiveScan » est en 700, 17px (16px dans la sidebar), -0.0
 Les nombres suivent l'usage français : espace fine insécable pour les milliers et avant « % », virgule décimale, signe moins typographique (−), « 1er » pour le premier du mois, heures en « 21 h 42 ».
 
 ### Named Rules
-**La règle de la famille unique.** Geist seul pour tout le texte, en 400, 500, 600 et 700 ; Geist Mono n'existe que pour les identifiants de QR code, qui sont des codes. Titres en 600–700 avec un interlettrage de -0.01em à -0.02em, texte courant sans interlettrage, `text-wrap: balance` sur h1–h3.
+**La règle de la famille unique.** Geist seul pour tout le texte, en 400, 500, 600 et 700 ; Geist Mono n'existe que pour les codes : identifiants et adresses de QR, colonnes et fichiers CSV. Titres en 600–700 avec un interlettrage de -0.01em à -0.02em, texte courant sans interlettrage, `text-wrap: balance` sur h1–h3.
 
 **La règle de la capitale rare.** Les capitales espacées n'existent que pour les libellés de groupe de la sidebar. Aucun sur-titre en capitales au-dessus d'un titre.
 
@@ -411,11 +446,16 @@ Gabarits :
 - **Contenu** : marges latérales de 16px puis 32px, 8px en haut, 112px en bas sous 768px (pour dégager la barre du bas) puis 48px.
 - **Colonne de lecture** : 640px au maximum, centrée, 32px puis 56px de marge verticale, 28px entre les blocs.
 - **Écrans d'accès** : page `chrome`, colonne de 400px de contenu (432px avec ses marges de 16px) centrée horizontalement et ancrée en haut (56px, puis 14vh dès 640px) pour que le titre ne bouge pas quand une erreur apparaît ; marque en haut, mention légale en bas.
+Les pages d'un hôtel se rangent en deux groupes de routes : `(shell)`, avec la navigation complète, et `(focus)`, en plein écran.
+
 - **Dashboard** : 1600px de large au plus, calé à gauche, 16px puis 24px de marge verticale, 16px puis 20px entre les rangées. Dans l'ordre : le filtre de période, les quatre chiffres clés (deux colonnes, quatre dès 1024px, 12px puis 16px d'écart), les quatre panneaux, les définitions. Panneaux : une colonne ; de 1024 à 1279px, la courbe en pleine largeur, l'entonnoir et les chambres côte à côte, les dernières parties en pleine largeur ; dès 1280px, une grille de 12 colonnes : courbe (8) et entonnoir (4), puis chambres (5) et dernières parties (7).
+- **QR codes & chambres** : même largeur et mêmes marges que le dashboard. Une rangée de tête (la couverture à gauche, les trois actions à droite ; sous 640px, « Mode installation » en pleine largeur puis les deux autres côte à côte), une rangée de recherche (288px dès 640px) et de filtre de statut, le bandeau d'alerte éventuel, la liste, puis la note de démo.
+- **Page de tâche** (import CSV) : 880px au plus, lien retour, titre de 22px, introduction limitée à 62ch, 24px entre les blocs.
+- **Écran plein** (`(focus)`, mode installation) : aucune navigation ; barre collante de 56px (bouton de sortie × de 40px, titre de 17px, ligne d'état 12px `fg-3`), bandeau démo, puis une colonne de 520px centrée, marges de 16px, 20px en haut et 32px plus la zone sûre en bas.
 
 **Rythme.** Base de 4px (`--spacing: 0.25rem` de Tailwind v4). Pas récurrents : 2px entre les éléments d'une liste (navigation, menus, contrôle de période), 8px entre un libellé et son champ, 12px entre une icône et son texte, 20px entre deux champs et entre deux étapes de l'entonnoir, 28 à 32px entre les blocs d'un écran. Cibles : 32px (contrôle de période, bouton `sm`), 40px (navigation, menus, bouton `md`, champs de date), 44px (champs, bouton d'affichage du mot de passe), 48px (bouton `lg`), 52px (bouton central), 64px (onglets mobiles).
 
-**Empilement.** Barre haute `z-30`, barre du bas `z-40`, popovers, info-bulles et lien d'évitement `z-50` ; l'info-bulle du graphique `z-10`, au-dessus du tracé. Zones sûres gérées (`viewport-fit=cover`) en haut, en bas et sous le popover mobile.
+**Empilement.** Barre haute `z-30`, barre du bas `z-40`, popovers, info-bulles et lien d'évitement `z-50` ; l'info-bulle du graphique `z-10`, au-dessus du tracé. Le panneau latéral (`<dialog>` modal) vit dans la couche supérieure du navigateur, au-dessus de tout, avec sa propre confirmation ; la confirmation de page est en `z-50`. Zones sûres gérées (`viewport-fit=cover`) en haut, en bas et sous le popover mobile.
 
 ### Named Rules
 **La règle du libellé jamais perdu.** Dans le rail, chaque libellé reste dans le DOM (`sr-only`) et réapparaît en info-bulle au survol comme au focus clavier ; les libellés de groupe y deviennent un filet centré de 32px. Même principe pour le contrôle de période sous 640px : « 7 j » et l'icône de calendrier à l'écran, « 7 jours » et « Personnalisé » pour les lecteurs d'écran.
@@ -429,9 +469,9 @@ Gabarits :
 La profondeur est tonale : quatre paliers de noir, du cadre au flottant, `chrome` (#000000), `canvas` (#0a0a0a), `surface` (#141414), `raised` (#1c1c1c). Le cadre est plus sombre que la page : la navigation recule, le contenu avance, et les panneaux du dashboard reposent sur `surface` avec un filet. Les états interactifs ajoutent un voile blanc translucide, et les zones se séparent par des filets de 1px. Une seule ombre existe, et elle marque ce qui flotte.
 
 ### Shadow Vocabulary
-- **Pop** (`box-shadow: 0 18px 44px -12px rgb(0 0 0 / 0.85), 0 2px 10px rgb(0 0 0 / 0.55)`, `shadow-pop`) : popover d'actions rapides, menu du compte, info-bulles du rail et du graphique, bouton central mobile. Rien d'autre.
+- **Pop** (`box-shadow: 0 18px 44px -12px rgb(0 0 0 / 0.85), 0 2px 10px rgb(0 0 0 / 0.55)`, `shadow-pop`) : popover d'actions rapides, menu du compte, info-bulles du rail et du graphique, bouton central mobile, panneau latéral, confirmation. Rien d'autre.
 
-Les calques flottants sont des popovers natifs (`popover="auto"` : fermeture au clic extérieur et sur Échap). Ils entrent par un fondu et une montée de 4px en 150ms, courbe `ease-out-quint` (`cubic-bezier(0.22, 1, 0.36, 1)`), via `@starting-style` (classe `ds-popover`).
+Les calques flottants sont des popovers natifs (`popover="auto"` : fermeture au clic extérieur et sur Échap). Ils entrent par un fondu et une montée de 4px en 150ms, courbe `ease-out-quint` (`cubic-bezier(0.22, 1, 0.36, 1)`), via `@starting-style` (classe `ds-popover`). Le panneau latéral glisse depuis la droite en 220ms, même courbe, sur un voile noir à 60% qui apparaît en fondu (`ds-sheet`) ; la page derrière ne défile plus. La confirmation entre par le fondu et la montée de 4px des popovers, en 150ms (`ds-enter`).
 
 ### Named Rules
 **La règle de l'ombre unique.** `shadow-pop` est réservée à ce qui flotte au-dessus du contenu. Champs, boutons en ligne, barres, panneaux et chiffres clés restent plats : au repos, la profondeur vient du palier de noir et du filet.
@@ -441,9 +481,11 @@ Les calques flottants sont des popovers natifs (`popover="auto"` : fermeture au 
 Des rectangles aux angles adoucis, des bordures de 1px, aucune découpe ni silhouette oblique.
 
 - **6px (`rounded-sm`)** : contrôles en ligne (boutons, champs, champs de date, éléments de navigation, de menu et du contrôle de période), info-bulles du rail, liens texte au focus, lien d'évitement, lignes du squelette.
-- **10px (`rounded-md`)** : panneaux et chiffres clés du dashboard, cadre du contrôle de période, info-bulle du graphique, bandeau d'information, avatars de 32 à 36px, tuiles d'icône de 40 à 48px, cloche, lignes d'actions rapides, menu du compte, déclencheur du compte, alerte de formulaire.
+- **10px (`rounded-md`)** : panneaux et chiffres clés du dashboard, cadre du contrôle de période, info-bulle du graphique, bandeau d'information, avatars de 32 à 36px, tuiles d'icône de 40 à 48px, cloche, lignes d'actions rapides, menu du compte, déclencheur du compte, alerte de formulaire, confirmation, zone de dépôt, cadre du lecteur de QR.
 - **14px (`rounded-lg`)** : grandes pièces flottantes : popover d'actions rapides, bouton central mobile.
-- **Pilule (`rounded-full`)** : badges, pastilles et traits de légende, et avatar de l'utilisateur dans la barre haute mobile.
+- **Pilule (`rounded-full`)** : badges, pastilles et traits de légende, pastille de statut d'un QR, et avatar de l'utilisateur dans la barre haute mobile.
+
+Le panneau latéral n'a pas de coins : il tient toute la hauteur de l'écran, bord gauche en filet `line-strong`.
 
 Champs, panneaux, popovers, info-bulles, cloche et bandeau d'information portent une vraie bordure de 1px ; avatars, tuiles d'icône et variante `danger` portent un anneau inset de 1px (`ring-inset`). La marque est un carré rouge de 32px aux coins de 7px portant une loupe blanche dont la lentille contient deux modules de QR code ; elle sert aussi de favicon.
 
@@ -457,9 +499,9 @@ Nets et compacts : aplat, poids 600, aucun relief.
 - **Shape:** coins de 6px (`rounded-sm`), icône et libellé espacés de 8px, jamais de retour à la ligne.
 - **Sizes:** `sm` 32px de haut, marges de 12px, 13px, icônes de 16px ; `md` 40px, 16px, 14px, icônes de 18px ; `lg` 48px, 20px, 15px, icônes de 20px (boutons pleine largeur des écrans d'accès).
 - **Primary:** aplat `red`, texte blanc ; survol `red-hover` ; clic `red-press` et descente de 1px.
-- **Secondary:** voile blanc de 10% (16% au survol, 22% au clic), texte `fg` ; la deuxième action d'une vue (« Explorer la démo », « Retour à la connexion », « Gérer les QR codes », « Appliquer »).
-- **Ghost:** transparent, texte `fg-2` ; voile de 8% et texte `fg` au survol, 12% au clic. En usage : la bascule « Tableau » / « Graphique » d'un panneau (`sm`).
-- **Danger:** transparent, texte `red-text`, anneau inset de 1px en `red-text` à 40%, `red-soft` au survol et au clic. Disponible, pas encore employé ; « Se déconnecter » applique le même `red-text` dans le menu du compte.
+- **Secondary:** voile blanc de 10% (16% au survol, 22% au clic), texte `fg` ; la deuxième action d'une vue (« Explorer la démo », « Retour à la connexion », « Gérer les QR codes », « Appliquer »), et les actions d'une page quand l'aplat est déjà pris (« Mode installation », « Ajouter un QR code », « Importer N QR codes », « Modifier », « Activer la caméra »).
+- **Ghost:** transparent, texte `fg-2` ; voile de 8% et texte `fg` au survol, 12% au clic. En usage : la bascule « Tableau » / « Graphique » d'un panneau (`sm`), « Importer un CSV », « Annuler », « Désactiver » et « Réactiver », « Changer de fichier », « Télécharger le modèle ».
+- **Danger:** transparent, texte `red-text`, anneau inset de 1px en `red-text` à 40%, `red-soft` au survol et au clic. En usage : « Supprimer » dans la fiche d'un QR, calé à droite du pied, puis confirmé en ligne (phrase et second « Supprimer ») ; « Se déconnecter » applique le même `red-text` dans le menu du compte.
 - **Hover / Focus:** fond, couleur, ombre et position en 150ms `ease-out` (`cubic-bezier(0, 0, 0.2, 1)`) ; focus clavier en contour blanc de 2px décalé de 2px.
 - **Disabled / Loading:** opacité de 45%, sans pointeur. En chargement : `aria-busy`, spinner (rotation de 1s, linéaire) avant le libellé, libellé suivi de points de suspension (« Connexion… », « Envoi… », « Ouverture… », « Chargement… »).
 - **Lien en bouton:** `buttonClasses({ variant, size })` habille un `<Link>` (« Revenir à l'accueil », « Retour à la connexion », « Gérer les QR codes »).
@@ -467,7 +509,7 @@ Nets et compacts : aplat, poids 600, aucun relief.
 
 ### Chips
 - **Style:** badge en pilule de 24px, marges de 10px, 12px/500, sans bordure. Tons : neutre (voile de 8% et `fg-2`), rouge (`red-soft` et `red-text`), succès (`success` à 12% et `success`), alerte (`warning` à 12% et `warning`).
-- **State:** étiquette statique, jamais cliquable. En usage : neutre, « Prévu à l'étape N » ; statut d'une partie : « En cours » (neutre, précédé d'une pastille de 6px `fg-2`), « Gagnée » (succès), « Perdue » (neutre), « Abandonnée » (alerte). Le libellé porte le sens, le ton le renforce.
+- **State:** étiquette statique, jamais cliquable. En usage : neutre, « Prévu à l'étape N » ; statut d'une partie : « En cours » (neutre, précédé d'une pastille de 6px `fg-2`), « Gagnée » (succès), « Perdue » (neutre), « Abandonnée » (alerte) ; statut d'un QR : « À poser » (alerte), « Désactivé » (neutre), « Posé » en simple pastille. Résumé d'un import : « 3 à ajouter » (succès), « à mettre à jour » et « déjà à jour » (neutre), « en erreur » (rouge). Le libellé porte le sens, le ton le renforce.
 
 ### Cards / Containers
 - **Panneau** (`Card` de `@detectivescan/ui`) : fond `surface`, filet `line` de 1px, coins de 10px, aucune ombre ; marge intérieure de 16px, 20px dès 768px. Jamais imbriqué dans un autre panneau : à l'intérieur, des filets, des listes et des tableaux.
@@ -485,6 +527,9 @@ Nets et compacts : aplat, poids 600, aucun relief.
 - **Error / Disabled:** `aria-invalid` passe la bordure en `red-text` (halo `red-text` à 30% au focus) ; le message s'affiche dessous en 13px `red-text` avec une icône d'alerte de 14px, relié par `aria-describedby`, et remplace l'aide. Désactivé : opacité de 50%, curseur interdit.
 - **Field:** grille de 8px : libellé 13px/500 `fg-2`, champ, puis aide 13px `fg-3` ou erreur. Les liens associés (« Mot de passe oublié ? ») se placent après le champ, jamais avant.
 - **Password:** bouton d'affichage de 44px dans le bord droit, icône œil de 18px `fg-3` puis `fg` au survol, `aria-pressed`, focus en contour blanc inset.
+- **Recherche:** champ de 40px, loupe de 16px `fg-3` à 14px du bord, texte 14px, placeholder « QR code ou chambre » ; sans bouton d'effacement natif.
+- **Champ tactile** (écran plein) : 48px, texte 16px, mêmes bordure, survol et focus. Avec des suggestions (`datalist`), la flèche native est atténuée à 40%, ici comme dans le panneau latéral.
+- **Formulaire:** à la validation, toutes les erreurs s'affichent ensemble et le focus va au premier champ en erreur ; un avertissement non bloquant (chambre déjà équipée) s'écrit en 13px `fg-2` avec une icône `warning`. Case à cocher native de 16px, `accent-color` rouge.
 - **Date:** champ natif de 40px, 156px de large, marge de 12px, texte 14px en chiffres tabulaires, mêmes bordure, survol et focus que les champs ; libellé court en ligne (« Du », « au », 13px `fg-2`) ; icône du calendrier natif à 60%, pleine au survol. Les bornes (`min`, `max`) empêchent une période inversée, trop longue ou hors des données.
 
 ### Navigation
@@ -514,6 +559,33 @@ Le seul filtre du dashboard, en tête de page ; il porte sur tout ce qui suit.
 - **Tableaux:** 13.5px ; en-têtes 12px/500 `fg-3` ; lignes séparées par un filet `line`, marges verticales de 10px ; cellules de texte alignées sur la ligne de base ; en-tête de ligne en 500 `fg` (la chambre) ; identifiants de QR en Geist Mono 12.5px `fg-2` ; nombres alignés à droite, tabulaires ; note de bas de panneau en 12px `fg-3` (« Participation affichée à partir de 5 scans par chambre. »).
 - **Dernières parties:** tableau dès 768px (date, chambre, QR code, joueur, partie, avis) ; en dessous, une liste : « Chambre 12 » en 14px/500 suivi du QR en 12px `fg-3`, puis la date et le joueur en 12.5px `fg-3`, et à droite l'avis et le statut. Joueur : nom masqué de longueur fixe (« J. D•••• ») en `fg-2`, seulement avec son accord, sinon « Anonyme » en `fg-3`. Avis : pouce levé `success` ou baissé `red-text` de 16px, nommé pour les lecteurs d'écran ; sans réponse, un tiret dans le tableau, rien dans la liste. Note de confidentialité en 12px `fg-3` précédée d'un bouclier de 16px.
 
+### Panneau latéral
+- **Structure:** `Sheet` de `@detectivescan/ui`, un `<dialog>` modal natif : 440px à droite, pleine largeur sous 640px, `raised`, bord gauche `line-strong`, `shadow-pop`. En-tête (titre, ligne d'état, bouton « Fermer » de 36px), corps défilant (marges de 20px, blocs séparés par un filet `line` et 20px d'air), pied collé en bas (filet supérieur, marges de 16px et 20px, zone sûre).
+- **Comportement:** Échap, un clic sur le voile ou « Fermer » le referment. À l'ouverture, le focus va au champ marqué `data-autofocus`, sinon au titre ; à la fermeture, il revient à la ligne qui l'a ouvert. L'adresse porte la fiche ouverte (`?qr=01-254-00`).
+- **Fiche d'un QR:** titre 20px/600, la chambre (« Chambre 12 »), ou « QR 01-254-42 » sans chambre ; dessous, « QR 01-254-00 » en mono 12.5px `fg-2` et le statut. Blocs : adresse encodée (mono 12.5px `fg-2`, « Copier l'adresse » `secondary` `sm`, « Ouvrir » en lien `sm`), « 30 derniers jours » (scans, participation, dernier scan, en grille 0.8 / 1 / 1.7), historique du plus récent au plus ancien (action et chambre 13.5px `fg`, date et auteur 12px `fg-3`, note 12.5px `fg-2`). Pied : « Modifier » `secondary`, « Désactiver » ou « Réactiver » `ghost`, « Supprimer » `danger`.
+- **Formulaire:** titre 15px/600 ; champs à 20px d'écart ; l'adresse suit l'identifiant et le statut suit la chambre tant qu'on ne les a pas changés à la main ; statut en contrôle segmenté (radios). Pied : validation `primary`, « Annuler » `ghost`.
+
+### Confirmation
+- `Notice` : une zone `role="status"` toujours présente, pour que l'annonce soit lue. Message `raised`, bordure `line-strong`, coins de 10px, marges de 12px et 16px, 13.5px `fg`, icône `success` de 16px, `shadow-pop`, effacé après 4 secondes ou à l'ouverture d'une autre fiche. En bas à droite dès 768px, centré au-dessus de la barre du bas en dessous ; dans un panneau ouvert, au-dessus de son pied, puisque la page est alors inerte.
+
+### QR codes & chambres
+- **Rangée de tête:** la couverture en 14px `fg-2`, le nombre en 600 `fg` (« 42 chambres équipées sur 42 » ; sans « sur 42 » si l'hôtel en équipe plus qu'il n'en déclare) ; « Mode installation » et « Ajouter un QR code » `secondary`, « Importer un CSV » `ghost`.
+- **Filtre de statut:** le cadre du contrôle de période, en boutons `aria-pressed` : libellé et compte tabulaire en `fg-3` (« Posés 42 »).
+- **Bandeau d'alerte:** le bandeau d'information, quand des QR posés n'ont pas été scannés ces 7 derniers jours, avec « Voir ce QR » qui filtre la liste.
+- **Tableau (≥ 768px):** Chambre (en-tête de ligne, `fg-3` pour « Sans chambre »), QR code, Statut, Scans 30 j, Participation (dès 1024px), Dernier scan, chevron. En-têtes triables : bouton, flèche de 14px sur la colonne active, `aria-sort`. La ligne entière ouvre la fiche (voile de 5% au survol) ; la cellule de la chambre en est le bouton. À chambre égale, le QR posé passe avant celui qu'il a remplacé.
+- **Liste (< 768px):** chambre 14px/500 et statut, puis QR en mono, scans, et « sans scan depuis 7 j » en `warning` ; chevron.
+- **Vides:** recherche sans résultat (phrase et « Tout afficher » `secondary` `sm`) ; parc vide (titre 15px/600, texte, « Ajouter un QR code » et « Importer un CSV »).
+- **Démo:** « Démo : vos changements restent dans ce navigateur. » en 12.5px `fg-3`, et « Revenir au parc de départ ».
+
+### Import CSV
+- **Zone de dépôt:** le `label` du champ fichier, filet pointillé `line-strong` (blanc à 25% au survol ; `fg-2` et voile de 5% pendant un glisser), coins de 10px, marges de 40px et 24px, centrée : tuile d'icône de 48px, « Déposez le fichier ici, ou choisissez-le » 15px/600, règle 13px `fg-3` ; contour blanc au focus clavier.
+- **Format:** panneau avec « Télécharger le modèle » (`ghost` `sm`) et les colonnes en liste de définitions, noms en mono 12.5px.
+- **Vérification:** badges de résumé, puis une ligne par ligne du fichier : numéro tabulaire `fg-3`, QR en mono, chambre, résultat (« À ajouter » en `fg`, mise à jour en `fg-2`, erreur en `red-text` avec une icône de 14px). Tableau dès 768px (32rem au plus, en-tête collant), liste en dessous. « Importer N QR codes » `secondary` ; les lignes en erreur sont écartées, et rien n'est enregistré avant ce clic.
+
+### Mode installation
+- **Lecteur:** cadre carré `chrome`, filet `line`, coins de 10px. Au repos : icône de 32px `fg-2`, « Activer la caméra » `secondary`, note de confidentialité 12.5px `fg-3`. Caméra ouverte : la vidéo remplit le cadre, un viseur de 2px blanc à 80% est inscrit à 18% du bord, la consigne « Visez le QR code » en pastille noire à 70% ; « Arrêter la caméra » `ghost` `sm` dessous. Refus ou absence de caméra : icône `warning` et phrase qui renvoie à la saisie manuelle.
+- **Étapes:** scanner (ou saisir l'identifiant sous un filet, champ tactile et « Valider » `secondary` `lg`) ; confirmer (« QR 01-254-42 » en 22px, état du QR, champ tactile de la chambre, avertissement de chambre déjà équipée avec la case « Désactiver l'ancien QR », « Enregistrer la pose » `primary` `lg` en pleine largeur sous 640px) ; fin (tuile `success`, « Chambre 12 équipée » en 22px, « Scanner le QR suivant » `primary` `lg`).
+
 ### Définitions
 - Dépliant en bas de page, sous un filet `line` : « Comment sont calculés ces chiffres ? » en 13px `fg-2` (`fg` au survol) et chevron de 16px qui pivote de 180° en 200ms ; liste en une, deux puis trois colonnes (32px et 12px d'écart) : terme 13px/500 `fg`, définition 13px `fg-3` à 1.625.
 
@@ -540,13 +612,13 @@ La pièce signature : une même liste de trois raccourcis, ouverte depuis la bar
 - **Marque (provisoire):** symbole rouge de 32px et mot-symbole blanc espacés de 10px ; le symbole seul dans le rail.
 
 ### Icônes
-- Lucide (`lucide-react`), au trait de 1.75 posé explicitement sur chaque icône. Tailles : 14px (erreur de champ, évolution d'un chiffre clé), 16px (menus, bandeaux, alertes, boutons `sm`, avis, calendrier, bouclier, chevrons de lien), 18px (sidebar, cloche, boutons `md`, œil), 20px (actions rapides, boutons `lg`), 22px (onglets mobiles), 24px (tuiles, bouton central).
+- Lucide (`lucide-react`), au trait de 1.75 posé explicitement sur chaque icône. Tailles : 14px (erreur de champ, évolution d'un chiffre clé, flèche de tri, dernier scan en alerte, résultat d'import), 16px (menus, bandeaux, alertes, boutons `sm`, avis, calendrier, bouclier, chevrons de lien), 18px (sidebar, cloche, boutons `md`, œil), 20px (actions rapides, boutons `lg`), 22px (onglets mobiles), 24px (tuiles, bouton central), 32px (lecteur de QR au repos).
 - Toujours `aria-hidden` : le libellé porte le sens. Exception voulue : le « + » du bouton central, au trait 2.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Réserver** l'aplat `red` (#e50914) à une seule action principale par vue, hors marque ; la deuxième action prend la variante `secondary`.
+- **Réserver** l'aplat `red` (#e50914) à une seule action principale par vue, hors marque ; la deuxième action prend la variante `secondary`. Un panneau modal ou un écran plein porte l'aplat de sa propre validation.
 - **Écrire** tout rouge de texte, d'icône ou de bordure d'erreur en `red-text` (#ff4d55).
 - **Tracer** les données avec le seul bleu `viz-1` à `viz-4`, dans l'ordre du parcours (scans, parties commencées, terminées, gagnées), sur le fond `surface` du panneau.
 - **Accompagner** chaque graphique d'une légende (dès deux séries), d'une info-bulle au survol comme au clavier, et d'une vue tableau.
@@ -557,6 +629,8 @@ La pièce signature : une même liste de trois raccourcis, ouverte depuis la bar
 - **Séparer** les zones par un palier de noir et un filet (`line` à 8%, `line-strong` à 14%), pas par une ombre.
 - **Poser** les icônes Lucide au trait 1.75, en `aria-hidden`.
 - **Tenir** les transitions d'état à 150ms (200ms pour les rotations de chevron et de « + » et pour l'atténuation d'un changement de période) et laisser `prefers-reduced-motion` les couper.
+- **Afficher** toutes les erreurs d'un formulaire à la fois, et porter le focus sur la première.
+- **Saisir** en 16px au moins dans un écran utilisé au téléphone.
 - **Garder** chaque destination nommée à toutes les tailles : libellé visible (≥ 1280px), info-bulle au survol et au focus (rail), libellé court (barre du bas).
 
 ### Don't:
@@ -565,9 +639,9 @@ La pièce signature : une même liste de trois raccourcis, ouverte depuis la bar
 - **Ne pas** employer le bleu des données pour un texte, un lien, une action ou un état, ni hors d'un graphique.
 - **Ne pas** poser d'aplat de couleur sous une courbe, ni de deuxième axe vertical.
 - **Ne pas** écrire de texte plus sombre que `fg-3` (#8c8c8c).
-- **Ne pas** donner d'ombre à ce qui repose dans la page (champs, boutons en ligne, barres, panneaux) : `shadow-pop` est réservée aux popovers, aux info-bulles et au bouton central mobile.
+- **Ne pas** donner d'ombre à ce qui repose dans la page (champs, boutons en ligne, barres, panneaux) : `shadow-pop` est réservée aux popovers, aux info-bulles, au bouton central mobile, au panneau latéral et à la confirmation.
 - **Ne pas** imbriquer un panneau dans un autre.
-- **Ne pas** introduire de thème clair, d'accent bleu pour les liens ou les actions, ni de famille de caractères autre que Geist (Geist Mono aux seuls identifiants).
+- **Ne pas** introduire de thème clair, d'accent bleu pour les liens ou les actions, ni de famille de caractères autre que Geist (Geist Mono aux seuls codes).
 - **Ne pas** habiller l'interface d'un thème décoratif (cinéma, néon, jeu vidéo) : ni grain, ni lueur, ni texture, ni typographie fantaisie.
 - **Ne pas** placer de sur-titre en capitales au-dessus d'un titre : les capitales espacées sont réservées aux libellés de groupe de la sidebar.
 - **Ne pas** remplacer une icône par un caractère ou un emoji : toute icône est un SVG Lucide, la marque mise à part.
